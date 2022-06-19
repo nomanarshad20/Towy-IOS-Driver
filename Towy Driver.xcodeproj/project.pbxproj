@@ -1,0 +1,695 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		528305AA285F888400D854A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305A9285F888400D854A7 /* AppDelegate.swift */; };
+		528305B1285F888400D854A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528305AF285F888400D854A7 /* Main.storyboard */; };
+		528305B3285F888500D854A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528305B2285F888500D854A7 /* Assets.xcassets */; };
+		528305B6285F888500D854A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528305B4285F888500D854A7 /* LaunchScreen.storyboard */; };
+		528305C1285F888500D854A7 /* Towy_DriverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305C0285F888500D854A7 /* Towy_DriverTests.swift */; };
+		528305CB285F888600D854A7 /* Towy_DriverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305CA285F888600D854A7 /* Towy_DriverUITests.swift */; };
+		528305CD285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		528305BD285F888500D854A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5283059E285F888400D854A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 528305A5285F888400D854A7;
+			remoteInfo = "Towy Driver";
+		};
+		528305C7285F888500D854A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5283059E285F888400D854A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 528305A5285F888400D854A7;
+			remoteInfo = "Towy Driver";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		528305A6285F888400D854A7 /* Towy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Towy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		528305A9285F888400D854A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		528305B0285F888400D854A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		528305B2285F888500D854A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		528305B5285F888500D854A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		528305B7285F888500D854A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		528305BC285F888500D854A7 /* Towy DriverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Towy DriverTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		528305C0285F888500D854A7 /* Towy_DriverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Towy_DriverTests.swift; sourceTree = "<group>"; };
+		528305C6285F888500D854A7 /* Towy DriverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Towy DriverUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		528305CA285F888600D854A7 /* Towy_DriverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Towy_DriverUITests.swift; sourceTree = "<group>"; };
+		528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Towy_DriverUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		528305A3285F888400D854A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		528305B9285F888500D854A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		528305C3285F888500D854A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5283059D285F888400D854A7 = {
+			isa = PBXGroup;
+			children = (
+				528305A8285F888400D854A7 /* Towy Driver */,
+				528305BF285F888500D854A7 /* Towy DriverTests */,
+				528305C9285F888600D854A7 /* Towy DriverUITests */,
+				528305A7285F888400D854A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		528305A7285F888400D854A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				528305A6285F888400D854A7 /* Towy Driver.app */,
+				528305BC285F888500D854A7 /* Towy DriverTests.xctest */,
+				528305C6285F888500D854A7 /* Towy DriverUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		528305A8285F888400D854A7 /* Towy Driver */ = {
+			isa = PBXGroup;
+			children = (
+				528305E0285F89E400D854A7 /* Fonts */,
+				528305DF285F89C300D854A7 /* Appdelegate */,
+				528305DE285F89B500D854A7 /* Views */,
+				528305DD285F899000D854A7 /* CustomClasses */,
+				528305DC285F897C00D854A7 /* HelpingClasses */,
+				528305DB285F894900D854A7 /* CustomCells */,
+				528305DA285F893B00D854A7 /* Assets */,
+				528305D9285F892600D854A7 /* ViewControllers */,
+				528305B4285F888500D854A7 /* LaunchScreen.storyboard */,
+				528305B7285F888500D854A7 /* Info.plist */,
+			);
+			path = "Towy Driver";
+			sourceTree = "<group>";
+		};
+		528305BF285F888500D854A7 /* Towy DriverTests */ = {
+			isa = PBXGroup;
+			children = (
+				528305C0285F888500D854A7 /* Towy_DriverTests.swift */,
+			);
+			path = "Towy DriverTests";
+			sourceTree = "<group>";
+		};
+		528305C9285F888600D854A7 /* Towy DriverUITests */ = {
+			isa = PBXGroup;
+			children = (
+				528305CA285F888600D854A7 /* Towy_DriverUITests.swift */,
+				528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */,
+			);
+			path = "Towy DriverUITests";
+			sourceTree = "<group>";
+		};
+		528305D9285F892600D854A7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				528305E2285F8A3E00D854A7 /* Dashborad */,
+				528305E1285F8A2100D854A7 /* LoginSignup */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		528305DA285F893B00D854A7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				528305B2285F888500D854A7 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		528305DB285F894900D854A7 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		528305DC285F897C00D854A7 /* HelpingClasses */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HelpingClasses;
+			sourceTree = "<group>";
+		};
+		528305DD285F899000D854A7 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		528305DE285F89B500D854A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				528305AF285F888400D854A7 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		528305DF285F89C300D854A7 /* Appdelegate */ = {
+			isa = PBXGroup;
+			children = (
+				528305A9285F888400D854A7 /* AppDelegate.swift */,
+			);
+			path = Appdelegate;
+			sourceTree = "<group>";
+		};
+		528305E0285F89E400D854A7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		528305E1285F8A2100D854A7 /* LoginSignup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginSignup;
+			sourceTree = "<group>";
+		};
+		528305E2285F8A3E00D854A7 /* Dashborad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dashborad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		528305A5285F888400D854A7 /* Towy Driver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 528305D0285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy Driver" */;
+			buildPhases = (
+				528305A2285F888400D854A7 /* Sources */,
+				528305A3285F888400D854A7 /* Frameworks */,
+				528305A4285F888400D854A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Towy Driver";
+			productName = "Towy Driver";
+			productReference = 528305A6285F888400D854A7 /* Towy Driver.app */;
+			productType = "com.apple.product-type.application";
+		};
+		528305BB285F888500D854A7 /* Towy DriverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 528305D3285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy DriverTests" */;
+			buildPhases = (
+				528305B8285F888500D854A7 /* Sources */,
+				528305B9285F888500D854A7 /* Frameworks */,
+				528305BA285F888500D854A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				528305BE285F888500D854A7 /* PBXTargetDependency */,
+			);
+			name = "Towy DriverTests";
+			productName = "Towy DriverTests";
+			productReference = 528305BC285F888500D854A7 /* Towy DriverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		528305C5285F888500D854A7 /* Towy DriverUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 528305D6285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy DriverUITests" */;
+			buildPhases = (
+				528305C2285F888500D854A7 /* Sources */,
+				528305C3285F888500D854A7 /* Frameworks */,
+				528305C4285F888500D854A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				528305C8285F888500D854A7 /* PBXTargetDependency */,
+			);
+			name = "Towy DriverUITests";
+			productName = "Towy DriverUITests";
+			productReference = 528305C6285F888500D854A7 /* Towy DriverUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5283059E285F888400D854A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					528305A5285F888400D854A7 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					528305BB285F888500D854A7 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 528305A5285F888400D854A7;
+					};
+					528305C5285F888500D854A7 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 528305A5285F888400D854A7;
+					};
+				};
+			};
+			buildConfigurationList = 528305A1285F888400D854A7 /* Build configuration list for PBXProject "Towy Driver" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5283059D285F888400D854A7;
+			productRefGroup = 528305A7285F888400D854A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				528305A5285F888400D854A7 /* Towy Driver */,
+				528305BB285F888500D854A7 /* Towy DriverTests */,
+				528305C5285F888500D854A7 /* Towy DriverUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		528305A4285F888400D854A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528305B6285F888500D854A7 /* LaunchScreen.storyboard in Resources */,
+				528305B3285F888500D854A7 /* Assets.xcassets in Resources */,
+				528305B1285F888400D854A7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		528305BA285F888500D854A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		528305C4285F888500D854A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		528305A2285F888400D854A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528305AA285F888400D854A7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		528305B8285F888500D854A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528305C1285F888500D854A7 /* Towy_DriverTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		528305C2285F888500D854A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528305CB285F888600D854A7 /* Towy_DriverUITests.swift in Sources */,
+				528305CD285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		528305BE285F888500D854A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 528305A5285F888400D854A7 /* Towy Driver */;
+			targetProxy = 528305BD285F888500D854A7 /* PBXContainerItemProxy */;
+		};
+		528305C8285F888500D854A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 528305A5285F888400D854A7 /* Towy Driver */;
+			targetProxy = 528305C7285F888500D854A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		528305AF285F888400D854A7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				528305B0285F888400D854A7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		528305B4285F888500D854A7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				528305B5285F888500D854A7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		528305CE285F888600D854A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		528305CF285F888600D854A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		528305D1285F888600D854A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Towy Driver/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AIB.Towy-Driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		528305D2285F888600D854A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Towy Driver/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AIB.Towy-Driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		528305D4285F888600D854A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AIB.Towy-DriverTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Towy Driver.app/Towy Driver";
+			};
+			name = Debug;
+		};
+		528305D5285F888600D854A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AIB.Towy-DriverTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Towy Driver.app/Towy Driver";
+			};
+			name = Release;
+		};
+		528305D7285F888600D854A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AIB.Towy-DriverUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Towy Driver";
+			};
+			name = Debug;
+		};
+		528305D8285F888600D854A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AIB.Towy-DriverUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Towy Driver";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		528305A1285F888400D854A7 /* Build configuration list for PBXProject "Towy Driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				528305CE285F888600D854A7 /* Debug */,
+				528305CF285F888600D854A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		528305D0285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy Driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				528305D1285F888600D854A7 /* Debug */,
+				528305D2285F888600D854A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		528305D3285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy DriverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				528305D4285F888600D854A7 /* Debug */,
+				528305D5285F888600D854A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		528305D6285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy DriverUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				528305D7285F888600D854A7 /* Debug */,
+				528305D8285F888600D854A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5283059E285F888400D854A7 /* Project object */;
+}
