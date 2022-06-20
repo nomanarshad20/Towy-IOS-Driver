@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5266422B28605DF300167A6A /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5266422A28605DF300167A6A /* Auth.storyboard */; };
+		5266422D28605E6100167A6A /* CustomSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266422C28605E6100167A6A /* CustomSplashViewController.swift */; };
+		5266422F286063B300167A6A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266422E286063B300167A6A /* WelcomeViewController.swift */; };
+		52664231286063D300167A6A /* MobileNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52664230286063D300167A6A /* MobileNumberViewController.swift */; };
+		52664233286063DC00167A6A /* OtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52664232286063DC00167A6A /* OtpViewController.swift */; };
+		52664235286063F400167A6A /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52664234286063F400167A6A /* PasswordViewController.swift */; };
+		526642372860642300167A6A /* DriverDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526642362860642300167A6A /* DriverDetailsViewController.swift */; };
+		526642392860648C00167A6A /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526642382860648C00167A6A /* TermsAndConditionsViewController.swift */; };
+		5266423B2860649B00167A6A /* AllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266423A2860649B00167A6A /* AllSetViewController.swift */; };
+		5266423D286064DB00167A6A /* AccountTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266423C286064DB00167A6A /* AccountTypeViewController.swift */; };
+		5266423F286064F800167A6A /* TruckTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266423E286064F800167A6A /* TruckTypeViewController.swift */; };
+		526642412860671B00167A6A /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526642402860671B00167A6A /* DocumentsViewController.swift */; };
+		5266424328606FA200167A6A /* VehicleRegistrationBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424228606FA200167A6A /* VehicleRegistrationBookViewController.swift */; };
+		5266424528606FD700167A6A /* WaitForApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424428606FD700167A6A /* WaitForApprovalViewController.swift */; };
+		5266424728606FF700167A6A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424628606FF700167A6A /* SignInViewController.swift */; };
+		526642492860700600167A6A /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526642482860700600167A6A /* ForgotPasswordViewController.swift */; };
+		5266424B28607C6000167A6A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424A28607C6000167A6A /* BaseViewController.swift */; };
 		528305AA285F888400D854A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305A9285F888400D854A7 /* AppDelegate.swift */; };
 		528305B1285F888400D854A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528305AF285F888400D854A7 /* Main.storyboard */; };
 		528305B3285F888500D854A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528305B2285F888500D854A7 /* Assets.xcassets */; };
@@ -34,6 +51,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5266422A28605DF300167A6A /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		5266422C28605E6100167A6A /* CustomSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashViewController.swift; sourceTree = "<group>"; };
+		5266422E286063B300167A6A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		52664230286063D300167A6A /* MobileNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileNumberViewController.swift; sourceTree = "<group>"; };
+		52664232286063DC00167A6A /* OtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewController.swift; sourceTree = "<group>"; };
+		52664234286063F400167A6A /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		526642362860642300167A6A /* DriverDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailsViewController.swift; sourceTree = "<group>"; };
+		526642382860648C00167A6A /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
+		5266423A2860649B00167A6A /* AllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSetViewController.swift; sourceTree = "<group>"; };
+		5266423C286064DB00167A6A /* AccountTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeViewController.swift; sourceTree = "<group>"; };
+		5266423E286064F800167A6A /* TruckTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckTypeViewController.swift; sourceTree = "<group>"; };
+		526642402860671B00167A6A /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
+		5266424228606FA200167A6A /* VehicleRegistrationBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleRegistrationBookViewController.swift; sourceTree = "<group>"; };
+		5266424428606FD700167A6A /* WaitForApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForApprovalViewController.swift; sourceTree = "<group>"; };
+		5266424628606FF700167A6A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		526642482860700600167A6A /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		5266424A28607C6000167A6A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		528305A6285F888400D854A7 /* Towy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Towy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528305A9285F888400D854A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		528305B0285F888400D854A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,11 +131,11 @@
 			children = (
 				528305E0285F89E400D854A7 /* Fonts */,
 				528305DF285F89C300D854A7 /* Appdelegate */,
-				528305DE285F89B500D854A7 /* Views */,
 				528305DD285F899000D854A7 /* CustomClasses */,
 				528305DC285F897C00D854A7 /* HelpingClasses */,
 				528305DB285F894900D854A7 /* CustomCells */,
 				528305DA285F893B00D854A7 /* Assets */,
+				528305DE285F89B500D854A7 /* Views */,
 				528305D9285F892600D854A7 /* ViewControllers */,
 				528305B4285F888500D854A7 /* LaunchScreen.storyboard */,
 				528305B7285F888500D854A7 /* Info.plist */,
@@ -130,7 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				528305E2285F8A3E00D854A7 /* Dashborad */,
-				528305E1285F8A2100D854A7 /* LoginSignup */,
+				528305E1285F8A2100D854A7 /* Auth */,
+				5266424A28607C6000167A6A /* BaseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -168,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				528305AF285F888400D854A7 /* Main.storyboard */,
+				5266422A28605DF300167A6A /* Auth.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,11 +223,26 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		528305E1285F8A2100D854A7 /* LoginSignup */ = {
+		528305E1285F8A2100D854A7 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				5266422C28605E6100167A6A /* CustomSplashViewController.swift */,
+				5266422E286063B300167A6A /* WelcomeViewController.swift */,
+				52664230286063D300167A6A /* MobileNumberViewController.swift */,
+				52664232286063DC00167A6A /* OtpViewController.swift */,
+				52664234286063F400167A6A /* PasswordViewController.swift */,
+				526642362860642300167A6A /* DriverDetailsViewController.swift */,
+				526642382860648C00167A6A /* TermsAndConditionsViewController.swift */,
+				5266423A2860649B00167A6A /* AllSetViewController.swift */,
+				5266423C286064DB00167A6A /* AccountTypeViewController.swift */,
+				5266423E286064F800167A6A /* TruckTypeViewController.swift */,
+				526642402860671B00167A6A /* DocumentsViewController.swift */,
+				5266424228606FA200167A6A /* VehicleRegistrationBookViewController.swift */,
+				5266424428606FD700167A6A /* WaitForApprovalViewController.swift */,
+				5266424628606FF700167A6A /* SignInViewController.swift */,
+				526642482860700600167A6A /* ForgotPasswordViewController.swift */,
 			);
-			path = LoginSignup;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		528305E2285F8A3E00D854A7 /* Dashborad */ = {
@@ -305,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5266422B28605DF300167A6A /* Auth.storyboard in Resources */,
 				528305B6285F888500D854A7 /* LaunchScreen.storyboard in Resources */,
 				528305B3285F888500D854A7 /* Assets.xcassets in Resources */,
 				528305B1285F888400D854A7 /* Main.storyboard in Resources */,
@@ -332,7 +384,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				526642492860700600167A6A /* ForgotPasswordViewController.swift in Sources */,
+				526642392860648C00167A6A /* TermsAndConditionsViewController.swift in Sources */,
+				52664233286063DC00167A6A /* OtpViewController.swift in Sources */,
+				5266423D286064DB00167A6A /* AccountTypeViewController.swift in Sources */,
+				5266422F286063B300167A6A /* WelcomeViewController.swift in Sources */,
+				5266424328606FA200167A6A /* VehicleRegistrationBookViewController.swift in Sources */,
+				5266422D28605E6100167A6A /* CustomSplashViewController.swift in Sources */,
+				5266424B28607C6000167A6A /* BaseViewController.swift in Sources */,
+				52664231286063D300167A6A /* MobileNumberViewController.swift in Sources */,
+				5266423B2860649B00167A6A /* AllSetViewController.swift in Sources */,
+				5266424728606FF700167A6A /* SignInViewController.swift in Sources */,
+				5266424528606FD700167A6A /* WaitForApprovalViewController.swift in Sources */,
+				5266423F286064F800167A6A /* TruckTypeViewController.swift in Sources */,
 				528305AA285F888400D854A7 /* AppDelegate.swift in Sources */,
+				526642412860671B00167A6A /* DocumentsViewController.swift in Sources */,
+				52664235286063F400167A6A /* PasswordViewController.swift in Sources */,
+				526642372860642300167A6A /* DriverDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
