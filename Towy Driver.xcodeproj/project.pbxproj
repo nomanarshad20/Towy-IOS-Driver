@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06B102F2FA38966CCB7A9E42 /* Pods_Towy_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B1D87394302AD44A2A6A76 /* Pods_Towy_Driver.framework */; };
+		523D6E2A2861F364006F8117 /* AllExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D6E292861F364006F8117 /* AllExtensions.swift */; };
+		525361F128620E4C00DE2F4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F028620E4C00DE2F4E /* Constants.swift */; };
+		525361F328620E6100DE2F4E /* AllLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F228620E6100DE2F4E /* AllLoaders.swift */; };
+		525361F528620E6F00DE2F4E /* UtilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F428620E6E00DE2F4E /* UtilityManager.swift */; };
+		525361F728620EA300DE2F4E /* UIView+layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F628620EA300DE2F4E /* UIView+layer.swift */; };
 		5266422B28605DF300167A6A /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5266422A28605DF300167A6A /* Auth.storyboard */; };
 		5266422D28605E6100167A6A /* CustomSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266422C28605E6100167A6A /* CustomSplashViewController.swift */; };
 		5266422F286063B300167A6A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266422E286063B300167A6A /* WelcomeViewController.swift */; };
@@ -31,6 +37,17 @@
 		528305C1285F888500D854A7 /* Towy_DriverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305C0285F888500D854A7 /* Towy_DriverTests.swift */; };
 		528305CB285F888600D854A7 /* Towy_DriverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305CA285F888600D854A7 /* Towy_DriverUITests.swift */; };
 		528305CD285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */; };
+		52B69CE3286A13DE00BC2FA4 /* UberMoveTextLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B69CDF286A13DD00BC2FA4 /* UberMoveTextLight.otf */; };
+		52B69CE4286A13DE00BC2FA4 /* UberMoveTextRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B69CE0286A13DD00BC2FA4 /* UberMoveTextRegular.otf */; };
+		52B69CE5286A13DE00BC2FA4 /* UberMoveTextMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B69CE1286A13DD00BC2FA4 /* UberMoveTextMedium.otf */; };
+		52B69CE6286A13DE00BC2FA4 /* UberMoveTextBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52B69CE2286A13DD00BC2FA4 /* UberMoveTextBold.otf */; };
+		52B69CE8286A32B800BC2FA4 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B69CE7286A32B800BC2FA4 /* ServiceType.swift */; };
+		52FDC7C328638C260075952C /* TruckTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDC7C128638C260075952C /* TruckTypeTableViewCell.swift */; };
+		52FDC7C428638C260075952C /* TruckTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FDC7C228638C260075952C /* TruckTypeTableViewCell.xib */; };
+		52FDC7C72863A1D10075952C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDC7C62863A1D10075952C /* Document.swift */; };
+		52FDC7C92863A2950075952C /* DocumentAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDC7C82863A2950075952C /* DocumentAddViewController.swift */; };
+		68E75746A1CC2586F17A8A12 /* Pods_Towy_Driver_Towy_DriverUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5FD86B7DE1EE1200F829ED /* Pods_Towy_Driver_Towy_DriverUITests.framework */; };
+		6B02294D1C46DD17F11E4A93 /* Pods_Towy_DriverTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4604BCF46DD826D1C3AFEB /* Pods_Towy_DriverTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +68,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B4604BCF46DD826D1C3AFEB /* Pods_Towy_DriverTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Towy_DriverTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		523D6E292861F364006F8117 /* AllExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllExtensions.swift; sourceTree = "<group>"; };
+		525361F028620E4C00DE2F4E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		525361F228620E6100DE2F4E /* AllLoaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllLoaders.swift; sourceTree = "<group>"; };
+		525361F428620E6E00DE2F4E /* UtilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityManager.swift; sourceTree = "<group>"; };
+		525361F628620EA300DE2F4E /* UIView+layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+layer.swift"; sourceTree = "<group>"; };
 		5266422A28605DF300167A6A /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		5266422C28605E6100167A6A /* CustomSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplashViewController.swift; sourceTree = "<group>"; };
 		5266422E286063B300167A6A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +102,23 @@
 		528305C6285F888500D854A7 /* Towy DriverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Towy DriverUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528305CA285F888600D854A7 /* Towy_DriverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Towy_DriverUITests.swift; sourceTree = "<group>"; };
 		528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Towy_DriverUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		52B69CDF286A13DD00BC2FA4 /* UberMoveTextLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UberMoveTextLight.otf; sourceTree = "<group>"; };
+		52B69CE0286A13DD00BC2FA4 /* UberMoveTextRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UberMoveTextRegular.otf; sourceTree = "<group>"; };
+		52B69CE1286A13DD00BC2FA4 /* UberMoveTextMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UberMoveTextMedium.otf; sourceTree = "<group>"; };
+		52B69CE2286A13DD00BC2FA4 /* UberMoveTextBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UberMoveTextBold.otf; sourceTree = "<group>"; };
+		52B69CE7286A32B800BC2FA4 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		52FDC7C128638C260075952C /* TruckTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckTypeTableViewCell.swift; sourceTree = "<group>"; };
+		52FDC7C228638C260075952C /* TruckTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TruckTypeTableViewCell.xib; sourceTree = "<group>"; };
+		52FDC7C62863A1D10075952C /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		52FDC7C82863A2950075952C /* DocumentAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentAddViewController.swift; sourceTree = "<group>"; };
+		5F544903607D2BCB15627A9D /* Pods-Towy Driver-Towy DriverUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Towy Driver-Towy DriverUITests.debug.xcconfig"; path = "Target Support Files/Pods-Towy Driver-Towy DriverUITests/Pods-Towy Driver-Towy DriverUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8BA2404C3E34F3EE2F182E2B /* Pods-Towy Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Towy Driver.debug.xcconfig"; path = "Target Support Files/Pods-Towy Driver/Pods-Towy Driver.debug.xcconfig"; sourceTree = "<group>"; };
+		9178B3008151F57F93D4431F /* Pods-Towy Driver-Towy DriverUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Towy Driver-Towy DriverUITests.release.xcconfig"; path = "Target Support Files/Pods-Towy Driver-Towy DriverUITests/Pods-Towy Driver-Towy DriverUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AF5FD86B7DE1EE1200F829ED /* Pods_Towy_Driver_Towy_DriverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Towy_Driver_Towy_DriverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0B1D87394302AD44A2A6A76 /* Pods_Towy_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Towy_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6B6B92893D3A702D8C5F706 /* Pods-Towy Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Towy Driver.release.xcconfig"; path = "Target Support Files/Pods-Towy Driver/Pods-Towy Driver.release.xcconfig"; sourceTree = "<group>"; };
+		F1534CC38958B172232EE0D0 /* Pods-Towy DriverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Towy DriverTests.release.xcconfig"; path = "Target Support Files/Pods-Towy DriverTests/Pods-Towy DriverTests.release.xcconfig"; sourceTree = "<group>"; };
+		FB2FC62B7D63AADD5DD34D90 /* Pods-Towy DriverTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Towy DriverTests.debug.xcconfig"; path = "Target Support Files/Pods-Towy DriverTests/Pods-Towy DriverTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06B102F2FA38966CCB7A9E42 /* Pods_Towy_Driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B02294D1C46DD17F11E4A93 /* Pods_Towy_DriverTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,12 +142,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E75746A1CC2586F17A8A12 /* Pods_Towy_Driver_Towy_DriverUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DC232C80A544B50934BF289 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0B1D87394302AD44A2A6A76 /* Pods_Towy_Driver.framework */,
+				AF5FD86B7DE1EE1200F829ED /* Pods_Towy_Driver_Towy_DriverUITests.framework */,
+				2B4604BCF46DD826D1C3AFEB /* Pods_Towy_DriverTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5283059D285F888400D854A7 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +166,8 @@
 				528305BF285F888500D854A7 /* Towy DriverTests */,
 				528305C9285F888600D854A7 /* Towy DriverUITests */,
 				528305A7285F888400D854A7 /* Products */,
+				5D2A2C8CFD0C361DE67A3692 /* Pods */,
+				3DC232C80A544B50934BF289 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +184,7 @@
 		528305A8285F888400D854A7 /* Towy Driver */ = {
 			isa = PBXGroup;
 			children = (
+				52FDC7C52863A1C30075952C /* Models */,
 				528305E0285F89E400D854A7 /* Fonts */,
 				528305DF285F89C300D854A7 /* Appdelegate */,
 				528305DD285F899000D854A7 /* CustomClasses */,
@@ -181,6 +237,8 @@
 		528305DB285F894900D854A7 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				52FDC7C128638C260075952C /* TruckTypeTableViewCell.swift */,
+				52FDC7C228638C260075952C /* TruckTypeTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -188,6 +246,11 @@
 		528305DC285F897C00D854A7 /* HelpingClasses */ = {
 			isa = PBXGroup;
 			children = (
+				523D6E292861F364006F8117 /* AllExtensions.swift */,
+				525361F028620E4C00DE2F4E /* Constants.swift */,
+				525361F228620E6100DE2F4E /* AllLoaders.swift */,
+				525361F428620E6E00DE2F4E /* UtilityManager.swift */,
+				525361F628620EA300DE2F4E /* UIView+layer.swift */,
 			);
 			path = HelpingClasses;
 			sourceTree = "<group>";
@@ -219,6 +282,10 @@
 		528305E0285F89E400D854A7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				52B69CE2286A13DD00BC2FA4 /* UberMoveTextBold.otf */,
+				52B69CDF286A13DD00BC2FA4 /* UberMoveTextLight.otf */,
+				52B69CE1286A13DD00BC2FA4 /* UberMoveTextMedium.otf */,
+				52B69CE0286A13DD00BC2FA4 /* UberMoveTextRegular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -241,6 +308,7 @@
 				5266424428606FD700167A6A /* WaitForApprovalViewController.swift */,
 				5266424628606FF700167A6A /* SignInViewController.swift */,
 				526642482860700600167A6A /* ForgotPasswordViewController.swift */,
+				52FDC7C82863A2950075952C /* DocumentAddViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -252,6 +320,28 @@
 			path = Dashborad;
 			sourceTree = "<group>";
 		};
+		52FDC7C52863A1C30075952C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52FDC7C62863A1D10075952C /* Document.swift */,
+				52B69CE7286A32B800BC2FA4 /* ServiceType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5D2A2C8CFD0C361DE67A3692 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8BA2404C3E34F3EE2F182E2B /* Pods-Towy Driver.debug.xcconfig */,
+				E6B6B92893D3A702D8C5F706 /* Pods-Towy Driver.release.xcconfig */,
+				5F544903607D2BCB15627A9D /* Pods-Towy Driver-Towy DriverUITests.debug.xcconfig */,
+				9178B3008151F57F93D4431F /* Pods-Towy Driver-Towy DriverUITests.release.xcconfig */,
+				FB2FC62B7D63AADD5DD34D90 /* Pods-Towy DriverTests.debug.xcconfig */,
+				F1534CC38958B172232EE0D0 /* Pods-Towy DriverTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,9 +349,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 528305D0285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy Driver" */;
 			buildPhases = (
+				03E4A665062B1EAF96ABF277 /* [CP] Check Pods Manifest.lock */,
 				528305A2285F888400D854A7 /* Sources */,
 				528305A3285F888400D854A7 /* Frameworks */,
 				528305A4285F888400D854A7 /* Resources */,
+				9E41021B86FEECF867B9FAA8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,6 +368,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 528305D3285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy DriverTests" */;
 			buildPhases = (
+				1154211CA3CAF4E8DEDDCA56 /* [CP] Check Pods Manifest.lock */,
 				528305B8285F888500D854A7 /* Sources */,
 				528305B9285F888500D854A7 /* Frameworks */,
 				528305BA285F888500D854A7 /* Resources */,
@@ -294,9 +387,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 528305D6285F888600D854A7 /* Build configuration list for PBXNativeTarget "Towy DriverUITests" */;
 			buildPhases = (
+				5DD63840234D04DDE9692637 /* [CP] Check Pods Manifest.lock */,
 				528305C2285F888500D854A7 /* Sources */,
 				528305C3285F888500D854A7 /* Frameworks */,
 				528305C4285F888500D854A7 /* Resources */,
+				500A5DEBDF2D374E894B8141 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -356,7 +451,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B69CE5286A13DE00BC2FA4 /* UberMoveTextMedium.otf in Resources */,
+				52FDC7C428638C260075952C /* TruckTypeTableViewCell.xib in Resources */,
+				52B69CE6286A13DE00BC2FA4 /* UberMoveTextBold.otf in Resources */,
+				52B69CE4286A13DE00BC2FA4 /* UberMoveTextRegular.otf in Resources */,
 				5266422B28605DF300167A6A /* Auth.storyboard in Resources */,
+				52B69CE3286A13DE00BC2FA4 /* UberMoveTextLight.otf in Resources */,
 				528305B6285F888500D854A7 /* LaunchScreen.storyboard in Resources */,
 				528305B3285F888500D854A7 /* Assets.xcassets in Resources */,
 				528305B1285F888400D854A7 /* Main.storyboard in Resources */,
@@ -379,15 +479,124 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		03E4A665062B1EAF96ABF277 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Towy Driver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1154211CA3CAF4E8DEDDCA56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Towy DriverTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		500A5DEBDF2D374E894B8141 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Towy Driver-Towy DriverUITests/Pods-Towy Driver-Towy DriverUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Towy Driver-Towy DriverUITests/Pods-Towy Driver-Towy DriverUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Towy Driver-Towy DriverUITests/Pods-Towy Driver-Towy DriverUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DD63840234D04DDE9692637 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Towy Driver-Towy DriverUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E41021B86FEECF867B9FAA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Towy Driver/Pods-Towy Driver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Towy Driver/Pods-Towy Driver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Towy Driver/Pods-Towy Driver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		528305A2285F888400D854A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				526642492860700600167A6A /* ForgotPasswordViewController.swift in Sources */,
+				52FDC7C328638C260075952C /* TruckTypeTableViewCell.swift in Sources */,
+				525361F128620E4C00DE2F4E /* Constants.swift in Sources */,
 				526642392860648C00167A6A /* TermsAndConditionsViewController.swift in Sources */,
 				52664233286063DC00167A6A /* OtpViewController.swift in Sources */,
+				52B69CE8286A32B800BC2FA4 /* ServiceType.swift in Sources */,
+				525361F528620E6F00DE2F4E /* UtilityManager.swift in Sources */,
+				523D6E2A2861F364006F8117 /* AllExtensions.swift in Sources */,
 				5266423D286064DB00167A6A /* AccountTypeViewController.swift in Sources */,
+				52FDC7C72863A1D10075952C /* Document.swift in Sources */,
 				5266422F286063B300167A6A /* WelcomeViewController.swift in Sources */,
 				5266424328606FA200167A6A /* VehicleRegistrationBookViewController.swift in Sources */,
 				5266422D28605E6100167A6A /* CustomSplashViewController.swift in Sources */,
@@ -396,11 +605,14 @@
 				5266423B2860649B00167A6A /* AllSetViewController.swift in Sources */,
 				5266424728606FF700167A6A /* SignInViewController.swift in Sources */,
 				5266424528606FD700167A6A /* WaitForApprovalViewController.swift in Sources */,
+				525361F328620E6100DE2F4E /* AllLoaders.swift in Sources */,
 				5266423F286064F800167A6A /* TruckTypeViewController.swift in Sources */,
 				528305AA285F888400D854A7 /* AppDelegate.swift in Sources */,
+				525361F728620EA300DE2F4E /* UIView+layer.swift in Sources */,
 				526642412860671B00167A6A /* DocumentsViewController.swift in Sources */,
 				52664235286063F400167A6A /* PasswordViewController.swift in Sources */,
 				526642372860642300167A6A /* DriverDetailsViewController.swift in Sources */,
+				52FDC7C92863A2950075952C /* DocumentAddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +786,7 @@
 		};
 		528305D1285F888600D854A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BA2404C3E34F3EE2F182E2B /* Pods-Towy Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -601,6 +814,7 @@
 		};
 		528305D2285F888600D854A7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6B6B92893D3A702D8C5F706 /* Pods-Towy Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -628,6 +842,7 @@
 		};
 		528305D4285F888600D854A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB2FC62B7D63AADD5DD34D90 /* Pods-Towy DriverTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -652,6 +867,7 @@
 		};
 		528305D5285F888600D854A7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1534CC38958B172232EE0D0 /* Pods-Towy DriverTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -676,6 +892,7 @@
 		};
 		528305D7285F888600D854A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F544903607D2BCB15627A9D /* Pods-Towy Driver-Towy DriverUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -698,6 +915,7 @@
 		};
 		528305D8285F888600D854A7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9178B3008151F57F93D4431F /* Pods-Towy Driver-Towy DriverUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

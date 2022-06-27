@@ -16,14 +16,13 @@ class WelcomeViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func nextTapped(_ sender:UIButton){
+        UtilityManager.manager.gotoVC(from: self, identifier: "MobileNumberViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
     }
-    */
-
+    
+    @IBAction func loginTapped(_ sender:UIButton){
+        UtilityManager.manager.gotoVC(from: self, identifier: "MobileNumberViewController", storyBoard: UtilityManager.manager.getAuthStoryboard()) 
+    }
+    
 }

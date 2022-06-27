@@ -9,6 +9,8 @@ import UIKit
 
 class CustomSplashViewController: UIViewController {
 
+    @IBOutlet weak var viewLogo:UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,14 +18,23 @@ class CustomSplashViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        UIView.animate(withDuration: 1, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+                
+               // HERE
+            self.viewLogo.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5) // Scale your image
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+         }) { (finished) in
+             UIView.animate(withDuration: 1, animations: {
+               
+              self.viewLogo.transform = CGAffineTransform.identity // undo in 1 seconds
+                 DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                     UtilityManager.manager.gotoVC(from: self, identifier: "WelcomeViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+                 })
+           })
+        }
     }
-    */
-
+    
+        
 }

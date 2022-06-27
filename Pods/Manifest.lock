@@ -1,0 +1,39 @@
+PODS:
+  - CountryPickerView (3.3.0)
+  - IQKeyboardManager (6.5.10)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - PhoneNumberKit (3.3.4):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.4)
+    - PhoneNumberKit/UIKit (= 3.3.4)
+  - PhoneNumberKit/PhoneNumberKitCore (3.3.4)
+  - PhoneNumberKit/UIKit (3.3.4):
+    - PhoneNumberKit/PhoneNumberKitCore
+  - SkyFloatingLabelTextField (3.8.0)
+
+DEPENDENCIES:
+  - CountryPickerView
+  - IQKeyboardManager
+  - NVActivityIndicatorView
+  - PhoneNumberKit (~> 3.3)
+  - SkyFloatingLabelTextField (~> 3.0)
+
+SPEC REPOS:
+  trunk:
+    - CountryPickerView
+    - IQKeyboardManager
+    - NVActivityIndicatorView
+    - PhoneNumberKit
+    - SkyFloatingLabelTextField
+
+SPEC CHECKSUMS:
+  CountryPickerView: 6322ada32a80b0cd721b0267282a5c24f406f263
+  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PhoneNumberKit: 441e8b26ec88d598e3591de9061eff18f5dd12e8
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+
+PODFILE CHECKSUM: 09c2862e46ec3c00a55fe8b41f9dac64e98c5e48
+
+COCOAPODS: 1.11.3
