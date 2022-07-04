@@ -9,10 +9,12 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    
+    @IBOutlet weak var btnContinue:UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 

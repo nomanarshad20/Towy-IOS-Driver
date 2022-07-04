@@ -50,3 +50,40 @@ extension UIView{
     }
     
 }
+
+
+extension UITextField {
+    
+    func setPadding(_ amount:CGFloat) {
+        self.setLeftPadding(amount)
+        self.setRightPadding(amount)
+    }
+    
+    func setLeftPadding(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
+    func setRightPadding(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+    
+}
+
+
+extension UIButton {
+    
+    func disable() {
+        self.isUserInteractionEnabled = false
+        self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.8)
+    }
+    
+    func enable(){
+        self.isUserInteractionEnabled = true
+        self.backgroundColor = UIColor.init(named: Constants.AssetsColor.ThemeBtnColor.rawValue)?.withAlphaComponent(1)
+    }
+    
+}

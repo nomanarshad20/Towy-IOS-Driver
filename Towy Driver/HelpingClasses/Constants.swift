@@ -304,4 +304,14 @@ open class Constants {
         case RESET_BANNER               = "resetBanner"
     }
     
+    
+    
+    enum AssetsColor:String {
+       case TextfieldBackGround = "TextfieldBackGround"
+       case ThemeBtnColor = "ThemeBtnColor"
+        case ThemeTextColor = "ThemeTextColor"
+    }
+
+    
 }
+

@@ -13,7 +13,7 @@ target 'Towy Driver' do
   pod 'NVActivityIndicatorView'
  # pod 'DropDown', '2.3.2'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
- # pod 'SVPinView', '~> 1.0'
+  pod 'SVPinView', '~> 1.0'
   pod 'PhoneNumberKit', '~> 3.3'
 #  pod 'Alamofire', '~> 4.4'
  # pod 'SwiftyJSON', '~> 4.0'

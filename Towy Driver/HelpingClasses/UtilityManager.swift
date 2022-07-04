@@ -230,7 +230,7 @@ class UtilityManager: NSObject
 ////
 ////        // add an action (button)
 ////        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//        
+//
 //        let st = UtilityManager.manager.getMainStoryboard()
 //        let vc = st.instantiateViewController(withIdentifier: "CustomAlertViewController") as! CustomAlertViewController
 //        vc.txt = title ?? ""
@@ -244,7 +244,7 @@ class UtilityManager: NSObject
 //            }
 //
 //        }
-//        
+//
 //    }
     
     func showAlertWithAction(_ vc:UIViewController, message:String,title:String, buttons:[String], completion:((_ index:Int) -> Void)!) -> Void {
@@ -253,7 +253,7 @@ class UtilityManager: NSObject
         
         for index in 0..<buttons.count{
             
-            alertController.setValue(NSAttributedString(string: title, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)]), forKey: "attributedTitle")
+            alertController.setValue(NSAttributedString(string: title, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)]), forKey: "attributedTitle")
             
             alertController.setValue(NSAttributedString(string: message, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14),NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)]), forKey: "attributedMessage")
             
@@ -271,6 +271,14 @@ class UtilityManager: NSObject
         
         vc.present(alertController, animated: true, completion: nil)
     }
+    
+    func showAlert(_ vc:UIViewController, message:String,title:String) -> Void {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
+        vc.present(alertController, animated: true, completion: nil)
+    }
+    
     
     func appThemeColor() -> UIColor
     {
@@ -706,6 +714,7 @@ class UtilityManager: NSObject
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
+    
     
     func addHapticFeedback(_ style: UIImpactFeedbackGenerator.FeedbackStyle)
     {
