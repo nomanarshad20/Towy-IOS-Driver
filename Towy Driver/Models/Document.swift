@@ -10,12 +10,12 @@ import UIKit
 
 
 enum DocType: String {
-    case ID_CARD_FRONT =  "idFront"
-    case ID_CARD_BACK = "idBack"
+    case BG_CHECK =  "bgCheck"
     case PROFILE_PHOTO = "profilePhoto"
-    case LICENSE_F = "licenseF"
-    case LICENSE_B = "licenseB"
+    case LICENSE = "license"
     case REGISTRATION_BOOK = "registraionBook"
+    case VEHICLE_INSURANCE = "vehicleInsurance"
+    case VEHICLE_INSPECTION = "vehicleInspection"
 }
 
 struct Document{

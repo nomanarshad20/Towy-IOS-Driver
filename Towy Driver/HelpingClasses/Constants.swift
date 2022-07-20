@@ -76,7 +76,7 @@ open class Constants {
     public static var DEFAULT_LAT:Double!
     public static var DEFAULT_LONG:Double!
     public static var IS_RIDE_POPUP_VISIBLE:Bool = false
-    public static var FIREBASE_PUSH_NOTIFICATION_SERVER_KEY = "AAAA2bJgPWE:APA91bGRMquwv5CWZmut6Lg9ipDxzAZz-4shrgXlhELl9ZK9kPcENdYcNG7k4WFeXBeBuMLQcjavqMegyHCJYLiAlg3IUDX9baCxoKLQYSZwAlP4Rm2yUbbnQHncusHH_wqv_QtJXNkw "
+    public static var FIREBASE_PUSH_NOTIFICATION_SERVER_KEY = ""
     
     
     
@@ -308,10 +308,15 @@ open class Constants {
     
     enum AssetsColor:String {
        case TextfieldBackGround = "TextfieldBackGround"
-       case ThemeBtnColor = "ThemeBtnColor"
-        case ThemeTextColor = "ThemeTextColor"
+       case ThemeBtnColor       = "ThemeBtnColor"
+       case ThemeTextColor      = "ThemeTextColor"
+       case ThemeBlueColor      = "ThemeBlueColor"
     }
 
+   
+    
+    
+   
     
 }
 

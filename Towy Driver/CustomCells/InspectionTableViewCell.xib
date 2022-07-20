@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="UberMoveTextMedium.otf">
+            <string>UberMoveText-Medium</string>
+        </array>
+        <array key="UberMoveTextRegular.otf">
+            <string>UberMoveText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InspectionTableViewCell" rowHeight="165" id="KGk-i7-Jjw" customClass="InspectionTableViewCell" customModule="Towy_Driver" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="463" height="165"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="463" height="165"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  20$ Location  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ray-ZJ-fCN">
+                        <rect key="frame" x="20" y="18" width="96" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="rRv-wH-K9B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NsK-Os-aRL">
+                        <rect key="frame" x="438.5" y="21" width="12.5" height="16.5"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-Vw-rZQ">
+                        <rect key="frame" x="20" y="56" width="361" height="33.5"/>
+                        <string key="text">Vehicle Inspections in front of
+Uber Hub</string>
+                        <fontDescription key="fontDescription" name="UberMoveText-Medium" family="Uber Move Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.6 m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hU-y7-goU">
+                        <rect key="frame" x="401" y="55.5" width="50" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="c9T-El-gT9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBA-Zn-wfB">
+                        <rect key="frame" x="20" y="112.5" width="361" height="33.5"/>
+                        <string key="text">4201 West Vanowen Street.
+Burbank</string>
+                        <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0hU-y7-goU" firstAttribute="trailing" secondItem="NsK-Os-aRL" secondAttribute="trailing" id="49s-QM-9cC"/>
+                    <constraint firstItem="MBA-Zn-wfB" firstAttribute="trailing" secondItem="0Qe-Vw-rZQ" secondAttribute="trailing" id="7hi-O7-9Dd"/>
+                    <constraint firstAttribute="trailing" secondItem="NsK-Os-aRL" secondAttribute="trailing" constant="12" id="7lb-G5-EaC"/>
+                    <constraint firstItem="NsK-Os-aRL" firstAttribute="centerY" secondItem="ray-ZJ-fCN" secondAttribute="centerY" id="BDX-fV-dKt"/>
+                    <constraint firstItem="0hU-y7-goU" firstAttribute="top" secondItem="NsK-Os-aRL" secondAttribute="bottom" constant="16.5" id="CT1-Dy-WOU"/>
+                    <constraint firstItem="MBA-Zn-wfB" firstAttribute="top" secondItem="0Qe-Vw-rZQ" secondAttribute="bottom" constant="23" id="Sne-kw-WGR"/>
+                    <constraint firstItem="ray-ZJ-fCN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="T81-Se-FkC"/>
+                    <constraint firstItem="0Qe-Vw-rZQ" firstAttribute="leading" secondItem="ray-ZJ-fCN" secondAttribute="leading" id="TJG-AE-dN0"/>
+                    <constraint firstItem="ray-ZJ-fCN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="YnG-Ho-hFX"/>
+                    <constraint firstItem="0Qe-Vw-rZQ" firstAttribute="top" secondItem="ray-ZJ-fCN" secondAttribute="bottom" constant="16" id="YsD-Rf-Lta"/>
+                    <constraint firstItem="0hU-y7-goU" firstAttribute="leading" secondItem="0Qe-Vw-rZQ" secondAttribute="trailing" constant="20" id="ZGG-Yr-zNg"/>
+                    <constraint firstItem="MBA-Zn-wfB" firstAttribute="leading" secondItem="0Qe-Vw-rZQ" secondAttribute="leading" id="ynS-yU-U0u"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblAddressName" destination="0Qe-Vw-rZQ" id="aUs-Ru-7UA"/>
+                <outlet property="lblDistance" destination="0hU-y7-goU" id="yLS-1T-W3X"/>
+                <outlet property="lblLocation" destination="MBA-Zn-wfB" id="HNG-Ki-Nb2"/>
+                <outlet property="lblRate" destination="ray-ZJ-fCN" id="U8S-HQ-PEY"/>
+            </connections>
+            <point key="canvasLocation" x="241.30434782608697" y="118.86160714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+    </resources>
+</document>

@@ -15,9 +15,9 @@ target 'Towy Driver' do
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'SVPinView', '~> 1.0'
   pod 'PhoneNumberKit', '~> 3.3'
-#  pod 'Alamofire', '~> 4.4'
- # pod 'SwiftyJSON', '~> 4.0'
-  #pod 'Kingfisher', '~> 4.0'
+  pod 'Alamofire', '~> 4.4'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'Kingfisher', '~> 4.0'
 
 
   target 'Towy DriverTests' do

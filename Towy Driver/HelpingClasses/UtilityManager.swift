@@ -282,7 +282,15 @@ class UtilityManager: NSObject
     
     func appThemeColor() -> UIColor
     {
-        return UIColor.init(red: 0.0/255.0, green: 82.0/255.0, blue: 191.0/255.0, alpha: 1.0)
+        return UIColor.init(red: 0, green: 0, blue: 0, alpha: 1.0)
+    }
+    func getAppRedColor() -> UIColor
+    {
+        return UIColor.init(red: 165, green: 0, blue: 0, alpha: 1.0)
+    }
+    func getAppGreenColor() -> UIColor
+    {
+        return UIColor.init(red: 0, green: 100, blue: 0, alpha: 1.0)
     }
     func appBackgroundColor() -> UIColor
     {
