@@ -10,6 +10,7 @@ import SkyFloatingLabelTextField
 import PhoneNumberKit
 import CoreTelephony
 import CountryPickerView
+import FirebaseAuth
 
 
 
@@ -28,7 +29,7 @@ class MobileNumberViewController: UIViewController {
     @IBOutlet weak var viewEmail:UIView!
     @IBOutlet weak var lblCountryCode:UILabel!
     
-    
+    var user = User()
     
     @IBOutlet weak var viewTxtField:UIView!
     
@@ -45,6 +46,9 @@ class MobileNumberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        UserDefaults.standard.set(0, forKey: Constants.REGISTRATION_STATUS)
+
         
         btnNext.disable()
         txtEmail.setPadding(12)
@@ -98,13 +102,51 @@ class MobileNumberViewController: UIViewController {
     
     @IBAction func btnNext(_ sender: Any) {
         
-       
-        if checkValidation(){
-            let vc = storyboard?.instantiateViewController(withIdentifier: "OtpViewController") as! OtpViewController
-            vc.phoneNumber = self.txtPhone.text!
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
         
+        if checkValidation(){
+            SHOW_CUSTOM_LOADER()
+            
+            if isEmail{
+                
+                OTPManager.manager.sendEmailOTP(email:txtEmail.text!) { [self] result, message in
+                    if result{
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpViewController") as! OtpViewController
+                        self.user.email =  self.txtEmail.text!
+                        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
+                        vc.phoneNumber = txtEmail.text!
+                        vc.isEmail = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+
+                    }else{
+                        UtilityManager.manager.showAlert(self, message: message ?? "error sending OTP", title: "Oops")
+                    }
+                }
+                
+            }else{
+                
+                //            Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+                PhoneAuthProvider.provider().verifyPhoneNumber(phoneCode+txtPhone.text!, uiDelegate: nil) { verificationID, error in
+                    HIDE_CUSTOM_LOADER()
+                    if let error = error {
+                        UtilityManager.manager.showAlert(self, message: error.localizedDescription, title: "Oops")
+                        return
+                    }else{
+                        //                      UserDefaults.standard.set(1, forKey: Constants.REGISTRATION_STATUS)
+                        UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpViewController") as! OtpViewController
+                        self.user.mobileNumber =  self.phoneCode+self.txtPhone.text!
+                        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
+                        vc.phoneNumber = self.phoneCode+self.txtPhone.text!
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    // Sign in using the verificationID and the code sent to the user
+                    // ...
+                }
+                
+                
+            }
+        }
     }
     
     @IBAction func backTapped(_ sender:UIButton){
@@ -133,7 +175,6 @@ class MobileNumberViewController: UIViewController {
         }
         return true
     }
-    
     
 }
 

@@ -9,7 +9,8 @@ import UIKit
 
 
 protocol docAddedDelegate{
-    func didAddDoc(docType:DocType)
+    func didAddDoc(docType:DocType,image:UIImage)
+    func registrationinfoAdded(params:[String:Any],docType:DocType,image:UIImage)
 }
 
 class DocumentAddViewController: UIViewController {
@@ -97,8 +98,7 @@ class DocumentAddViewController: UIViewController {
             imgView.image = UIImage.init(named: "imagePlaceHolder")
 
         default:
-            "print 2"
-            
+            print("2")
         }
     }
     
@@ -111,9 +111,13 @@ extension DocumentAddViewController:ImagePickerDelegate {
     func imagePicker(_ imagePicker: ImagePicker, didSelect image: UIImage) {
         //        if let cellImage = self.tblViewProduct.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewProductPhotoCell {
         self.imgView.image = image
-        delegate.didAddDoc(docType: self.document)
-        //        }
+       
         imagePicker.dismiss()
+        delegate.didAddDoc(docType: self.document, image: image)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+            UtilityManager.manager.moveBack(self)
+        })
     }
     
     func cancelButtonDidClick(on imageView: ImagePicker) {

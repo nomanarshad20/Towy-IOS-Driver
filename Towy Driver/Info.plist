@@ -2,11 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow Towy To Access images for selecting documents for approval.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Allow Towy To Access Camera for selecting documents for approval.</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Auth</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.336988954949-frvuqh4plg3s5p0kgoblhbadrgk4p3bv</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

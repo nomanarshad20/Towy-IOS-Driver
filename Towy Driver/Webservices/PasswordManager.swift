@@ -49,7 +49,7 @@ class PasswordManager{
             {
                 if  (data["user"] as? NSDictionary) != nil{
                     
-                    completionHandler(User(dictionary: data["user"] as? NSDictionary ?? NSDictionary()),nil)
+                    completionHandler(User(dictionary: data["user"] as! [String : Any] ),nil)
                     
                 }
             }else{

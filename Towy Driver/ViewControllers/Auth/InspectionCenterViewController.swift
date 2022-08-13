@@ -13,6 +13,8 @@ class InspectionCenterViewController: UIViewController {
         
     
     
+    var delegate : docAddedDelegate!
+    
     var datasource = [InspectionCenter]()
     
         override func viewDidLoad() {
@@ -31,7 +33,9 @@ class InspectionCenterViewController: UIViewController {
         }
 
         @IBAction func backTapped(_ sender:UIButton){
+            delegate.didAddDoc(docType: .VEHICLE_INSPECTION, image: UIImage.init(named: "driver")!)
             UtilityManager.manager.moveBack(self)
+            
         }
 
     }

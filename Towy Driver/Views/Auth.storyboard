@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KAe-Ub-gto">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UBa-6P-3lI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -531,7 +531,7 @@ by Automated means, from  Towy
                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="pinLength">
-                                                        <integer key="value" value="4"/>
+                                                        <integer key="value" value="6"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="activeFieldCornerRadius">
                                                         <real key="value" value="2"/>
@@ -573,6 +573,9 @@ by Automated means, from  Towy
                                                         <real key="value" value="22.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="loginWithPass:" destination="Obk-bU-4na" eventType="touchUpInside" id="FS2-T0-bWb"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLd-ny-uRf">
                                                 <rect key="frame" x="274" y="718" width="120" height="70"/>
@@ -980,6 +983,7 @@ by Automated means, from  Towy
                         <outlet property="lblEightChr" destination="HKI-e3-lqj" id="dwf-kY-jz1"/>
                         <outlet property="lblOneDigit" destination="dLs-69-Lc0" id="jdf-eo-jdt"/>
                         <outlet property="lblOneLatter" destination="NPQ-fl-eLg" id="LuT-ER-avt"/>
+                        <outlet property="lblTopTitle" destination="B0b-JU-Jiu" id="Rcr-cz-nZD"/>
                         <outlet property="txtPassword" destination="Ssa-XC-9m9" id="Je7-Lb-Duy"/>
                     </connections>
                 </viewController>
@@ -2580,7 +2584,7 @@ account.</string>
                                                     <action selector="backTapped:" destination="YDI-O3-AVO" eventType="touchUpInside" id="2Di-1J-4BJ"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96g-wa-vuC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration Book" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96g-wa-vuC">
                                                 <rect key="frame" x="30" y="90" width="354" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                                 <nil key="textColor"/>
@@ -2612,10 +2616,10 @@ account.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="btnNext:" destination="YDI-O3-AVO" eventType="touchUpInside" id="jcF-fc-dzc"/>
+                                                    <action selector="btnNextTapped:" destination="YDI-O3-AVO" eventType="touchUpInside" id="dOh-hf-9GF"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJZ-JC-HbV">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter vehicle registration Informations" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJZ-JC-HbV">
                                                 <rect key="frame" x="30" y="145" width="354" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2636,8 +2640,9 @@ account.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgZ-if-dRN">
                                                 <rect key="frame" x="30" y="265.5" width="354" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUc-3N-5yk" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AUc-3N-5yk">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2657,7 +2662,7 @@ account.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="TextfieldBackGround"/>
                                                 <constraints>
                                                     <constraint firstItem="AUc-3N-5yk" firstAttribute="top" secondItem="hgZ-if-dRN" secondAttribute="top" id="2pq-SK-IBL"/>
                                                     <constraint firstAttribute="trailing" secondItem="AUc-3N-5yk" secondAttribute="trailing" id="GKk-Dg-0EW"/>
@@ -2669,8 +2674,9 @@ account.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ps5-BM-g5o">
                                                 <rect key="frame" x="30" y="327.5" width="354" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DIu-fS-m6E" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DIu-fS-m6E">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2690,7 +2696,7 @@ account.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="TextfieldBackGround"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="D8F-EE-VEX"/>
                                                     <constraint firstAttribute="trailing" secondItem="DIu-fS-m6E" secondAttribute="trailing" id="DzF-SE-GIc"/>
@@ -2702,8 +2708,9 @@ account.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4K-aU-RiM">
                                                 <rect key="frame" x="30" y="389.5" width="354" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6Y-Xk-r12" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j6Y-Xk-r12">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2723,7 +2730,7 @@ account.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="TextfieldBackGround"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="6Qh-xz-RyB"/>
                                                     <constraint firstItem="j6Y-Xk-r12" firstAttribute="top" secondItem="q4K-aU-RiM" secondAttribute="top" id="BKW-0a-gum"/>
@@ -2735,8 +2742,9 @@ account.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7w-EI-FrB">
                                                 <rect key="frame" x="30" y="451.5" width="354" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lOJ-uo-1gl" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lOJ-uo-1gl">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2756,7 +2764,7 @@ account.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="TextfieldBackGround"/>
                                                 <constraints>
                                                     <constraint firstItem="lOJ-uo-1gl" firstAttribute="leading" secondItem="r7w-EI-FrB" secondAttribute="leading" id="ItX-EH-6vM"/>
                                                     <constraint firstAttribute="bottom" secondItem="lOJ-uo-1gl" secondAttribute="bottom" id="PRX-P5-AFE"/>
@@ -2765,6 +2773,14 @@ account.</string>
                                                     <constraint firstItem="lOJ-uo-1gl" firstAttribute="top" secondItem="r7w-EI-FrB" secondAttribute="top" id="yz3-MY-EhF"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT2-gL-9tR">
+                                                <rect key="frame" x="30" y="541.5" width="354" height="220"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="btnImageTapped:" destination="YDI-O3-AVO" eventType="touchUpInside" id="6vb-6g-jTx"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -2775,8 +2791,10 @@ account.</string>
                                             <constraint firstAttribute="bottom" secondItem="dwl-CI-75d" secondAttribute="bottom" constant="40" id="Bc7-rz-ffj"/>
                                             <constraint firstItem="96g-wa-vuC" firstAttribute="leading" secondItem="ZUg-rZ-XH3" secondAttribute="leading" constant="30" id="Cvp-Qi-6mM"/>
                                             <constraint firstItem="Ps5-BM-g5o" firstAttribute="top" secondItem="hgZ-if-dRN" secondAttribute="bottom" constant="12" id="Et3-Nm-wXa"/>
+                                            <constraint firstItem="rT2-gL-9tR" firstAttribute="height" secondItem="70O-8M-haa" secondAttribute="height" id="Etb-j9-e5R"/>
                                             <constraint firstItem="q4K-aU-RiM" firstAttribute="top" secondItem="Ps5-BM-g5o" secondAttribute="bottom" constant="12" id="GEL-Ad-9Mb"/>
                                             <constraint firstItem="q4K-aU-RiM" firstAttribute="leading" secondItem="Ps5-BM-g5o" secondAttribute="leading" id="H7h-fm-Rtd"/>
+                                            <constraint firstItem="rT2-gL-9tR" firstAttribute="width" secondItem="70O-8M-haa" secondAttribute="width" id="Hhy-WA-Y0a"/>
                                             <constraint firstItem="r7w-EI-FrB" firstAttribute="trailing" secondItem="q4K-aU-RiM" secondAttribute="trailing" id="Ixs-0S-93c"/>
                                             <constraint firstItem="hgZ-if-dRN" firstAttribute="top" secondItem="Dwv-XD-qMv" secondAttribute="bottom" constant="30" id="Lm6-0f-LX4"/>
                                             <constraint firstItem="dwl-CI-75d" firstAttribute="top" secondItem="70O-8M-haa" secondAttribute="bottom" constant="80" id="MOn-kC-HWC"/>
@@ -2787,7 +2805,9 @@ account.</string>
                                             <constraint firstItem="Dwv-XD-qMv" firstAttribute="leading" secondItem="PJZ-JC-HbV" secondAttribute="leading" id="RnV-i9-kQP"/>
                                             <constraint firstItem="96g-wa-vuC" firstAttribute="top" secondItem="bEp-hk-8zg" secondAttribute="bottom" constant="30" id="S7C-k9-bLm"/>
                                             <constraint firstItem="PJZ-JC-HbV" firstAttribute="top" secondItem="96g-wa-vuC" secondAttribute="bottom" constant="25" id="U0Z-Yn-2z5"/>
+                                            <constraint firstItem="rT2-gL-9tR" firstAttribute="centerY" secondItem="70O-8M-haa" secondAttribute="centerY" id="Yju-Z5-nRQ"/>
                                             <constraint firstItem="dwl-CI-75d" firstAttribute="leading" secondItem="ZUg-rZ-XH3" secondAttribute="leading" constant="34" id="cjX-88-adG"/>
+                                            <constraint firstItem="rT2-gL-9tR" firstAttribute="centerX" secondItem="70O-8M-haa" secondAttribute="centerX" id="eYt-JF-vG9"/>
                                             <constraint firstItem="70O-8M-haa" firstAttribute="leading" secondItem="ZUg-rZ-XH3" secondAttribute="leading" constant="30" id="h7R-rS-ffA"/>
                                             <constraint firstItem="Dwv-XD-qMv" firstAttribute="trailing" secondItem="PJZ-JC-HbV" secondAttribute="trailing" id="hHy-ni-fq8"/>
                                             <constraint firstItem="PJZ-JC-HbV" firstAttribute="leading" secondItem="96g-wa-vuC" secondAttribute="leading" id="mT2-6Z-gsK"/>
@@ -2838,9 +2858,14 @@ account.</string>
                     </view>
                     <navigationItem key="navigationItem" id="teB-69-XBN"/>
                     <connections>
+                        <outlet property="btnNext" destination="dwl-CI-75d" id="Mx3-9p-lad"/>
                         <outlet property="imgView" destination="70O-8M-haa" id="Y8w-JQ-Q13"/>
                         <outlet property="lblDes" destination="PJZ-JC-HbV" id="2EW-Es-5VK"/>
                         <outlet property="lblTitle" destination="96g-wa-vuC" id="ZhD-cU-2ie"/>
+                        <outlet property="txtModel" destination="DIu-fS-m6E" id="30c-Vz-Sse"/>
+                        <outlet property="txtName" destination="AUc-3N-5yk" id="QZv-Wg-FE0"/>
+                        <outlet property="txtNumber" destination="j6Y-Xk-r12" id="Iac-iz-J4G"/>
+                        <outlet property="txtYear" destination="lOJ-uo-1gl" id="T4u-UF-ks7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOH-K2-BsI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3958,7 +3983,7 @@ mobile number</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwh-ba-vzS">
                                                 <rect key="frame" x="30" y="159.5" width="364" height="50"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter first name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z4c-4e-RMH">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter city name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z4c-4e-RMH">
                                                         <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -5094,47 +5119,32 @@ including those not on this list.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="AUc-3N-5yk">
-            <size key="intrinsicContentSize" width="117" height="34"/>
-        </designable>
-        <designable name="DIu-fS-m6E">
-            <size key="intrinsicContentSize" width="118.5" height="34"/>
-        </designable>
         <designable name="E6a-By-Xgp">
-            <size key="intrinsicContentSize" width="170.5" height="33"/>
-        </designable>
-        <designable name="He0-M2-V3r">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="354" height="53.531671875000001"/>
         </designable>
         <designable name="KGm-jz-VEp">
-            <size key="intrinsicContentSize" width="181.5" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="Sfo-C7-qw4">
-            <size key="intrinsicContentSize" width="124" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="c0g-EC-Wzp">
-            <size key="intrinsicContentSize" width="178" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="drt-Y2-Mvf">
-            <size key="intrinsicContentSize" width="123" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="eWJ-b0-VAa">
-            <size key="intrinsicContentSize" width="179.5" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="etj-bB-ULE">
-            <size key="intrinsicContentSize" width="99" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="gnu-qp-r34">
-            <size key="intrinsicContentSize" width="161" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
         <designable name="iXZ-5Z-JTR">
-            <size key="intrinsicContentSize" width="189.5" height="34"/>
-        </designable>
-        <designable name="j6Y-Xk-r12">
-            <size key="intrinsicContentSize" width="133" height="34"/>
-        </designable>
-        <designable name="lOJ-uo-1gl">
-            <size key="intrinsicContentSize" width="150" height="34"/>
+            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
         </designable>
     </designables>
     <resources>

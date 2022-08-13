@@ -47,7 +47,7 @@ open class Constants {
     // ------------------------------------------------------------------------------------
     //--------------------------- TEST SERVER LINK------------------------//
     //
-    public static let HTTP_CONNECTION_ROOT   =  "http://13.213.132.157/api/v1/"
+    public static let HTTP_CONNECTION_ROOT   =  "http://3.101.101.16/api/"
     public static let ASSETS_BASE_URL = "http://13.213.132.157/"
     
     //-------------------------------------------------------------------------//
@@ -106,11 +106,18 @@ open class Constants {
     public static let SERVER_VEHICLE_MODEL_YEAR = "vehicle_model_year";
     public static let GET_HELP_DATA             = "getPageData";
     
-    
     public static let SERVER_ACCESS_TOKEN       = "accessToken";
     public static let SERVER_USER_SID           = "id";
     public static let SERVER_DRIVER_RATING      = "driverRating";
     public static let SERVER_REFERRAL_ID        = "referralId";
+    
+    
+
+
+    public static let REGISTRATION_STATUS       = "regStatus";
+    public static let IS_VERIFIED               = "isVerified";
+
+    public static let APP_USER                  = "appUser";
     
     public static let IS_LOGIN                  = "isLogin";
     public static let IS_PERFORMER              = "isPerfomer";
@@ -183,15 +190,19 @@ open class Constants {
     // --------------------                 End Points                ----------------------------
     // ------------------------------------------------------------------------------------
     
-    public static let DRIVER_REGISTERATION          = "registerNewDriver"
+    public static let DRIVER_REGISTERATION          = "driver-register"
     public static let ALL_FRANCHISES                = "franchisesAll"
-    public static let VERIFY_OTP                    = "verifyCode"
-    public static let RESEND_OTP                    = "resendOTP"
-    public static let DRIVER_LOGIN                  = "loginDriver"
+    public static let SEND_SSN                      = "driver-save-social-security-number?ssn="
+    public static let SEND_OTP_EMAIL                = "send-otp"
+    public static let VERIFY_OTP                    = "driver-verify-otp"
+    public static let RESEND_OTP                    = "driver-resend-otp"
+    public static let DRIVER_LOGIN                  = "driver-login"
     public static let DRIVER_STATUS                 = "setDriverStatus"
     public static let DRIVER_COORDINATES_UPDATE     = "setDriverCoordinates"
     public static let VEHICLE_INFO_UPLOAD           = "vehicleInfoUpdate"
-    public static let USER_DOCUMENTS_UPLOAD         = "uploadIdDocInfo"
+    public static let USER_DOCUMENTS_UPLOAD         = "driver-save-document"
+    public static let VEHICLE_DOCUMENTS_UPLOAD      = "driver-save-vehicle-information"
+    public static let USER_DOCUMENTS_COMPLETED      = "driver-document-complete"
     public static let USER_REFRESH_TOKEN            = "userRefreshToken?"
     public static let USER_LOGOUT                   = "logout"
     public static let ACCEPT_RIDE                   = "newRideBooking"
@@ -210,7 +221,9 @@ open class Constants {
     public static let GET_DUAL_CAT_ID               = "vehicle_dual_cat_update"
     public static let GET_TRANSACTION_HISTORY       = "partnerTransactionsHistory"
     public static let GET_NOTIFICATIONS_HISTORY     = "getNotificationList"
-    
+    public static let UPDATE_USER_TYPE              = "save-user-type?user_type="
+    public static let GET_VEHICLE_TYPE              = "driver-get-vehicle-types"
+    public static let SAVE_VEHICLE_TYPE             =  "driver-save-vehicle-type?"
     
     // ------------------------------------------------------------------------------------
     // --------------------                 Alert Messages                ----------------------------

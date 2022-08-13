@@ -182,6 +182,8 @@ class UtilityManager: NSObject
         let storyboard = UIStoryboard.init(name: "Auth", bundle: nil)
         return storyboard
     }
+    
+    
     func getDashboardStoryboard() -> UIStoryboard
     {
         let storyboard = UIStoryboard.init(name: "Dashboard", bundle: .main)
@@ -225,27 +227,51 @@ class UtilityManager: NSObject
             vc.dismiss(animated: animate, completion: nil)
         }
     }
-//    func showAlertView(title:String?, message:String,VC:UIViewController? = nil){
-////        let alert = UIAlertController(title:title!, message:message, preferredStyle: UIAlertController.Style.alert)
-////
-////        // add an action (button)
-////        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+    func showAlertView(title:String?, message:String,VC:UIViewController? = nil){
+//        let alert = UIAlertController(title:title!, message:message, preferredStyle: UIAlertController.Style.alert)
 //
-//        let st = UtilityManager.manager.getMainStoryboard()
-//        let vc = st.instantiateViewController(withIdentifier: "CustomAlertViewController") as! CustomAlertViewController
-//        vc.txt = title ?? ""
-//        vc.msg = message
-//        vc.modalPresentationStyle = .overFullScreen
-//        if VC != nil{
-//            VC!.present(vc, animated: false, completion: nil)
-//        }else{
-//            if let topVc = UIApplication.getTopMostViewController(){
-//                topVc.present(vc, animated: false, completion: nil)
-//            }
-//
-//        }
-//
-//    }
+//        // add an action (button)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        let st = UtilityManager.manager.getMainStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "CustomAlertViewController") as! CustomAlertViewController
+        vc.txt = title ?? ""
+        vc.msg = message
+        vc.modalPresentationStyle = .overFullScreen
+        if VC != nil{
+            VC!.present(vc, animated: false, completion: nil)
+        }else{
+            if let topVc = UIApplication.getTopMostViewController(){
+                topVc.present(vc, animated: false, completion: nil)
+            }
+
+        }
+
+    }
+    
+    
+    func showAlertViewWithButtons(title:String?, message:String,VC:UIViewController? = nil,buttons:[String], completion:@escaping((_ success: Int) -> ())){
+
+        let st = UtilityManager.manager.getMainStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "CustomAlertViewWithActionsViewController") as! CustomAlertViewWithActionsViewController
+        vc.txt = title ?? ""
+        vc.msg = message
+        vc.buttons = buttons
+        vc.modalPresentationStyle = .overFullScreen
+        vc.onCompletion = { success in
+            completion(1)
+        }
+        if VC != nil{
+            VC!.present(vc, animated: false, completion: nil)
+        }else{
+            if let topVc = UIApplication.getTopMostViewController(){
+                topVc.present(vc, animated: false, completion: nil)
+            }
+
+        }
+
+    }
+    
     
     func showAlertWithAction(_ vc:UIViewController, message:String,title:String, buttons:[String], completion:((_ index:Int) -> Void)!) -> Void {
         
@@ -304,6 +330,13 @@ class UtilityManager: NSObject
     func saveFCMToken(token:String){
         UserDefaults.standard.setValue(token, forKey: Constants.LOCAL_FCM_TOKEN)
     }
+    
+    func saveAppUser(user:User){
+        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: user))
+    }
+    func getAppUser()->User?{
+        return User.init(dictionary: UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER) ?? [:])
+    }
     func getServerFcmToken() -> String
        {
            let result = UserDefaults.standard.value(forKey: Constants.SERVER_FCM_TOKEN) as? String
@@ -312,7 +345,7 @@ class UtilityManager: NSObject
     func getFcmToken() -> String
     {
         let result = UserDefaults.standard.value(forKey: Constants.LOCAL_FCM_TOKEN) as? String
-        return result ?? ""
+        return result ?? "134234j34b2jb23hjvb23hjb5hj23v5hj235"
     }
     func getId() -> Int
     {
@@ -390,15 +423,24 @@ class UtilityManager: NSObject
    
     
     
-    func saveUserSession(userDict:NSDictionary,accessToken:String){
+    func saveUserSession(userDict:NSDictionary,accessToken:String?){
         
 //        print(userDict)
         
-        if  accessToken != ""{
+        if  let accessToken = userDict["token"]{
             UserDefaults.standard.set(accessToken, forKey: Constants.SERVER_ACCESS_TOKEN)
         }
         
-        if let userID = userDict["id"] as? NSInteger
+        if let isverified = userDict["is_verified"] as? NSInteger
+        {
+            UserDefaults.standard.set(isverified, forKey: Constants.IS_VERIFIED)
+        }
+        
+        if let userID = userDict["is_step"] as? NSInteger
+        {
+            UserDefaults.standard.set(userID, forKey: Constants.REGISTRATION_STATUS)
+        }
+        if let userID = userDict["user_id"] as? NSInteger
         {
             UserDefaults.standard.set(userID, forKey: Constants.SERVER_USER_SID)
         }
@@ -420,7 +462,7 @@ class UtilityManager: NSObject
             UserDefaults.standard.set(userEmail, forKey: Constants.FRANCHISE_NAME)
         }
         
-        if let userPhone = userDict["mobile_no"] as? NSInteger
+        if let userPhone = userDict["mobile_no"] as? String
         {
             UserDefaults.standard.set(userPhone, forKey: Constants.SERVER_NOMBRE_ID)
         }
@@ -444,7 +486,7 @@ class UtilityManager: NSObject
         }
         
         
-        if let referralId = userDict["referral_id"] as? String
+        if let referralId = userDict["referral_code"] as? String
         {
             UserDefaults.standard.set(referralId, forKey: Constants.SERVER_REFERRAL_ID)
         }
@@ -674,7 +716,7 @@ class UtilityManager: NSObject
         let headers = [
             "Authorization": "Bearer \(UtilityManager().getAuthToken())",
             "Accept": "application/json",
-            "Content-Type": "application/json" ]
+            "Content-Type": "application/json"]
         return headers
     }
     

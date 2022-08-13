@@ -15,12 +15,17 @@ class AccountTypeViewController: UIViewController {
     @IBOutlet weak var viewTowService:UIView!
     
     
-    
+    var user = User()
    
+    var isDriver = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        if user.mobileNumber == nil{
+//            user = User.init(dictionary: UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER)!)
+//        }
+        
         btnNext.disable()
 
     }
@@ -28,8 +33,27 @@ class AccountTypeViewController: UIViewController {
 
     @IBAction func btnNext(_ sender: Any) {
         
-    
-        UtilityManager.manager.gotoVC(from: self, identifier: "AboutVehicleViewController", storyBoard: UtilityManager.manager.getAuthStoryboard()) 
+        SHOW_CUSTOM_LOADER()
+        
+        SignUpManager.manager.setUserType(type: isDriver) { [self] result, message in
+            if result ?? false{
+                if isDriver == "4"{
+                    UtilityManager.manager.gotoVC(from: self, identifier: "TruckTypeViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+
+                }else{
+                    
+                    //To left for Workshop
+                    UtilityManager.manager.gotoVC(from: self, identifier: "TruckTypeViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+
+                }
+            }else{
+                UtilityManager.manager.showAlert(self, message: message ?? "error setting User Type", title: Constants.APP_NAME)
+            }
+        }
+        
+
+        
+        
     }
     
     @IBAction func backTapped(_ sender:UIButton){
@@ -38,6 +62,7 @@ class AccountTypeViewController: UIViewController {
 
 
     @IBAction func btnWorkshopTapped(_ sender:UIButton){
+        isDriver = "4"
         btnNext.enable()
         viewWorkShop.layer.borderWidth = 2
         viewTowService.layer.borderWidth = 0
@@ -45,10 +70,15 @@ class AccountTypeViewController: UIViewController {
 
     
     @IBAction func btnTowTapped(_ sender:UIButton){
+        isDriver = "2"
         btnNext.enable()
         viewTowService.layer.borderWidth = 2
         viewWorkShop.layer.borderWidth = 0
+
+        
     }
+    
+    
     
     
     

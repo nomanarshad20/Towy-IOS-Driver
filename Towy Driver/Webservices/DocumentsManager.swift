@@ -32,7 +32,7 @@ class DocumentManager{
                     }
                 }
         },
-            to: Constants.HTTP_CONNECTION_ROOT+Constants.VEHICLE_INFO_UPLOAD,
+            to: Constants.HTTP_CONNECTION_ROOT+Constants.VEHICLE_DOCUMENTS_UPLOAD,
             headers: header,
             encodingCompletion: { encodingResult in
                 switch encodingResult {
@@ -48,14 +48,12 @@ class DocumentManager{
                         switch response.result {
                         case .success:
                             let swiftyJsonVar = JSON(response.result.value!)
-                            if swiftyJsonVar["status"].int == 200
+                            if swiftyJsonVar["result"].string == "success"
                             {
                                 if let mainDict = swiftyJsonVar["data"].dictionaryObject
                                 {
-                                    if  let userDict = mainDict["user"] as? NSDictionary{
-                                        UtilityManager().saveUserSession(userDict: userDict, accessToken: swiftyJsonVar["accessToken"].string ?? "")
+                                    UtilityManager().saveUserSession(userDict: mainDict as NSDictionary, accessToken: swiftyJsonVar["accessToken"].string)
                                         completionHandler(true,nil)
-                                    }
                                 }
                             }
                             else
@@ -85,23 +83,25 @@ class DocumentManager{
     
     
     
-    func uploadUserDocuments(params:[String:Any],imagesArray:[String:UIImage],completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
+    func uploadUserDocuments(params:[String:Any]?,imagesArray:[String:UIImage],completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
          let header = UtilityManager().getAuthHeader()
         Alamofire.upload(
             multipartFormData: { multipartFormData in
-                for (key,value) in params {
-                    if let value = value as? String {
-                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                if params != nil{
+                    for (key,value) in params! {
+                        if let value = value as? String {
+                            multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                        }
                     }
                 }
                 
                 for (k,v) in imagesArray {
                     if  let imageData = v.jpegData(compressionQuality: 0.5) {
                         multipartFormData.append(imageData, withName: k, fileName: "\(k).png", mimeType: "image/jpeg")
-                       
+                        
                     }
                 }
-        },
+            },
             to: Constants.HTTP_CONNECTION_ROOT+Constants.USER_DOCUMENTS_UPLOAD,
             headers: header,
             encodingCompletion: { encodingResult in
@@ -117,17 +117,15 @@ class DocumentManager{
                         switch response.result {
                         case .success:
                             let swiftyJsonVar = JSON(response.result.value!)
-                            if swiftyJsonVar["status"].int == 200
+                            if swiftyJsonVar["result"].string == "success"
                             {
                                 if let mainDict = swiftyJsonVar["data"].dictionaryObject
                                 {
-                                    if  let userDict = mainDict["user"] as? NSDictionary{
-                                        UtilityManager().saveUserSession(userDict: userDict, accessToken: swiftyJsonVar["accessToken"].string ?? "")
+                                    UtilityManager().saveUserSession(userDict: mainDict as NSDictionary, accessToken: swiftyJsonVar["accessToken"].string)
                                         completionHandler(true,nil)
-                                    }
                                 }
                             }else if swiftyJsonVar["status"].int == 401{
-                                
+                                completionHandler(false,"Un-Authenticated.")
                             }
                             else
                             {
@@ -153,6 +151,23 @@ class DocumentManager{
         }
         )
     }
+    
+    func userDocumentsCompleted(completionHandler:@escaping (_ result : Bool?, _ message:String?)-> Void)
+    {
+        
+        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.USER_DOCUMENTS_COMPLETED
+        webServiceManager.manager.getData(url: baseUrl, param: nil, headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
+            HIDE_CUSTOM_LOADER()
+            if let data = mainDict?["data"].dictionaryObject
+            {
+                    completionHandler(true,nil)
+            }else{
+                completionHandler(nil,err)
+            }
+        }
+    }
+    
+    
     
     
 }

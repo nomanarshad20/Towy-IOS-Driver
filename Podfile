@@ -7,17 +7,23 @@ target 'Towy Driver' do
 
   # Pods for Towy Driver
 
-  pod 'CountryPickerView'
-  pod 'IQKeyboardManager'
-#  pod 'SideMenu'
-  pod 'NVActivityIndicatorView'
- # pod 'DropDown', '2.3.2'
-  pod 'SkyFloatingLabelTextField', '~> 3.0'
-  pod 'SVPinView', '~> 1.0'
-  pod 'PhoneNumberKit', '~> 3.3'
-  pod 'Alamofire', '~> 4.4'
-  pod 'SwiftyJSON', '~> 4.0'
-  pod 'Kingfisher', '~> 4.0'
+#  pod 'CountryPickerView'
+ # pod 'IQKeyboardManager'
+  #pod 'SideMenu'
+  #pod 'NVActivityIndicatorView'
+  #pod 'SkyFloatingLabelTextField', '~> 3.0'
+  #pod 'SVPinView', '~> 1.0'
+  #pod 'PhoneNumberKit', '~> 3.3'
+  #pod 'Alamofire', '~> 4.4'
+  #pod 'Firebase/Auth'
+  #pod 'SwiftyJSON', '~> 4.0'
+  #pod 'Kingfisher', '~> 4.0'
+  #pod 'Firebase/Messaging'
+  #pod 'Firebase/Database'
+  #pod 'CarbonKit'
+  #pod 'GoogleMaps', '4.0.0'
+  #pod 'GooglePlaces', '4.0.0'
+
 
 
   target 'Towy DriverTests' do

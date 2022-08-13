@@ -7,10 +7,10 @@
 
 import UIKit
 import SVPinView
-
+import FirebaseAuth
 
 class OtpViewController: UIViewController {
-
+    
     @IBOutlet weak var pinView:SVPinView!
     @IBOutlet weak var lblPhoneNumber:UILabel!
     @IBOutlet weak var btnResend:UIButton!
@@ -21,18 +21,28 @@ class OtpViewController: UIViewController {
     var WT:Timer!
     var phoneNumber = ""
     var waitingTime = 30
+    var user = User()
+    var isEmail = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        
+        //        if user.mobileNumber == nil{
+        //            user = User.init(dictionary: UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER) ?? [:])
+        //        }
         self.btnResend.setTitleColor( UIColor.gray, for: .normal)
         WT = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateWaitingTime), userInfo: nil, repeats: true)
         
-        lblPhoneNumber.text = "Enter the 4-digit code sent to you at " + phoneNumber
+        lblPhoneNumber.text = "Enter the OTP code sent to you at " + phoneNumber
         
         pinView.style = .box
         pinView.font = UIFont.systemFont(ofSize: 23, weight: .semibold)
-        
+        if isEmail{
+            pinView.pinLength = 4
+        }
         pinView.becomeFirstResponderAtIndex = 0
         pinView.frame = self.view.frame
         btnNext.isUserInteractionEnabled = false
@@ -42,7 +52,7 @@ class OtpViewController: UIViewController {
             btnNext.backgroundColor = UIColor.init(named: Constants.AssetsColor.ThemeBtnColor.rawValue)
         }
         pinView.didChangeCallback = { [self] pin in
-            if pin.count != 4{
+            if pin.count != 6{
                 btnNext.isUserInteractionEnabled = false
                 btnNext.backgroundColor = UIColor.init(named: Constants.AssetsColor.TextfieldBackGround.rawValue)
             }
@@ -54,16 +64,17 @@ class OtpViewController: UIViewController {
     @objc func updateWaitingTime(){
         if waitingTime == 0{
             if WT != nil{
-            WT.invalidate()
+                WT.invalidate()
                 WT = nil
             }
             waitingTime = 30
+            self.pinView.clearPin(completionHandler: nil)
             btnResend.isUserInteractionEnabled = true
             btnResend.setTitleColor(UIColor.white, for: .normal)
             btnResend.backgroundColor = UIColor.init(named: Constants.AssetsColor.ThemeBtnColor.rawValue)
             btnResend.setTitle("I didn't receive a code", for: .normal)
         }else{
-           
+            
             btnResend.backgroundColor = UIColor.init(named: Constants.AssetsColor.ThemeTextColor.rawValue)
             btnResend.isUserInteractionEnabled = false
             waitingTime -= 1
@@ -90,16 +101,87 @@ class OtpViewController: UIViewController {
         
         
         
-        WT = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateWaitingTime), userInfo: nil, repeats: true)
+        
+        SHOW_CUSTOM_LOADER()
+        PhoneAuthProvider.provider()
+            .verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { verificationID, error in
+                HIDE_CUSTOM_LOADER()
+                if let error = error {
+                    UtilityManager.manager.showAlert(self, message: error.localizedDescription, title: "Oops")
+                    return
+                }else{
+                    self.pinView.clearPin(completionHandler: nil)
+                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    self.WT = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateWaitingTime), userInfo: nil, repeats: true)
+                }
+                // Sign in using the verificationID and the code sent to the user
+                // ...
+            }
+        
+        
+        
         
     }
     
     
     @IBAction func btnNext(_ sender: Any) {
         
-    
-        UtilityManager.manager.gotoVC(from: self, identifier: "PasswordViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+        if isEmail{
+            SHOW_CUSTOM_LOADER()
+            OTPManager.manager.codeVerifyApi(email:self.phoneNumber, pin: pinView.getPin()) { result, message in
+                HIDE_CUSTOM_LOADER()
+                if result{
+                    print("llkfnkd")
+                }else{
+                    UtilityManager.manager.showAlert(self, message: message ?? "error verifying OTP" , title: "Oops")
+                }
+            }
+        }else{
+            let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") ?? ""
+            
+            let credential = PhoneAuthProvider.provider().credential(
+                withVerificationID: verificationID,
+                verificationCode: pinView.getPin())
+            SHOW_CUSTOM_LOADER()
+            Auth.auth().signIn(with: credential) { authResult, error in
+                HIDE_CUSTOM_LOADER()
+                if let error = error {
+                    UtilityManager.manager.showAlert(self, message: error.localizedDescription , title: "Oops")
+                    
+                }else{
+                    UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
+                    UserDefaults.standard.set(nil, forKey: "authVerificationID")
+                    
+                    self.user.mobileNumber = self.phoneNumber
+                    
+                    let st = UtilityManager.manager.getAuthStoryboard()
+                    let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
+                    vc.user = self.user
+                    UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
+                    //                  UserDefaults.standard.set(2, forKey: Constants.REGISTRATION_STATUS)
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+                
+            }
+            
+        }
+        
+        
+        
     }
+    
+    
+    @IBAction func loginWithPass(_ sender:UIButton){
+        let st = UtilityManager.manager.getAuthStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
+        vc.isLogin = true
+        self.user.mobileNumber =  self.phoneNumber
+        vc.user = self.user
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     @IBAction func backTapped(_ sender:UIButton){
         UtilityManager.manager.moveBack(self)

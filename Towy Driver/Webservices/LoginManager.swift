@@ -14,20 +14,17 @@ class LoginManager{
     
     static var manager = LoginManager()
     
-    func Login(param:[String:Any],completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void)
+    func Login(param:[String:Any],completionHandler:@escaping (_ status : Int?, _ message:String?)-> Void)
     {
         let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.DRIVER_LOGIN
         
         webServiceManager.manager.postData(url: baseUrl, param: param, headers: nil) { (mainDict, err) in
             HIDE_CUSTOM_LOADER()
-            if let data = mainDict?["data"].dictionaryObject
-            {
-                if  let userDict = data["user"] as? NSDictionary{
-                    UtilityManager().saveUserSession(userDict: userDict, accessToken: mainDict?["accessToken"].string ?? "")
-                    completionHandler(true,"\(userDict["is_varified"] as? Int ?? 0)")
-                }
+            if let data = mainDict?["data"].dictionaryObject{
+                UtilityManager().saveUserSession(userDict: data as NSDictionary, accessToken: mainDict?["token"].string ?? "")
+                    completionHandler(data["is_step"] as? Int ?? 1,nil)
             }else{
-                completionHandler(false,err)
+                completionHandler(nil,err)
             }
         }
         

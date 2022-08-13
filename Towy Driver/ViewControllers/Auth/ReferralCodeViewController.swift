@@ -13,9 +13,17 @@ class ReferralCodeViewController: UIViewController {
     
     @IBOutlet weak var txtReferralCode:UITextField!
     
+    
+    var user = User()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+//        if user.mobileNumber == nil{
+//            user = UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER)
+//        }
+        
         txtReferralCode.delegate = self
 //        btnNext.isUserInteractionEnabled = false
 //        btnNext.backgroundColor = UIColor.init(named: Constants.AssetsColor.TextfieldBackGround.rawValue)
@@ -25,18 +33,43 @@ class ReferralCodeViewController: UIViewController {
 
     @IBAction func btnNext(_ sender: Any) {
        
-            let vc = storyboard?.instantiateViewController(withIdentifier: "CityNameViewController") as! CityNameViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+        if txtReferralCode.text == ""{
+            UtilityManager.manager.showAlert(self, message: "Please enter Referral Code to verify.", title: "Oops")
+            return
+        }
+        
+        gotoCityVC()
         
     }
     
     
     @IBAction func btnSkip(_ sender: Any) {
        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CityNameViewController") as! CityNameViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+       gotoCityVC()
         
     }
+    
+    func gotoCityVC(){
+        
+//        UserDefaults.standard.set(5, forKey: Constants.REGISTRATION_STATUS)
+
+        
+        user.referralCode = self.txtReferralCode.text ?? ""
+        
+        let st = UtilityManager.manager.getAuthStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "CityNameViewController") as! CityNameViewController
+        vc.user = self.user
+        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: user))
+        if self.navigationController != nil{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            self.present(vc , animated: true, completion: nil)
+            }
+
+    }
+    
     
     @IBAction func backTapped(_ sender:UIButton){
         UtilityManager.manager.moveBack(self)

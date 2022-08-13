@@ -27,9 +27,24 @@ class SSNViewController: UIViewController {
     
     @IBAction func btnNext(_ sender: Any) {
         
-    
-        UtilityManager.manager.gotoVC(from: self, identifier: "DocumentsViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+        if txtSSN.text?.count == 11{
+            SHOW_CUSTOM_LOADER()
+            SignUpManager.manager.sendSSN(ssn: txtSSN.text!) { result, message in
+                HIDE_CUSTOM_LOADER()
+                if message == nil{
+                    UtilityManager.manager.gotoVC(from: self, identifier: "DocumentsViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+                }else{
+                    UtilityManager.manager.showAlert(self, message: message ?? "error saving SSN.", title: Constants.APP_NAME)
+
+                }
+            }
+            
+           
+        }else{
+            UtilityManager.manager.showAlert(self, message: "Please enter SSN.", title: Constants.APP_NAME)
+        }
     }
+      
     
     @IBAction func btnNbackTappedext(_ sender: Any) {
         

@@ -26,7 +26,7 @@ class webServiceManager{
                 switch response.result {
                 case .success:
                     let swiftyJsonVar = JSON(response.result.value!)
-                    if swiftyJsonVar["status"].int == 200
+                    if swiftyJsonVar["result"].string == "success"
                     {
                         completionHandler(swiftyJsonVar,nil)
                         
@@ -39,17 +39,9 @@ class webServiceManager{
                         completionHandler(nil ,"Plesae Try Again.")
                     }else{
                         
-                        if let mainDict = swiftyJsonVar["error"].dictionaryObject
+                        if let errorMsg = swiftyJsonVar["message"].string
                         {
-                            if  let userDict = mainDict["message"] as? String{
-                                completionHandler(nil,userDict)
-                            }else if  let userDict = mainDict["messages"] as? String{
-                                completionHandler(nil,userDict)
-                            }else if  let userDict = mainDict["message"] as? [String]{
-                                completionHandler(nil,userDict[0])
-                            }else if  let userDict = mainDict["messages"] as? [String]{
-                                completionHandler(nil,userDict[0])
-                            }
+                           completionHandler(nil,errorMsg)
                         }else{
                             completionHandler(nil,"something went wrong.")
                         }
@@ -70,7 +62,7 @@ class webServiceManager{
                 switch response.result {
                 case .success:
                     let swiftyJsonVar = JSON(response.result.value!)
-                    if swiftyJsonVar["status"].int == 200
+                    if swiftyJsonVar["result"].string == "success"
                     {
                         completionHandler(swiftyJsonVar,nil)
                         
@@ -80,17 +72,9 @@ class webServiceManager{
                         
                     }else{
                         
-                        if let mainDict = swiftyJsonVar["error"].dictionaryObject
+                        if let errorMsg = swiftyJsonVar["message"].string
                         {
-                            if  let userDict = mainDict["message"] as? String{
-                                completionHandler(nil,userDict)
-                            }else if  let userDict = mainDict["messages"] as? String{
-                                completionHandler(nil,userDict)
-                            }else if  let userDict = mainDict["message"] as? [String]{
-                                completionHandler(nil,userDict[0])
-                            }else if  let userDict = mainDict["messages"] as? [String]{
-                                completionHandler(nil,userDict[0])
-                            }
+                           completionHandler(nil,errorMsg)
                         }else{
                             completionHandler(nil,"something went wrong.")
                         }
@@ -101,10 +85,7 @@ class webServiceManager{
                 }
             }
     }
-    
-    
 }
-
 //if swiftyJsonVar["status"].int == 300
 //   {
 //       

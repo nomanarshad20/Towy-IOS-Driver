@@ -14,17 +14,39 @@ class OTPManager{
     
     static var manager = OTPManager()
     
-    func codeVerifyApi(pin:String,completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
-        let urlString = UtilityManager().getAPIBaseUrl(api:Constants.VERIFY_OTP)
+    
+    func sendEmailOTP(email:String,completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
+        let urlString = UtilityManager().getAPIBaseUrl(api:Constants.SEND_OTP_EMAIL)
             let header = UtilityManager().getAuthHeader()
             let params = [
-                "otp_code": pin,
-                "user_id" : UtilityManager().getId()
+                "login" : email
             ] as [String:Any]
         
         
         
         webServiceManager.manager.postData(url: urlString, param: params, headers: header) { (mainDict, err) in
+            HIDE_CUSTOM_LOADER()
+            if let data = mainDict?["data"].dictionaryObject
+            {
+                print("OTP=====",data)
+                    completionHandler(true,nil)
+                
+            }else{
+                completionHandler(false,err)
+            }
+        }
+        
+        }
+        
+    
+    func codeVerifyApi(email:String,pin:String,completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
+        let urlString = UtilityManager().getAPIBaseUrl(api:Constants.VERIFY_OTP)
+            let header = UtilityManager().getAuthHeader()
+        let params = ["email":email,"otp": pin] as [String:Any]
+        
+        
+        
+        webServiceManager.manager.postData(url: urlString, param: params, headers: nil) { (mainDict, err) in
             HIDE_CUSTOM_LOADER()
             if let data = mainDict?["data"].dictionaryObject
             {
@@ -42,8 +64,7 @@ class OTPManager{
             let urlString = UtilityManager().getAPIBaseUrl(api: Constants.RESEND_OTP)
             let header = UtilityManager().getAuthHeader()
             let params = [
-                "user_id": UtilityManager().getId(),
-                "mobile_no" : UtilityManager().getNumber()
+                "user_id": UtilityManager().getId()
             ] as [String:Any]
             Alamofire.request(urlString, method: .post, parameters:params,encoding: JSONEncoding.default, headers: header).responseJSON {
                 response in

@@ -24,7 +24,15 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var btnShowPassword:UIButton!
     @IBOutlet weak var btnNext:UIButton!
     
+    
+    @IBOutlet weak var lblTopTitle:UILabel!
+
+    
+    
     var isPasswordVisible = false
+    var user = User()
+    var isLogin = false
+    
     
     var isStrongPassword = false{
         didSet{
@@ -99,6 +107,16 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if isLogin{
+            lblTopTitle.text = "Enter your account password"
+        }
+        
+//        if user.mobileNumber == nil{
+//            user = UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER)
+//        }
+        
+        print(user)
+        
         isStrongPassword = false
         hasOneLatter = false
         hasOneDigit = false
@@ -122,8 +140,27 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
 
     @IBAction func btnNext(_ sender: Any) {
         
-    
-        UtilityManager.manager.gotoVC(from: self, identifier: "NameViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+        
+        if !isLogin{
+        
+        self.user.password = self.txtPassword.text!
+        
+        let st = UtilityManager.manager.getAuthStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "NameViewController") as! NameViewController
+        vc.user = self.user
+        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: user))
+//        UserDefaults.standard.set(3, forKey: Constants.REGISTRATION_STATUS)
+        if self.navigationController != nil{
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            self.present(vc , animated: true, completion: nil)
+            }
+        
+        }else{
+            
+            self.signInUser()
+            
+        }
     }
     
     @IBAction func backTapped(_ sender:UIButton){
@@ -217,4 +254,73 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
        
     
     
-}
+    
+    func signInUser(){
+        
+        let params = ["user_type":"2",
+                      "fcm_token":UtilityManager.manager.getFcmToken(),
+                      "password":txtPassword.text!,
+                      "login":user.mobileNumber ?? user.email]
+//        ["user_type":"2",
+//                      "fcm_token":"jgdfjhsdhfjsgjfhsdf4b3bb 435","password":"123456789a",
+//                      "password_confirmation":"123456789a",
+//                      "city":"Lahore",
+//                      "first_name":"mnbfdsn",
+//                      "last_name":"sdfbskdjf",
+//                      "login":"034564645475985"]
+        SHOW_CUSTOM_LOADER()
+        LoginManager.manager.Login(param: params as [String : Any], completionHandler: { status, message in
+            HIDE_CUSTOM_LOADER()
+            if message == nil{
+                if self.isLogin{
+                    self.getRegistrationStatus(status: status)
+                }else{
+                    
+                    UtilityManager.manager.gotoVC(from: self, identifier: "SSNViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+
+                    
+                }
+
+            }else{
+                UtilityManager.manager.showAlert(self, message: message!, title: "Oops")
+            }
+        })
+            
+        }
+    
+    
+    
+    func getRegistrationStatus(status:Int? = 0){
+            switch status {
+            case 1:
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 2:
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 3:
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "SSNViewController") as! SSNViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 4:
+                if UserDefaults.standard.integer(forKey: Constants.IS_VERIFIED) == 1{
+                    let story = UtilityManager.manager.getAuthStoryboard()
+                    let vc = story.instantiateViewController(withIdentifier: "WaitForApprovalViewController") as! WaitForApprovalViewController
+                    UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    let story = UtilityManager.manager.getAuthStoryboard()
+                    let vc = story.instantiateViewController(withIdentifier: "WaitForApprovalViewController") as! WaitForApprovalViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            default:
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        
+     }
+    
+    }

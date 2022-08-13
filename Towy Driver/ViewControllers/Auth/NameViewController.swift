@@ -14,9 +14,17 @@ class NameViewController: UIViewController {
     @IBOutlet weak var txtFirstName:UITextField!
     @IBOutlet weak var txtLastName:UITextField!
     
+    var user = User()
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//
+//        if user.mobileNumber == nil{
+//            user = User.init(dictionary: UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER) ?? [:])
+//        }
+        
         txtLastName.delegate = self
         txtFirstName.delegate = self
         btnNext.isUserInteractionEnabled = false
@@ -40,8 +48,21 @@ class NameViewController: UIViewController {
             return
         }
        
-            let vc = storyboard?.instantiateViewController(withIdentifier: "ReferralCodeViewController") as! ReferralCodeViewController
+        self.user.first_name = self.txtFirstName.text!
+        self.user.last_name = self.txtLastName.text!
+        
+        let st = UtilityManager.manager.getAuthStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "ReferralCodeViewController") as! ReferralCodeViewController
+        vc.user = self.user
+        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: user))
+//        UserDefaults.standard.set(4, forKey: Constants.REGISTRATION_STATUS)
+
+        if self.navigationController != nil{
             self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            self.present(vc , animated: true, completion: nil)
+            }
+
         
     }
     
