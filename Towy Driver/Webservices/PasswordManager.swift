@@ -61,15 +61,17 @@ class PasswordManager{
     
     
     func updatePassword(params:[String:Any],completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
-        let urlString = UtilityManager().getAPIBaseUrl(api:Constants.FORGOT_PASSWORD)
+        let urlString = UtilityManager().getAPIBaseUrl(api:Constants.RESET_PASSWORD)
             let header = UtilityManager().getAuthHeader()
         SHOW_CUSTOM_LOADER()
         webServiceManager.manager.postData(url: urlString, param: params, headers: header) { (mainDict, err) in
             HIDE_CUSTOM_LOADER()
-            if let data = mainDict?["data"].dictionaryObject
+            if let data = mainDict?["result"].string
             {
-                if  (data["message"] as? String) != nil{
+                if  data == "success"{
                     completionHandler(true,nil)
+                }else{
+                    completionHandler(false,err)
                 }
             }else{
                 completionHandler(false,err)

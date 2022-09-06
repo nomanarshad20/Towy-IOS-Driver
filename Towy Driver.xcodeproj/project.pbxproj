@@ -50,6 +50,7 @@
 		520B2F0928910A9700361F86 /* TrucksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520B2F0828910A9700361F86 /* TrucksManager.swift */; };
 		5233E29E28819BBD00F93FFC /* DhoongiGround.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */; };
 		5233E29F28819BBD00F93FFC /* Home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5233E29D28819BBD00F93FFC /* Home.gpx */; };
+		5239883628A81D2800CC1034 /* RateAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239883528A81D2800CC1034 /* RateAndReviewViewController.swift */; };
 		523D6E2A2861F364006F8117 /* AllExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D6E292861F364006F8117 /* AllExtensions.swift */; };
 		5244A2BB288C6D2F003A0DE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5244A2BA288C6D2F003A0DE1 /* GoogleService-Info.plist */; };
 		5244A4D728755CBC00016BC7 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A4D628755CBC00016BC7 /* NameViewController.swift */; };
@@ -83,6 +84,8 @@
 		5266424728606FF700167A6A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424628606FF700167A6A /* SignInViewController.swift */; };
 		526642492860700600167A6A /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526642482860700600167A6A /* ForgotPasswordViewController.swift */; };
 		5266424B28607C6000167A6A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424A28607C6000167A6A /* BaseViewController.swift */; };
+		526C72FF28BDFF370051EB93 /* RideCancelledByUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C72FD28BDFF370051EB93 /* RideCancelledByUserViewController.swift */; };
+		526C730028BDFF370051EB93 /* NewRideRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C72FE28BDFF370051EB93 /* NewRideRequestViewController.swift */; };
 		528305AA285F888400D854A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305A9285F888400D854A7 /* AppDelegate.swift */; };
 		528305B1285F888400D854A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528305AF285F888400D854A7 /* Main.storyboard */; };
 		528305B3285F888500D854A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528305B2285F888500D854A7 /* Assets.xcassets */; };
@@ -92,6 +95,16 @@
 		528305CD285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */; };
 		52864F45289A72DE00BABDE6 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52864F44289A72DE00BABDE6 /* CustomAlertViewController.swift */; };
 		52864F47289A7CFE00BABDE6 /* CustomAlertViewWithActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52864F46289A7CFE00BABDE6 /* CustomAlertViewWithActionsViewController.swift */; };
+		528B9DA728C3D44100E168DE /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B9DA628C3D44100E168DE /* SocketManager.swift */; };
+		528B9DAA28C5D95B00E168DE /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B9DA928C5D95B00E168DE /* PasswordResetViewController.swift */; };
+		528B9DAF28C73AC500E168DE /* TextWithCheckboxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528B9DAD28C73AC500E168DE /* TextWithCheckboxTableViewCell.xib */; };
+		528B9DB028C73AC500E168DE /* TextWithCheckboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528B9DAE28C73AC500E168DE /* TextWithCheckboxTableViewCell.swift */; };
+		528D124D28B5FC4F001A1F68 /* DriverPortalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D124C28B5FC4F001A1F68 /* DriverPortalViewController.swift */; };
+		528D124F28B60236001A1F68 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D124E28B60236001A1F68 /* LocationTableViewCell.swift */; };
+		528D125128B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D125028B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift */; };
+		528D125328B6175E001A1F68 /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D125228B6175E001A1F68 /* ProfileDetailsViewController.swift */; };
+		528D125728B618A1001A1F68 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528D125628B618A1001A1F68 /* ProfileTableViewCell.xib */; };
+		528D125928B618B4001A1F68 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D125828B618B3001A1F68 /* ProfileTableViewCell.swift */; };
 		52A81EB928761AB6000911EE /* CityNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EB828761AB6000911EE /* CityNameViewController.swift */; };
 		52A81EBE28789F47000911EE /* AboutVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EBD28789F47000911EE /* AboutVehicleViewController.swift */; };
 		52A81EC02878A63E000911EE /* SSNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EBF2878A63E000911EE /* SSNViewController.swift */; };
@@ -187,6 +200,7 @@
 		520B2F0828910A9700361F86 /* TrucksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrucksManager.swift; sourceTree = "<group>"; };
 		5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DhoongiGround.gpx; sourceTree = "<group>"; };
 		5233E29D28819BBD00F93FFC /* Home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Home.gpx; sourceTree = "<group>"; };
+		5239883528A81D2800CC1034 /* RateAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateAndReviewViewController.swift; sourceTree = "<group>"; };
 		523D6E292861F364006F8117 /* AllExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllExtensions.swift; sourceTree = "<group>"; };
 		5244A2BA288C6D2F003A0DE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5244A4D628755CBC00016BC7 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +234,8 @@
 		5266424628606FF700167A6A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		526642482860700600167A6A /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		5266424A28607C6000167A6A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		526C72FD28BDFF370051EB93 /* RideCancelledByUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideCancelledByUserViewController.swift; sourceTree = "<group>"; };
+		526C72FE28BDFF370051EB93 /* NewRideRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRideRequestViewController.swift; sourceTree = "<group>"; };
 		528305A6285F888400D854A7 /* Towy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Towy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528305A9285F888400D854A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		528305B0285F888400D854A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -233,6 +249,17 @@
 		528305CC285F888600D854A7 /* Towy_DriverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Towy_DriverUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		52864F44289A72DE00BABDE6 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		52864F46289A7CFE00BABDE6 /* CustomAlertViewWithActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewWithActionsViewController.swift; sourceTree = "<group>"; };
+		528B9DA628C3D44100E168DE /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		528B9DA828C5293400E168DE /* Towy Driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Towy Driver.entitlements"; sourceTree = "<group>"; };
+		528B9DA928C5D95B00E168DE /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		528B9DAD28C73AC500E168DE /* TextWithCheckboxTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextWithCheckboxTableViewCell.xib; sourceTree = "<group>"; };
+		528B9DAE28C73AC500E168DE /* TextWithCheckboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextWithCheckboxTableViewCell.swift; sourceTree = "<group>"; };
+		528D124C28B5FC4F001A1F68 /* DriverPortalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverPortalViewController.swift; sourceTree = "<group>"; };
+		528D124E28B60236001A1F68 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		528D125028B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptainProtalCollectionViewCell.swift; sourceTree = "<group>"; };
+		528D125228B6175E001A1F68 /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
+		528D125628B618A1001A1F68 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
+		528D125828B618B3001A1F68 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		52A81EB828761AB6000911EE /* CityNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameViewController.swift; sourceTree = "<group>"; };
 		52A81EBD28789F47000911EE /* AboutVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVehicleViewController.swift; sourceTree = "<group>"; };
 		52A81EBF2878A63E000911EE /* SSNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSNViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +341,7 @@
 		5204790E2887E654006B6268 /* Webservices */ = {
 			isa = PBXGroup;
 			children = (
+				528B9DA528C3D42900E168DE /* SocketManager */,
 				520479112887E739006B6268 /* PushnotificationSender.swift */,
 				520479162887E805006B6268 /* DocumentsManager.swift */,
 				520479182887E806006B6268 /* DriverLocationManager.swift */,
@@ -336,6 +364,15 @@
 				520B2F0828910A9700361F86 /* TrucksManager.swift */,
 			);
 			path = Webservices;
+			sourceTree = "<group>";
+		};
+		526C72FC28BDFF200051EB93 /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+				526C72FE28BDFF370051EB93 /* NewRideRequestViewController.swift */,
+				526C72FD28BDFF370051EB93 /* RideCancelledByUserViewController.swift */,
+			);
+			path = Popups;
 			sourceTree = "<group>";
 		};
 		5283059D285F888400D854A7 = {
@@ -363,6 +400,7 @@
 		528305A8285F888400D854A7 /* Towy Driver */ = {
 			isa = PBXGroup;
 			children = (
+				528B9DA828C5293400E168DE /* Towy Driver.entitlements */,
 				5204790E2887E654006B6268 /* Webservices */,
 				5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */,
 				5233E29D28819BBD00F93FFC /* Home.gpx */,
@@ -402,6 +440,8 @@
 		528305D9285F892600D854A7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				526C72FC28BDFF200051EB93 /* Popups */,
+				528D124B28B5FC31001A1F68 /* SettingVCs */,
 				52C5E7CC28A049C200EFD6CF /* HistoryVCs */,
 				52864F43289A724A00BABDE6 /* HelpingVC */,
 				528305E2285F8A3E00D854A7 /* Dashborad */,
@@ -422,6 +462,10 @@
 		528305DB285F894900D854A7 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				528D125828B618B3001A1F68 /* ProfileTableViewCell.swift */,
+				528D125628B618A1001A1F68 /* ProfileTableViewCell.xib */,
+				528D125028B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift */,
+				528D124E28B60236001A1F68 /* LocationTableViewCell.swift */,
 				52C5E7C528A043C300EFD6CF /* ReceiverTableViewCell.swift */,
 				52C5E7C328A043C300EFD6CF /* ReceiverTableViewCell.xib */,
 				52C5E7C628A043C400EFD6CF /* SenderTableViewCell.swift */,
@@ -436,6 +480,8 @@
 				525CD96328A463B6004D4AA6 /* RideHistoryTableViewCell.xib */,
 				5262473E28A6FF1E00264E92 /* MenuTableViewCell.swift */,
 				5262473D28A6FF1E00264E92 /* MenuTableViewCell.xib */,
+				528B9DAE28C73AC500E168DE /* TextWithCheckboxTableViewCell.swift */,
+				528B9DAD28C73AC500E168DE /* TextWithCheckboxTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -516,6 +562,7 @@
 				52A81EBD28789F47000911EE /* AboutVehicleViewController.swift */,
 				52A81EBF2878A63E000911EE /* SSNViewController.swift */,
 				52C76DC028801F5F00360706 /* InspectionCenterViewController.swift */,
+				528B9DA928C5D95B00E168DE /* PasswordResetViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -525,6 +572,7 @@
 			children = (
 				52BB9EAD28990ED8007ECAD4 /* DashBoardViewController.swift */,
 				52C5E7C128A0417500EFD6CF /* ChatViewController.swift */,
+				5239883528A81D2800CC1034 /* RateAndReviewViewController.swift */,
 			);
 			path = Dashborad;
 			sourceTree = "<group>";
@@ -537,6 +585,23 @@
 				52864F46289A7CFE00BABDE6 /* CustomAlertViewWithActionsViewController.swift */,
 			);
 			path = HelpingVC;
+			sourceTree = "<group>";
+		};
+		528B9DA528C3D42900E168DE /* SocketManager */ = {
+			isa = PBXGroup;
+			children = (
+				528B9DA628C3D44100E168DE /* SocketManager.swift */,
+			);
+			path = SocketManager;
+			sourceTree = "<group>";
+		};
+		528D124B28B5FC31001A1F68 /* SettingVCs */ = {
+			isa = PBXGroup;
+			children = (
+				528D125228B6175E001A1F68 /* ProfileDetailsViewController.swift */,
+				528D124C28B5FC4F001A1F68 /* DriverPortalViewController.swift */,
+			);
+			path = SettingVCs;
 			sourceTree = "<group>";
 		};
 		52C5E7CC28A049C200EFD6CF /* HistoryVCs */ = {
@@ -705,8 +770,10 @@
 				52B69CE5286A13DE00BC2FA4 /* UberMoveTextMedium.otf in Resources */,
 				52FDC7C428638C260075952C /* TruckTypeTableViewCell.xib in Resources */,
 				52B69CE6286A13DE00BC2FA4 /* UberMoveTextBold.otf in Resources */,
+				528D125728B618A1001A1F68 /* ProfileTableViewCell.xib in Resources */,
 				52C76DC7288026CE00360706 /* InspectionTableViewCell.xib in Resources */,
 				5233E29E28819BBD00F93FFC /* DhoongiGround.gpx in Resources */,
+				528B9DAF28C73AC500E168DE /* TextWithCheckboxTableViewCell.xib in Resources */,
 				52B69CE4286A13DE00BC2FA4 /* UberMoveTextRegular.otf in Resources */,
 				52C5E7C728A043C400EFD6CF /* ReceiverTableViewCell.xib in Resources */,
 				525CD96528A463B6004D4AA6 /* RideHistoryTableViewCell.xib in Resources */,
@@ -815,12 +882,15 @@
 				52A81EBE28789F47000911EE /* AboutVehicleViewController.swift in Sources */,
 				526642492860700600167A6A /* ForgotPasswordViewController.swift in Sources */,
 				520479142887E785006B6268 /* Reachability.swift in Sources */,
+				528D125928B618B4001A1F68 /* ProfileTableViewCell.swift in Sources */,
+				528B9DA728C3D44100E168DE /* SocketManager.swift in Sources */,
 				52A81EC02878A63E000911EE /* SSNViewController.swift in Sources */,
 				5262474228A7092200264E92 /* GoogleApiHelper.swift in Sources */,
 				52FDC7C328638C260075952C /* TruckTypeTableViewCell.swift in Sources */,
 				525361F128620E4C00DE2F4E /* Constants.swift in Sources */,
 				5204794D2887E9FA006B6268 /* HelpDataModel.swift in Sources */,
 				526642392860648C00167A6A /* TermsAndConditionsViewController.swift in Sources */,
+				528D125328B6175E001A1F68 /* ProfileDetailsViewController.swift in Sources */,
 				520479532887E9FA006B6268 /* Notification.swift in Sources */,
 				5204792C2887E807006B6268 /* OTPManager.swift in Sources */,
 				52664233286063DC00167A6A /* OtpViewController.swift in Sources */,
@@ -830,7 +900,9 @@
 				520479572887E9FA006B6268 /* Transaction.swift in Sources */,
 				520479102887E6DB006B6268 /* WebServiceManager.swift in Sources */,
 				520479292887E807006B6268 /* DriverLocationManager.swift in Sources */,
+				528D124F28B60236001A1F68 /* LocationTableViewCell.swift in Sources */,
 				5204792D2887E807006B6268 /* LoginManager.swift in Sources */,
+				526C730028BDFF370051EB93 /* NewRideRequestViewController.swift in Sources */,
 				52C5E7D628A049FF00EFD6CF /* BounsHistoryViewController.swift in Sources */,
 				52C5E7C228A0417500EFD6CF /* ChatViewController.swift in Sources */,
 				52C5E7D528A049FF00EFD6CF /* MainTransactionHistoryViewController.swift in Sources */,
@@ -842,6 +914,7 @@
 				520479332887E807006B6268 /* PasswordManager.swift in Sources */,
 				525361F528620E6F00DE2F4E /* UtilityManager.swift in Sources */,
 				525CD96128A4622F004D4AA6 /* TransactionHistoryTableViewCell.swift in Sources */,
+				5239883628A81D2800CC1034 /* RateAndReviewViewController.swift in Sources */,
 				5204792A2887E807006B6268 /* TokenManager.swift in Sources */,
 				520479382887E8D4006B6268 /* CustomNotification.swift in Sources */,
 				5204792E2887E807006B6268 /* DriverStatusManager.swift in Sources */,
@@ -852,6 +925,7 @@
 				52FDC7C72863A1D10075952C /* Document.swift in Sources */,
 				520479542887E9FA006B6268 /* Franchise.swift in Sources */,
 				5266422F286063B300167A6A /* WelcomeViewController.swift in Sources */,
+				528B9DB028C73AC500E168DE /* TextWithCheckboxTableViewCell.swift in Sources */,
 				5204794F2887E9FA006B6268 /* MenuModel.swift in Sources */,
 				5244A4D9287563C900016BC7 /* ReferralCodeViewController.swift in Sources */,
 				5266424328606FA200167A6A /* VehicleRegistrationBookViewController.swift in Sources */,
@@ -862,6 +936,8 @@
 				52C5E7CE28A049EC00EFD6CF /* HistoryViewController.swift in Sources */,
 				5266422D28605E6100167A6A /* CustomSplashViewController.swift in Sources */,
 				5204794B2887E9FA006B6268 /* Message.swift in Sources */,
+				528D125128B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift in Sources */,
+				528D124D28B5FC4F001A1F68 /* DriverPortalViewController.swift in Sources */,
 				520479592887E9FA006B6268 /* BookingInfo.swift in Sources */,
 				5266424B28607C6000167A6A /* BaseViewController.swift in Sources */,
 				52C5E7D828A049FF00EFD6CF /* CashHistoryViewController.swift in Sources */,
@@ -887,11 +963,13 @@
 				520479312887E807006B6268 /* RatingManager.swift in Sources */,
 				5266423F286064F800167A6A /* TruckTypeViewController.swift in Sources */,
 				528305AA285F888400D854A7 /* AppDelegate.swift in Sources */,
+				528B9DAA28C5D95B00E168DE /* PasswordResetViewController.swift in Sources */,
 				52C76DC128801F5F00360706 /* InspectionCenterViewController.swift in Sources */,
 				5204795A2887E9FA006B6268 /* User.swift in Sources */,
 				520479352887E807006B6268 /* LogoutManager.swift in Sources */,
 				52C76DC6288026CE00360706 /* InspectionTableViewCell.swift in Sources */,
 				5262474028A6FF1E00264E92 /* MenuTableViewCell.swift in Sources */,
+				526C72FF28BDFF370051EB93 /* RideCancelledByUserViewController.swift in Sources */,
 				52C5E7C928A043C400EFD6CF /* ReceiverTableViewCell.swift in Sources */,
 				525361F728620EA300DE2F4E /* UIView+layer.swift in Sources */,
 				52C5E7D728A049FF00EFD6CF /* WalletHistoryViewController.swift in Sources */,
@@ -1082,6 +1160,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Towy Driver/Towy Driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4769DJ9MMA;
@@ -1113,6 +1192,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Towy Driver/Towy Driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4769DJ9MMA;

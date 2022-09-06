@@ -37,6 +37,7 @@ open class Constants {
     public static let USER_PROFILE_IMAGE            = "USER_PROFILE_IMAGE"
     public static var Currency                      = "PKR. "
     public static let LOCATION_TIMER_DURATION_ONLINE:Double = 10
+    public static let LOCATION_TIMER_DURATION_OFFLINE:Double = 100
     public static let LOCATION_TIMER_DURATION_ONRIDE:Double = 10
     public static let DRIVER_WAITING_TIMER_DURATION:Double = 10
     
@@ -49,6 +50,10 @@ open class Constants {
     //
     public static let HTTP_CONNECTION_ROOT   =  "http://3.101.101.16/api/"
     public static let ASSETS_BASE_URL = "http://13.213.132.157/"
+    
+    public static let SOCKET_ROOT = "http://3.101.101.16:8081"
+    
+    
     
     //-------------------------------------------------------------------------//
     
@@ -76,7 +81,7 @@ open class Constants {
     public static var DEFAULT_LAT:Double!
     public static var DEFAULT_LONG:Double!
     public static var IS_RIDE_POPUP_VISIBLE:Bool = false
-    public static var FIREBASE_PUSH_NOTIFICATION_SERVER_KEY = ""
+    public static var FIREBASE_PUSH_NOTIFICATION_SERVER_KEY = "AAAATnYbYUU:APA91bFPouiB4Wr1NMHrQYuZvUS3RfcAAzGPNWMgrKjfiTEPr1qhjDgGPKDBTbsMGH8TH0zYIoNg_nBIP5QIpwW8UEvqQNx0STgXwXfmnpPA8fUte10MvCtN79q0AcrUHyztP4NBSSUy"
     
     
     
@@ -89,6 +94,26 @@ open class Constants {
     // ------------------------------------------------------------------------------------
     
     
+    public static let P2P_TRACKING_SOCKET       = "point-to-point-tracking"
+    public static let UPDATE_BOOKING_STATUS_SOCKET     = "driver-change-booking-driver-status"
+    // -->when driver reach pickup
+
+    // {"booking_id":"106","driver_status":1,"user_id":25}
+
+    // --->when driver start ride
+
+    // {"booking_id":"106","driver_status":2,"user_id":25}
+
+
+    // -- when driver reach his destination
+
+    // {"booking_id":"106","driver_status":3,"user_id":25,
+    // "total_distance":"50","mobile_final_distance":"40","mobile_initial_distance":"10"}
+
+
+    // -- when driver reach his destination
+
+    // {"booking_id":"106","driver_status":3,"user_id":25}
     
     
     public static let SERVER_USER_NAME          = "first_name";
@@ -97,6 +122,7 @@ open class Constants {
     public static let SERVER_NOMBRE_ID          = "mobile_no";
     public static let SERVER_EMAIL_ID           = "email";
     public static let FRANCHISE_NAME            = "franchise_code";
+    public static let VEHICLE_TYPE_ID           = "vehicle_type_id"
     public static let SERVER_OTP_CODE           = "otpCode";
     public static let SERVER_FCM_TOKEN          = "fcmToken";
     public static let LOCAL_FCM_TOKEN           = "fcmTokenLocal";
@@ -120,6 +146,7 @@ open class Constants {
     public static let APP_USER                  = "appUser";
     
     public static let IS_LOGIN                  = "isLogin";
+    public static let IS_PASSWORD_FORGOT        = "forgotPass";
     public static let IS_PERFORMER              = "isPerfomer";
     public static let IS_FIRST_TIME             = "FirstTimeAppInstall";
     public static let CURRENT_RIDE              = "currentRide";
@@ -155,26 +182,41 @@ open class Constants {
     // ------------------------------------------------------------------------------------
     public enum NotificationType:String{
         case RIDE_LOCATION_CHANGED      = "3";
-        case NEW_RIDE_REQUEST           = "2"
-        case RIDE_CANCELED              = "4";
+        case NEW_RIDE_REQUEST           = "11"
+        case RIDE_CANCELED              = "14";
         case SCHEDULE_RIDE              = "7";
         case LOGOUT_USER                = "8";
-        case OFFLINE_PARTNER            = "11";
-        case RIDE_CANCEL_ON_RECEIVE     = "10";
+        case OFFLINE_PARTNER            = "2";
+        case RIDE_CANCEL_ON_RECEIVE     = "15";
         case MESSAGE_RECEIVE            = "20";
         case NONE                       = "0";
         case WARNING                    = "21"
         case BOUNS                      = "22"
         case LOCATION_ERROR_NOTIFICATION = "23"
         
+        
     }
     
     public enum RideStatus:String{
-        case REACHED_PICKUP     = "1";
-        case RIDE_START         = "2";
-        case RIDE_COMPLETED     = "3";
-        case NONE               = "0";
+        case RIDE_REQUEST           = "0";
+        case RIDE_ACCEPTED          = "1";
+        case PASSENGER_CANCEL       = "2";
+        case ADMIN_CANCEL           = "3";
+        case COMPLETED              = "4";
+        case DRIVER_CANCEL          = "5";
+        case ALL_DRIVER_IGNORED_REJECTED     = "6";
+        case NONE                   = "9999";
     }
+    
+    public enum RideDriverStatus:Int{
+        case ON_THE_WAY             = 0;
+        case REACH_PICKUP           = 1;
+        case START                  = 2;
+        case COMPLETED              = 3;
+        case FARE_COLLECTED         = 4;
+        case NONE                   = 9999;
+    }
+    
     
     
     
@@ -197,27 +239,30 @@ open class Constants {
     public static let VERIFY_OTP                    = "driver-verify-otp"
     public static let RESEND_OTP                    = "driver-resend-otp"
     public static let DRIVER_LOGIN                  = "driver-login"
-    public static let DRIVER_STATUS                 = "setDriverStatus"
-    public static let DRIVER_COORDINATES_UPDATE     = "setDriverCoordinates"
+    public static let RESET_PASSWORD                = "reset-password"
+    public static let GET_CANCEL_REASON             = "get-cancel-reason"
+    public static let DRIVER_STATUS                 = "change-driver-status?availability_status="
+    public static let DRIVER_CURRENT_STATUS         = "get-driver-current-status"
+    public static let DRIVER_COORDINATES_UPDATE     = "driver-save-location"
     public static let VEHICLE_INFO_UPLOAD           = "vehicleInfoUpdate"
     public static let USER_DOCUMENTS_UPLOAD         = "driver-save-document"
     public static let VEHICLE_DOCUMENTS_UPLOAD      = "driver-save-vehicle-information"
     public static let USER_DOCUMENTS_COMPLETED      = "driver-document-complete"
     public static let USER_REFRESH_TOKEN            = "userRefreshToken?"
-    public static let USER_LOGOUT                   = "logout"
+    public static let USER_LOGOUT                   = "driver-logout"
     public static let ACCEPT_RIDE                   = "newRideBooking"
-    public static let DRIVER_CANCEL_BOOKING         = "driverCancelsRide"
+    public static let DRIVER_CANCEL_BOOKING         = "driver-cancel-ride"
     public static let UPDATE_RIDE_STATUS            = "setDriverBookingStatus"
     public static let CHECK_BOOKING_STATUS          = "checkBookingStatus"
-    public static let RATE_PASSENGER                = "giveDriverRating"
+    public static let RATE_PASSENGER                = "driver-save-rating"
     public static let GET_OTP_FORGOT_PASSWORD       = "forgetPasswordSendOTP"
     public static let VERIFY_OTP_FORGOT_PASSWORD    = "verifyOTPCodeForgetPassword"
     public static let FORGOT_PASSWORD               = "forgot_password"
     public static let GET_SCHEDUAL_RIDE             = "getScheduledRide"
     public static let GET_CALCULATED_FARE           = "getBookingUpdatedCalculations"
-    public static let GET_PARTNER_LEDGER            = "partnerLedgers"
+    public static let GET_PARTNER_LEDGER            = "driver-portal?"
     public static let GET_TEMP_RIDE                 = "getTempRideData"
-    public static let GET_RIDES_HISTORY             = "getCompletedRides"
+    public static let GET_TRIPS_HISTORY             = "driver-trip-history"
     public static let GET_DUAL_CAT_ID               = "vehicle_dual_cat_update"
     public static let GET_TRANSACTION_HISTORY       = "partnerTransactionsHistory"
     public static let GET_NOTIFICATIONS_HISTORY     = "getNotificationList"
@@ -303,6 +348,8 @@ open class Constants {
     
     public enum NotificationObservers:String{
         
+        case RIDE_COMPLETED             = "ride_Completed";
+        case DRIVER_RATED_THE_CUSTOMER    = "reting_Completed";
         case RIDE_CANCEL_BY_DRIVER      = "ride_Cancelled";
         case RIDE_CANCEL_BY_USER        = "ride_Cancelled_By_User";
         case RIDE_CANCEL_BY_USER_ON_RECEIVE = "ride_Cancelled_By_User_ON_RECEIVE";

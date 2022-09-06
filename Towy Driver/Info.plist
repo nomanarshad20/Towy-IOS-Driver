@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Allow TOWY To Access Camera for vehicle and user images selection.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Allow TOWY to find your location  so passnger can find how away you are from destination.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Allow TOWY to find your location  so passnger can find how away you are from destination.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow TOWY To Access Camera for vehicle and user images selection.</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>TOWY wants to track your activies for advertisment that match you requirements.you can change this option later in the setting app</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -11,6 +26,7 @@
 			<array>
 				<string>com.googleusercontent.apps.336988954949-frvuqh4plg3s5p0kgoblhbadrgk4p3bv</string>
 			</array>
+           
 		</dict>
 	</array>
 </dict>

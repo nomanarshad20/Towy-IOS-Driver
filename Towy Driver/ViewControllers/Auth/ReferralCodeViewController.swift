@@ -56,7 +56,7 @@ class ReferralCodeViewController: UIViewController {
 //        UserDefaults.standard.set(5, forKey: Constants.REGISTRATION_STATUS)
 
         
-        user.referralCode = self.txtReferralCode.text ?? ""
+        user.referral_code = self.txtReferralCode.text ?? ""
         
         let st = UtilityManager.manager.getAuthStoryboard()
         let vc = st.instantiateViewController(withIdentifier: "CityNameViewController") as! CityNameViewController

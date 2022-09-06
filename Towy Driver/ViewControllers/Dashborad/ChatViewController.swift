@@ -22,16 +22,19 @@ class ChatViewController: UIViewController {
     var ref:DatabaseReference!
     var pasengerFcm:String? = nil
     var messages = [Message]()
-    var booking:NewRide? = nil
+    var booking:BookingInfo? = nil
+    
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-    
-        
-        
         
         startObservingKeyboard()
+        txtMessage.setPadding(20)
         txtMessage.delegate = self
         txtMessage.placeholder = "Write to send message..."
         ref = Database.database().reference()
@@ -53,10 +56,10 @@ class ChatViewController: UIViewController {
 //        }
         
         
-        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 25))
-        txtMessage.leftView = leftView
-        txtMessage.leftViewMode = .always
-        txtMessage.addSubview(leftView)
+//        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 25))
+//        txtMessage.leftView = leftView
+//        txtMessage.leftViewMode = .always
+//        txtMessage.addSubview(leftView)
         
         getPassengerFcm { fcm in
             if fcm != nil{
@@ -132,11 +135,11 @@ class ChatViewController: UIViewController {
     @IBAction func sendMessage( _ sender : UIButton){
         txtMessage.text = removeSpace()
         if txtMessage.text != ""{
-            if booking?.booking_id != nil{
+            if booking?.id != nil{
 //                \(UtilityManager.manager.getId())
-                let paramas = ["booking_id":"\(booking!.booking_id!)","receiver_id":"jsjhfkbsfhsbfshfb","sender_id":"12","message":txtMessage.text!,"messageTime":Date.init().timeIntervalSince1970,"type":"2"] as [String : Any]
+                let paramas = ["booking_id":"\(booking!.id!)","receiver_id":"jsjhfkbsfhsbfshfb","sender_id":"12","message":txtMessage.text!,"messageTime":Date.init().timeIntervalSince1970,"type":"2"] as [String : Any]
                 
-                ref.child("\(booking!.booking_id!)").child("messages").childByAutoId().setValue(paramas) { err, refer in
+                ref.child("\(booking!.id!)").child("messages").childByAutoId().setValue(paramas) { err, refer in
                     if err == nil{
                         if self.pasengerFcm != nil{
                             PushNotificationSender().sendPushNotification(to: self.pasengerFcm!, title: "New message by" + " \(UtilityManager.manager.getUserName())", body: self.txtMessage.text!)
@@ -174,8 +177,8 @@ class ChatViewController: UIViewController {
     
     func getPassengerFcm(completionHandler:@escaping ( _ fcm:String?)-> Void){
         
-        if booking?.booking_id != nil{
-            self.ref.child("\(booking!.booking_id!)").child("fcm").child("fcm1").observeSingleEvent(of: .value) { dataSnap in
+        if booking?.id != nil{
+            self.ref.child("\(booking!.id!)").child("fcm").child("fcm1").observeSingleEvent(of: .value) { dataSnap in
                 if dataSnap.exists(){
                     if let fcmData = dataSnap.value as? String{
                         completionHandler(fcmData)
@@ -190,8 +193,8 @@ class ChatViewController: UIViewController {
     
     
     func getdata(){
-        if booking?.booking_id != nil{
-            ref.child("\(booking!.booking_id!)").child("messages").observe(.childAdded) { dataSnap in
+        if booking?.id != nil{
+            ref.child("\(booking!.id!)").child("messages").observe(.childAdded) { dataSnap in
                 if dataSnap.exists(){
                     self.messages.append(Message.init(dict: dataSnap.value as? [String:Any] ?? [:]))
                     self.tblView.reloadData()

@@ -24,9 +24,9 @@ class HistoryViewController: UIViewController {
         
         tblView.register(UINib.init(nibName: "RideHistoryTableViewCell", bundle: .main), forCellReuseIdentifier: "RideHistoryTableViewCell")
         
-        for _ in 0...2{
-            self.datasource.append(Trip.init())
-        }
+//        for _ in 0...2{
+//            self.datasource.append(Trip.init())
+//        }
         
         HistoryManager.manager.getHistory(params: nil) { (data, err) in
             HIDE_CUSTOM_LOADER()
@@ -36,6 +36,8 @@ class HistoryViewController: UIViewController {
                     self.datasource.append(Trip.init(dict: i))
                 }
                 self.tblView.reloadData()
+            }else{
+                UtilityManager.manager.showAlert(self, message: err ?? "error getting history data", title: Constants.APP_NAME)
             }
         }
         

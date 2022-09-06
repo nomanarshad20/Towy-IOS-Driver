@@ -11,6 +11,7 @@ class NotificationModel{
     
     var message:Message?
     var newRide:NewRide?
+    var booking:BookingInfo?
     var rideCancel:String?
     var rideDropOffChange:NewRide?
     var type:Constants.NotificationType
@@ -39,6 +40,7 @@ class NotificationModel{
         self.rideCancel = nil
         self.type = .NONE
         self.message = nil
+        self.booking = nil
 //        self.temp_id = nil
 //        self.passenger_id = nil
 //        self.booking_id = nil
@@ -62,21 +64,22 @@ class NotificationModel{
     
     
     
-    init(newRide: NewRide? = nil, rideCancel: String? = nil, rideDropOffChange: NewRide? = nil, type: Constants.NotificationType,message:Message?) {
+    init(newRide: NewRide? = nil,booking:BookingInfo? = nil, rideCancel: String? = nil, rideDropOffChange: NewRide? = nil, type: Constants.NotificationType,message:Message?) {
         self.newRide = newRide
         self.rideCancel = rideCancel
         self.rideDropOffChange = rideDropOffChange
         self.type = type
         self.message = message
+        self.booking = booking
     }
     
     class func getNotificationType(dict:[AnyHashable:Any])->NotificationModel?{
         let n = NotificationModel()
         switch dict["notification_type"] as? String{
-        case "2":
+        case "11":
             let data = dict["data"] as? String ?? ""
             let str = self.convertStringToDictionary(text: data)
-            n.newRide = NewRide.getRideInfo(dict: str?["bookingInfo"] as? [String:Any] ?? [:])
+            n.booking = BookingInfo.getRideInfo(dict: str ?? [:])
             n.type = .NEW_RIDE_REQUEST
             return n
         case "3":
@@ -97,9 +100,9 @@ class NotificationModel{
         case "8":
             n.type = .LOGOUT_USER
             return n
-        case "11":
-            n.type = .OFFLINE_PARTNER
-            return n
+//        case "11":
+//            n.type = .OFFLINE_PARTNER
+//            return n
         case "10":
             n.type = .RIDE_CANCEL_ON_RECEIVE
             return n

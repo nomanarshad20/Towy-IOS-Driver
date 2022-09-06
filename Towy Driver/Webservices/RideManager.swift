@@ -58,6 +58,28 @@ class RideManager{
         }
         
     }
+//    GET_CANCEL_REASON
+    
+    func getCancelReasons(completionHandler:@escaping (_ result : [Precaution]?, _ message:String?)-> Void)
+    {
+        
+        
+        let headers = UtilityManager.manager.getAuthHeader()
+        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.GET_CANCEL_REASON
+        
+        
+        webServiceManager.manager.getData(url: baseUrl, param: nil, headers: headers) { (mainDict, err) in
+            
+            if let data = mainDict?["data"].arrayObject
+            {
+                completionHandler(Precaution.getReasons(data: data as? [[String:Any]] ?? []),nil)
+            }else{
+                completionHandler(nil,err)
+            }
+        }
+        
+    }
+    
     
     func updateRideStatus(params:[String:Any], completionHandler:@escaping (_ result : [String:Any]?, _ message:String?)-> Void)
     {
@@ -66,16 +88,16 @@ class RideManager{
         let headers = UtilityManager.manager.getAuthHeader()
         var baseUrl = Constants.HTTP_CONNECTION_ROOT
         
-        switch params["driver_status"] as? String {
-        case Constants.RideStatus.REACHED_PICKUP.rawValue :
-             baseUrl = baseUrl + "setRideReachedStatus"
-        case Constants.RideStatus.RIDE_START.rawValue :
-             baseUrl = baseUrl + "setRideStartStatus"
-        case Constants.RideStatus.RIDE_COMPLETED.rawValue :
-             baseUrl = baseUrl + "setRideCompleteStatus"
-        default:
-            baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.UPDATE_RIDE_STATUS
-        }
+//        switch params["driver_status"] as? String {
+//        case Constants.RideStatus.REACHED_PICKUP.rawValue :
+//             baseUrl = baseUrl + "setRideReachedStatus"
+//        case Constants.RideStatus.RIDE_START.rawValue :
+//             baseUrl = baseUrl + "setRideStartStatus"
+//        case Constants.RideStatus.RIDE_COMPLETED.rawValue :
+//             baseUrl = baseUrl + "setRideCompleteStatus"
+//        default:
+//            baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.UPDATE_RIDE_STATUS
+//        }
         
         
         var param = params

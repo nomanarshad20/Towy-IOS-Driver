@@ -23,16 +23,13 @@ class OtpViewController: UIViewController {
     var waitingTime = 30
     var user = User()
     var isEmail = false
-    
+    var isPasswordReset = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        
-        //        if user.mobileNumber == nil{
-        //            user = User.init(dictionary: UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER) ?? [:])
-        //        }
+//        NotificationCenter.default.addObserver(self, selector: #selector(ratingCompleted), name:NSNotification.Name( Constants.NotificationObservers.DRIVER_RATED_THE_CUSTOMER.rawValue), object: nil)
         self.btnResend.setTitleColor( UIColor.gray, for: .normal)
         WT = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateWaitingTime), userInfo: nil, repeats: true)
         
@@ -60,6 +57,14 @@ class OtpViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaults.standard.bool(forKey: Constants.IS_PASSWORD_FORGOT){
+           isPasswordReset = true
+        }
+    }
+    
     
     @objc func updateWaitingTime(){
         if waitingTime == 0{
@@ -117,10 +122,7 @@ class OtpViewController: UIViewController {
                 // Sign in using the verificationID and the code sent to the user
                 // ...
             }
-        
-        
-        
-        
+
     }
     
     
@@ -149,18 +151,28 @@ class OtpViewController: UIViewController {
                     UtilityManager.manager.showAlert(self, message: error.localizedDescription , title: "Oops")
                     
                 }else{
-                    UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
-                    UserDefaults.standard.set(nil, forKey: "authVerificationID")
                     
-                    self.user.mobileNumber = self.phoneNumber
+                    if !self.isPasswordReset{
+                        UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
+                        UserDefaults.standard.set(nil, forKey: "authVerificationID")
+                        
+                        self.user.mobile_no = self.phoneNumber
+                        
+                        let st = UtilityManager.manager.getAuthStoryboard()
+                        let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
+                        vc.user = self.user
+                        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
+                        //                  UserDefaults.standard.set(2, forKey: Constants.REGISTRATION_STATUS)
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }else{
+                        let st = UtilityManager.manager.getAuthStoryboard()
+                        let vc = st.instantiateViewController(withIdentifier: "PasswordResetViewController") as! PasswordResetViewController
+                        vc.login = self.phoneNumber
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                     
-                    let st = UtilityManager.manager.getAuthStoryboard()
-                    let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
-                    vc.user = self.user
-                    UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
-                    //                  UserDefaults.standard.set(2, forKey: Constants.REGISTRATION_STATUS)
-                    
-                    self.navigationController?.pushViewController(vc, animated: true)
+                   
                 }
                 
                 
@@ -177,13 +189,14 @@ class OtpViewController: UIViewController {
         let st = UtilityManager.manager.getAuthStoryboard()
         let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
         vc.isLogin = true
-        self.user.mobileNumber =  self.phoneNumber
+        self.user.mobile_no =  self.phoneNumber
         vc.user = self.user
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
     @IBAction func backTapped(_ sender:UIButton){
+        UserDefaults.standard.set(false, forKey: Constants.IS_PASSWORD_FORGOT)
         UtilityManager.manager.moveBack(self)
     }
     

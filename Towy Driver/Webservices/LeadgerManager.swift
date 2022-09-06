@@ -17,6 +17,8 @@ class LedgerManager {
     func getLeadgerInfo(params:[String:Any],completionHandler:@escaping (_ result : [String:Any]?, _ message:String?)-> Void)
     {
         
+//        driver-portal?tillDate=2022-7-26&fromDate=2022-7-26
+        
         let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.GET_PARTNER_LEDGER
         webServiceManager.manager.postData(url: baseUrl, param: params, headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
             HIDE_CUSTOM_LOADER()

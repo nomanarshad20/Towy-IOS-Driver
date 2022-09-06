@@ -20,6 +20,8 @@ class TruckTypeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tblView.estimatedRowHeight = 600
+        
         tblView.delegate = self
         tblView.dataSource = self
         tblView.register(UINib.init(nibName: "TruckTypeTableViewCell", bundle: .main), forCellReuseIdentifier: "TruckTypeTableViewCell")
@@ -60,14 +62,23 @@ extension TruckTypeViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TruckTypeTableViewCell", for: indexPath) as! TruckTypeTableViewCell
-        cell.lblName.text = datasource[indexPath.row].name
-        
+        let ds = datasource[indexPath.row]
+        cell.lblName.text = ds.name
+        cell.lblDescription.text = ds.description
+        cell.imgaeIcon.kf.setImage(with: URL.init(string: "http://3.101.101.16/"+ds.image!), placeholder: nil, options: nil, progressBlock: nil) { image, error, cacheType, imageURL in
+            if image != nil{
+                cell.imgaeIcon.image = image!
+            }else{
+                cell.imgaeIcon.image = UIImage.init(named: "Mask Group 110")
+                
+            }
+        }
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

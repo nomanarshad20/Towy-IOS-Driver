@@ -259,7 +259,7 @@ class UtilityManager: NSObject
         vc.buttons = buttons
         vc.modalPresentationStyle = .overFullScreen
         vc.onCompletion = { success in
-            completion(1)
+            completion(0)
         }
         if VC != nil{
             VC!.present(vc, animated: false, completion: nil)
@@ -460,6 +460,10 @@ class UtilityManager: NSObject
         if let userEmail = userDict["franchise_code"] as? String
         {
             UserDefaults.standard.set(userEmail, forKey: Constants.FRANCHISE_NAME)
+        }
+        if let vehicleTypeId = userDict["vehicle_type_id"] as? String
+        {
+            UserDefaults.standard.set(vehicleTypeId, forKey: Constants.VEHICLE_TYPE_ID)
         }
         
         if let userPhone = userDict["mobile_no"] as? String

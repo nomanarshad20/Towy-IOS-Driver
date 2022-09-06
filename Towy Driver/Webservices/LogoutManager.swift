@@ -16,12 +16,12 @@ class LogoutManager{
     func LogoutUser(completionHandler:@escaping (_ result : [String:Any]?, _ message:String?)-> Void)
     {
         
-        let param = ["user_id":UtilityManager.manager.getId()] as [String : Any]
+//        let param = ["user_id":UtilityManager.manager.getId()] as [String : Any]
         let header = UtilityManager().getAuthHeader()
         SHOW_CUSTOM_LOADER()
         let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.USER_LOGOUT
         
-        webServiceManager.manager.postData(url: baseUrl, param: param, headers: header) { (mainDict, err) in
+        webServiceManager.manager.getData(url: baseUrl, param: nil, headers: header) { (mainDict, err) in
             HIDE_CUSTOM_LOADER()
             if let data = mainDict?["data"].dictionaryObject
             {

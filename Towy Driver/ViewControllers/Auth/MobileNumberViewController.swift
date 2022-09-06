@@ -134,7 +134,7 @@ class MobileNumberViewController: UIViewController {
                         //                      UserDefaults.standard.set(1, forKey: Constants.REGISTRATION_STATUS)
                         UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpViewController") as! OtpViewController
-                        self.user.mobileNumber =  self.phoneCode+self.txtPhone.text!
+                        self.user.mobile_no =  self.phoneCode+self.txtPhone.text!
                         UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
                         vc.phoneNumber = self.phoneCode+self.txtPhone.text!
                         

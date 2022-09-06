@@ -20,19 +20,20 @@ class User:Codable{
     var FullName : String?
     var countryName : String?
     var password : String?
-    var mobileNumber : String?
+    var mobile_no : String?
     var nic : String?
     var countryCode : String?
     var isLocal : Bool?
     var isModelValid : Bool?
-    var is_varified : Int?
-    var driver_vehicletype_id : String?
+    var is_verified : Int?
+    var vehicle_type_id : String?
     var franchise_id : Int?
-    var referralCode : String?
+    var referral_code : String?
     var city : String?
     var fcm_token : String?
     var login : String?
     var referrer : String?
+    var availability_status:Int?
     
     
     init() {
@@ -45,20 +46,21 @@ class User:Codable{
         self.FullName = nil
         self.countryName = nil
         self.password = nil
-        self.mobileNumber = nil
+        self.mobile_no = nil
         self.nic = nil
         self.countryCode = nil
         self.isLocal = false
-        self.is_varified = nil
-        self.driver_vehicletype_id = nil
+        self.is_verified = nil
+        self.vehicle_type_id = nil
         self.franchise_id = nil
         self.city = nil
         self.fcm_token = nil
         self.login = nil
         self.referrer = nil
+        self.availability_status = nil
     }
     
-    init(id:Int,userId:Int,type:Int,email:String,first_name:String,last_name:String,fullName:String,countryName:String,password:String,mobileNumber:String,nic:String,countryCode:String,isLocal:Bool,isVerified:Int,driver_vehicletype_id:String?,franchise_id:Int?,referrer: String?,city:String?,fcm_token:String?,login:String?) {
+    init(id:Int,userId:Int,type:Int,email:String,first_name:String,last_name:String,fullName:String,countryName:String,password:String,mobile_no:String,nic:String,countryCode:String,isLocal:Bool,isVerified:Int,vehicle_type_id:String?,franchise_id:Int?,referrer: String?,city:String?,fcm_token:String?,login:String?,availability_status:Int?) {
         self.id = id
         self.user_id = userId
         self.user_type = type
@@ -68,17 +70,18 @@ class User:Codable{
         self.FullName = fullName
         self.countryName = countryName
         self.password = password
-        self.mobileNumber = mobileNumber
+        self.mobile_no = mobile_no
         self.nic = nic
         self.countryCode = countryCode
         self.isLocal = isLocal
-        self.is_varified = isVerified
-        self.driver_vehicletype_id = driver_vehicletype_id
+        self.is_verified = isVerified
+        self.vehicle_type_id = vehicle_type_id
         self.franchise_id = franchise_id
         self.city = city
         self.fcm_token = fcm_token
         self.login = login
         self.referrer = referrer
+        self.availability_status = availability_status
     }
     
     
@@ -93,18 +96,19 @@ class User:Codable{
         self.FullName = dictionary["FullName"] as? String ?? nil
         self.countryName = dictionary["countryName"] as? String ?? nil
         self.password = dictionary["password"] as? String ?? nil
-        self.mobileNumber = dictionary["mobileNumber"] as? String ?? nil
+        self.mobile_no = dictionary["mobile_no"] as? String ?? nil
         self.nic = dictionary["nic"] as? String ?? nil
         self.countryCode = dictionary["countryCode"] as? String ?? nil
         self.isLocal = dictionary["isLocal"] as? Bool ?? false
-        self.is_varified = dictionary["is_varified"]  as? Int ?? nil
-        self.driver_vehicletype_id = dictionary["driver_vehicletype_id"] as? String ?? nil
+        self.is_verified = dictionary["is_verified"]  as? Int ?? nil
+        self.vehicle_type_id = dictionary["vehicle_type_id"] as? String ?? nil
         self.franchise_id = dictionary["franchise_id"] as? Int ?? nil
-        self.referralCode = dictionary["referralCode"] as? String ?? nil
+        self.referral_code = dictionary["referral_code"] as? String ?? nil
         self.city = dictionary["city"] as? String ?? nil
         self.fcm_token = dictionary["fcm_token"] as? String ?? nil
         self.referrer = dictionary["referrer"] as? String ?? nil
         self.login = dictionary["login"] as? String ?? nil
+        self.availability_status = dictionary["availability_status"] as? Int ?? nil
 
 
     }
@@ -120,17 +124,18 @@ class User:Codable{
          dictionary["FullName"] = user.FullName
          dictionary["countryName"] = user.countryName
          dictionary["password"] = user.password
-         dictionary["mobileNumber"] = user.mobileNumber
+         dictionary["mobile_no"] = user.mobile_no
          dictionary["nic"] = user.nic
          dictionary["countryCode"] = user.countryCode
          dictionary["isLocal"] = user.isLocal
-         dictionary["is_varified"] = user.is_varified
-         dictionary["driver_vehicletype_id"] = user.driver_vehicletype_id
+         dictionary["is_verified"] = user.is_verified
+         dictionary["vehicle_type_id"] = user.vehicle_type_id
          dictionary["franchise_id"] = user.franchise_id
          dictionary["referrer"] = user.referrer
          dictionary["city"] = user.city
         dictionary["fcm_token"] = user.fcm_token
         dictionary["login"] = user.login
+        dictionary["availability_status"] = user.availability_status
 
 
         
@@ -143,3 +148,14 @@ class User:Codable{
     
     
 }
+
+
+//            "is_step": 4,
+//            "vehicle_id": 6,
+//            "vehicle_name": "123456",
+//            "vehicle_type_name": "Flatbed Tow Truck",
+//            "documents": {},
+//            "image": "upload/driver/23/1659204651-1950.png",
+//            "driver_wallet_balance": 0,
+//            "rating": 0,
+//            "vehicle_registration_number": "adds",

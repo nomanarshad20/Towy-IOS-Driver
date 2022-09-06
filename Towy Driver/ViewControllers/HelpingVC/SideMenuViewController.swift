@@ -15,14 +15,14 @@ protocol MenuDelegate {
 
 enum Menu:String {
     case CAPTAIL_PORTAL = "Partner Portal"
-    case TRANSACTIONS = "Transaction History"
-    case MESSAGE = "Message"
-    case MY_HOME = "Home"
-    case REFERRAL = "Referral"
+//    case TRANSACTIONS = "Transaction History"
+//    case MESSAGE = "Message"
+//    case MY_HOME = "Home"
+//    case REFERRAL = "Referral"
     case HELP = "Help"
     case SETTINGS = "Settings"
     case LOGOUT = "Logout"
-    case REWARD = "Reward"
+//    case REWARD = "Reward"
 }
 
 
@@ -35,9 +35,13 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var lblreferral:UILabel!
     @IBOutlet weak var tblView:UITableView!
     
+//    MenuModel.init(title: "Transaction History", image: "transaction"),
+//    ,MenuModel.init(title: "Message", image: "message")
+//    ,MenuModel.init(title: "Referral", image: "referral")
+//    ,MenuModel.init(title: "Saved Locations", image: "home_location")
     
     var delegate:MenuDelegate!
-    var datasource = [MenuModel.init(title: "Partner Portal", image: "captain"),MenuModel.init(title: "Transaction History", image: "transaction"),MenuModel.init(title: "Message", image: "message"),MenuModel.init(title: "Referral", image: "referral"),MenuModel.init(title: "Saved Locations", image: "home_location"),MenuModel.init(title: "Help", image: "help"),MenuModel.init(title: "Settings", image: "setting")]
+    var datasource = [MenuModel.init(title: "Partner Portal", image: "captain"),MenuModel.init(title: "Help", image: "help"),MenuModel.init(title: "Settings", image: "setting"),MenuModel.init(title: "Logout", image: "home_location")]
 //    var datasource = [MenuModel.init(title: "Settings", image: "setting"),MenuModel.init(title: "Partner Portal", image: "captain")]
     
     

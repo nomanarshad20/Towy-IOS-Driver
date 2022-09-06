@@ -14,22 +14,22 @@ class DriverStatusManager{
     
     static var manager = DriverStatusManager()
     
-    func UpdateStatus(status:Int?, completionHandler:@escaping (_ result : [String:Int]?, _ message:String?)-> Void)
+    func UpdateStatus(status:Int?, completionHandler:@escaping (_ result : Int?, _ message:String?)-> Void)
     {
        
-        let param = ["user_id":UtilityManager.manager.getId(),"status":status ?? 1] as [String : Any]
+//        let param = ["user_id":UtilityManager.manager.getId(),"status":status ?? 1] as [String : Any]
         
         SHOW_CUSTOM_LOADER()
-        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.DRIVER_STATUS
+        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.DRIVER_STATUS+"\(status ?? 0)"
         
-        webServiceManager.manager.postData(url: baseUrl, param: param, headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
+        webServiceManager.manager.getData(url: baseUrl, param: nil, headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
             HIDE_CUSTOM_LOADER()
             
             if err != nil && mainDict?["data"] != nil{
-                completionHandler(["status":0],err)
+                completionHandler(0,err)
             }else if let data = mainDict?["data"].dictionaryObject
             {
-                completionHandler(data as? [String : Int],nil)
+                completionHandler(data["availability_status"] as? Int,nil)
             }else{
                 completionHandler(nil,err)
             }
@@ -76,5 +76,37 @@ class DriverStatusManager{
         
         
     }
+ 
+    func getCurrnetStatus(completionHandler:@escaping (_ booking : BookingInfo?,_ user:User?, _ message:String?)-> Void){
+//        DRIVER_CURRENT_STATUS
+        
+        
+        SHOW_CUSTOM_LOADER()
+        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.DRIVER_CURRENT_STATUS
+        
+        webServiceManager.manager.getData(url: baseUrl, param: nil, headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
+            HIDE_CUSTOM_LOADER()
+            
+            if err != nil && mainDict?["data"] != nil{
+                completionHandler(nil,nil,err)
+            }else if let data = mainDict?["data"].dictionaryObject
+            {
+                var b:BookingInfo? = nil
+                var u:User? = nil
+                if data["booking"] as? [String:Any] != nil{
+                   b = BookingInfo.getRideInfo(dict: data["booking"] as! [String:Any])
+                }
+                
+                if data["user"] as? [String:Any] != nil{
+                    u = User.init(dictionary: data["user"] as! [String:Any])
+                }
+                completionHandler(b,u,nil)
+            }else{
+                completionHandler(nil,nil,err)
+            }
+        }
+        
+    }
+    
     
 }

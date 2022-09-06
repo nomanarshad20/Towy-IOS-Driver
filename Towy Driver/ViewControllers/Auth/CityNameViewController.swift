@@ -53,8 +53,8 @@ class CityNameViewController: UIViewController {
                       "city":user.city ?? txtCitytName.text!,
                       "first_name":user.first_name,
                       "last_name":user.last_name,
-                      "login":user.mobileNumber ?? user.email,
-                      "referrer":user.referralCode]
+                      "login":user.mobile_no ?? user.email,
+                      "referrer":user.referral_code]
 //        ["user_type":"2",
 //                      "fcm_token":"jgdfjhsdhfjsgjfhsdf4b3bb 435","password":"123456789a",
 //                      "password_confirmation":"123456789a",

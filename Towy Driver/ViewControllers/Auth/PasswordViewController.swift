@@ -22,6 +22,8 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var lblOneDigit:UILabel!
     
     @IBOutlet weak var btnShowPassword:UIButton!
+    @IBOutlet weak var btnForgot:UIButton!
+
     @IBOutlet weak var btnNext:UIButton!
     
     
@@ -32,6 +34,7 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
     var isPasswordVisible = false
     var user = User()
     var isLogin = false
+    var isEmail = false
     
     
     var isStrongPassword = false{
@@ -109,6 +112,7 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
 
         if isLogin{
             lblTopTitle.text = "Enter your account password"
+            btnForgot.isHidden = false
         }
         
 //        if user.mobileNumber == nil{
@@ -161,6 +165,15 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
             self.signInUser()
             
         }
+    }
+    
+    
+    
+    @IBAction func forgotTapped(_ sender:UIButton){
+    
+        UserDefaults.standard.set(true, forKey: Constants.IS_PASSWORD_FORGOT)
+        UtilityManager.manager.moveBack(self)
+        
     }
     
     @IBAction func backTapped(_ sender:UIButton){
@@ -260,7 +273,7 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
         let params = ["user_type":"2",
                       "fcm_token":UtilityManager.manager.getFcmToken(),
                       "password":txtPassword.text!,
-                      "login":user.mobileNumber ?? user.email]
+                      "login":user.mobile_no ?? user.email]
 //        ["user_type":"2",
 //                      "fcm_token":"jgdfjhsdhfjsgjfhsdf4b3bb 435","password":"123456789a",
 //                      "password_confirmation":"123456789a",
@@ -306,8 +319,8 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
                 self.navigationController?.pushViewController(vc, animated: true)
             case 4:
                 if UserDefaults.standard.integer(forKey: Constants.IS_VERIFIED) == 1{
-                    let story = UtilityManager.manager.getAuthStoryboard()
-                    let vc = story.instantiateViewController(withIdentifier: "WaitForApprovalViewController") as! WaitForApprovalViewController
+                    let story = UtilityManager.manager.getMainStoryboard()
+                    let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
                     UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{

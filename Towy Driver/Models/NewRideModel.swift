@@ -48,6 +48,11 @@ class NewRide{
     var is_skip_dropoff : Int?
     var distance_radius : Int?
     
+    
+    
+    
+    
+    
     init() {
         self.vehicle_amount = nil
         self.amount = nil
@@ -128,18 +133,18 @@ class NewRide{
         r.vehicle_amount =  dict["vehicle_amount"] as? Int ?? nil
         r.amount = dict["amount"] as? Int ?? nil
         r.driver_id = dict["driver_id"] as? Int ??  nil
-        r.pickup_longitude = dict["pickup_longitude"] as? String ?? nil
+        r.pickup_longitude = dict["pick_up_longitude"] as? String ?? nil
         r.temp_id = dict["temp_id"] as? Int ?? nil
         r.passenger_id = dict["passenger_id"] as? Int ?? nil
         r.vehicle_type = dict["vehicle_type"] as? String ?? ""
         r.oyla_pay = dict["oyla_pay"] as? String ?? ""
-        r.dropoff_latitude = dict["dropoff_latitude"] as? String ?? ""
+        r.dropoff_latitude = dict["drop_off_latitude"] as? String ?? ""
         r.user_id = dict["user_id"] as? String ?? ""
-        r.distance_kilomiters = dict["distance_kilomiters"] as? Double ?? nil
-        r.pickup_latitude = dict["pickup_latitude"] as? String ?? nil
+        r.distance_kilomiters = dict["total_distance"] as? Double ?? nil
+        r.pickup_latitude = dict["pick_up_latitude"] as? String ?? nil
         r.estimate_minutes = dict["estimate_minutes"] as? String ?? ""
-        r.dropoff_longitude = dict["dropoff_longitude"] as? String ?? ""
-        r.booking_id = dict["booking_id"] as? Int ?? nil
+        r.dropoff_longitude = dict["drop_off_longitude"] as? String ?? ""
+        r.booking_id = dict["booking_detail_id"] as? Int ?? nil
         r.passenger_mobile_no = dict["passenger_mobile_no"] as? Int ?? nil
         
         if let status = dict["driver_status"] as? Int {
@@ -157,7 +162,7 @@ class NewRide{
         r.descriptions = dict["descriptions"] as? String ?? nil
         r.booking_unique_id = dict["booking_unique_id"] as? String ?? nil
         r.payment_type = dict["payment_type"] as? String ?? nil
-        r.estimated_amount = dict["estimated_amount"] as? Int ?? nil
+        r.estimated_amount = dict["estimated_fare"] as? Int ?? nil
         r.booking_changes = dict["booking_changes"] as? Int ?? nil
         r.pre_book =  dict["pre_book"] as? Bool ?? nil
         r.peak_factor_rate = dict["peak_factor_rate"] as? String ?? nil
@@ -185,17 +190,17 @@ class NewRide{
         dict["booking_changes"]  = r.booking_changes
         dict["amount"]  = r.amount
         dict["vehicle_amount"]  = r.vehicle_amount
-        dict["pickup_longitude"]  = r.pickup_longitude
+        dict["pick_up_longitude"]  = r.pickup_longitude
         dict["passenger_id"] = r.passenger_id
         dict["vehicle_type"] = r.vehicle_type
         dict["oyla_pay"] = r.oyla_pay
-        dict["dropoff_latitude"] = r.dropoff_latitude
+        dict["drop_off_latitude"] = r.dropoff_latitude
         dict["user_id"] = r.user_id
-        dict["distance_kilomiters"] = r.distance_kilomiters
-        dict["pickup_latitude"] =  r.pickup_latitude
+        dict["total_distance"] = r.distance_kilomiters
+        dict["pick_up_latitude"] =  r.pickup_latitude
         dict["estimate_minutes"] = r.estimate_minutes
-        dict["dropoff_longitude"] = r.dropoff_longitude
-        dict["booking_id"] = r.booking_id
+        dict["drop_off_longitude"] = r.dropoff_longitude
+        dict["booking_detail_id"] = r.booking_id
         dict["driver_status"] = r.driver_status
         dict["pre_book"] = r.pre_book
         dict["peak_factor_rate"] = r.peak_factor_rate
