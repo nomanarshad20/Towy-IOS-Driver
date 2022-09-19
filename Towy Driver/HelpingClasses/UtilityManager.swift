@@ -136,6 +136,9 @@ class UtilityManager: NSObject
     func getBookingIdFromUSD()->String?{
         return UserDefaults.standard.value(forKey: "booking_unique_id") as? String
     }
+    func getBookingId()->Int{
+        return UserDefaults.standard.value(forKey: "booking_id") as? Int ?? 0
+    }
     func getDistnaceFromUSD()->Double?{
         return UserDefaults.standard.value(forKey: "rideDistance") as? Double
     }
@@ -386,18 +389,18 @@ class UtilityManager: NSObject
     func getVehicleNumber() -> String?
        {
            let result = UserDefaults.standard.value(forKey: Constants.SERVER_VEHICLE_NUMBER) as? String
-           return result ?? "_"
+           return result ?? "Missing"
        }
     
     func getVehicleModel() -> String?
        {
         let result = UserDefaults.standard.value(forKey: Constants.SERVER_VEHICLE_MODEL) as? String
-           return result ?? "_"
+           return result ?? "Missing"
        }
     func getVehicleModelYear() -> String?
        {
         let result = UserDefaults.standard.value(forKey: Constants.SERVER_VEHICLE_MODEL_YEAR) as? String
-           return result ?? "_"
+           return result ?? "Missing"
        }
     func getDriverRating() -> String?
        {
@@ -426,6 +429,8 @@ class UtilityManager: NSObject
     func saveUserSession(userDict:NSDictionary,accessToken:String?){
         
 //        print(userDict)
+        
+        print(userDict)
         
         if  let accessToken = userDict["token"]{
             UserDefaults.standard.set(accessToken, forKey: Constants.SERVER_ACCESS_TOKEN)
@@ -461,20 +466,26 @@ class UtilityManager: NSObject
         {
             UserDefaults.standard.set(userEmail, forKey: Constants.FRANCHISE_NAME)
         }
-        if let vehicleTypeId = userDict["vehicle_type_id"] as? String
+        if let vehicleTypeId = userDict["vehicle_type_name"] as? String
         {
-            UserDefaults.standard.set(vehicleTypeId, forKey: Constants.VEHICLE_TYPE_ID)
+            UserDefaults.standard.set(vehicleTypeId, forKey: Constants.VEHICLE_TYPE_NAME)
         }
+
+        if let vehicleTypeId = userDict["vehicle_name"] as? String
+        {
+            UserDefaults.standard.set(vehicleTypeId, forKey: Constants.VEHICLE_NAME)
+        }
+
         
         if let userPhone = userDict["mobile_no"] as? String
         {
             UserDefaults.standard.set(userPhone, forKey: Constants.SERVER_NOMBRE_ID)
         }
-        if let userID = userDict["vehicle_number"] as? String
+        if let userID = userDict["vehicle_registration_number"] as? String
         {
             UserDefaults.standard.set(userID, forKey: Constants.SERVER_VEHICLE_NUMBER)
         }
-        if let userID = userDict["driver_ratings"] as? Double
+        if let userID = userDict["rating"] as? Double
         {
             UserDefaults.standard.set(userID, forKey: Constants.SERVER_DRIVER_RATING)
         }
@@ -499,15 +510,15 @@ class UtilityManager: NSObject
         {
             UserDefaults.standard.set(otpCode, forKey: Constants.SERVER_OTP_CODE)
         }
-        if let otpCode = userDict["nic"] as? String
+        if let otpCode = userDict["ssn"] as? String
         {
-            UserDefaults.standard.set(otpCode, forKey: Constants.NATIONAL_ID)
+            UserDefaults.standard.set(otpCode, forKey: Constants.SSN)
         }
         if let fcm = userDict["fcm_token"] as? String
         {
             UserDefaults.standard.set(fcm, forKey: Constants.SERVER_FCM_TOKEN)
         }
-        if let userImage = userDict["profile_picture"] as? String
+        if let userImage = userDict["image"] as? String
         {
             UserDefaults.standard.set(userImage, forKey: Constants.SERVER_USER_IMAGE)
         }
@@ -517,14 +528,14 @@ class UtilityManager: NSObject
             saveDriverStatus(status: userStatus)
         }
         
-        if let userStatus = userDict["driver_vehicletype_id"] as? Int
-        {
-            UtilityManager.manager.saveVehicleName(type: userStatus)
-        }
+//        if let userStatus = userDict["vehicle_type_name"] as? Int
+//        {
+//            UtilityManager.manager.saveVehicleName(type: userStatus)
+//        }
         
-        if let userStatus = userDict["is_oyla_driver"] as? Int
+        if let userStatus = userDict["user_type"] as? Int
         {
-            UtilityManager.manager.saveDriverType(type: userStatus)
+            UtilityManager.manager.saveUserType(type: userStatus)
         }
         if let userStatus = userDict["dual_vehicle_cat_id"] as? Int
         {
@@ -595,7 +606,7 @@ class UtilityManager: NSObject
         
         
     }
-    func saveDriverType(type:Int){
+    func saveUserType(type:Int){
          UserDefaults.standard.setValue(type, forKey: Constants.DRIVER_TYPE)
     }
     
@@ -603,7 +614,7 @@ class UtilityManager: NSObject
          UserDefaults.standard.setValue(type, forKey: Constants.DUAL_CAT_ID)
     }
     
-    func getDriverType()->Int{
+    func getUserType()->Int{
         return UserDefaults.standard.integer(forKey: Constants.DRIVER_TYPE)
     }
     
@@ -622,9 +633,14 @@ class UtilityManager: NSObject
         return UserDefaults.standard.integer(forKey: Constants.DUAL_CAT_ID)
     }
     
-    func saveVehicleName(type:Int){
+//    func saveVehicleName(type:Int){
+//        print("vehicle type Name === ",type)
+//        return UserDefaults.standard.setValue(type, forKey: Constants.VEHICLE_IMAGE_NAME)
+//    }
+    
+    func saveVehicleTypeId(type:Int){
         print("vehicle type id === ",type)
-        return UserDefaults.standard.setValue(type, forKey: Constants.VEHICLE_IMAGE_NAME)
+        return UserDefaults.standard.setValue(type, forKey: Constants.VEHICLE_TYPE_ID)
     }
     
     func getCurrentDateString()->String{
@@ -661,8 +677,8 @@ class UtilityManager: NSObject
         return UserDefaults.standard.value(forKey: Constants.RIDE_WAITING_TIME_START) as? Date
     }
     
-    func getNIC()->String?{
-        return UserDefaults.standard.value(forKey: Constants.NATIONAL_ID) as? String ?? "_"
+    func getSSN()->String?{
+        return UserDefaults.standard.value(forKey: Constants.SSN) as? String ?? "Missing"
     }
     
     func getDateOfJoining(date:String? = nil)->String?{

@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     var window: UIWindow?
+    var isExiting = false
+    let socket = SocketIOManager.sharedInstance.socket
+    var locationManager = CLLocationManager()
+
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -29,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
 
         registerForRemoteNotification()
-        
         
         
         return true
@@ -65,13 +69,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        locationManagerInitilize()
+        setupGetificationInHome(manager: locationManager)
         SocketIOManager.sharedInstance.closeConnection()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        stopMonitoringInHome()
         UIApplication.shared.applicationIconBadgeNumber = 0
         SocketIOManager.sharedInstance.establishConnection()
     }
@@ -360,4 +365,298 @@ extension AppDelegate:MessagingDelegate{
     }
     
     
+}
+
+
+extension AppDelegate:CLLocationManagerDelegate{
+    
+    
+    
+    func locationManagerInitilize(){
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.allowsBackgroundLocationUpdates = false
+            locationManager.showsBackgroundLocationIndicator = true
+            locationManager.requestAlwaysAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+            if #available(iOS 14.0, *) {
+                locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "Tracking")
+            }
+           
+        }else{
+            handleEventForFailApiCall(apiName: "enable location services.")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        guard let currentLocation:CLLocation = manager.location else{
+            self.locationManager.stopUpdatingLocation()
+            return}
+        Constants.DEFAULT_LAT = currentLocation.coordinate.latitude
+        Constants.DEFAULT_LONG = currentLocation.coordinate.longitude
+        emitLocation(location: currentLocation)
+        self.locationManager.stopUpdatingLocation()
+        
+    }
+    
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didExitRegion region: CLRegion
+    ) {
+
+        
+        locationManagerInitilize()
+        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
+        if socket?.status == .disconnected{
+            SocketIOManager.sharedInstance.establishConnection()
+        }
+        
+        
+        if !isExiting{
+            isExiting = true
+                setupGetificationInHome(manager: locationManager)
+            }
+        }
+        
+        
+    
+    
+    
+//    func locationManager(
+//        _ manager: CLLocationManager,
+//        didExitRegion region: CLRegion
+//    ) {
+//
+//        if socket?.status == .disconnected{
+//            SocketIOManager.sharedInstance.establishConnection()
+//        }
+//
+//        if region is CLCircularRegion {
+//
+//            if region.identifier == "InHome1"{
+//                if !isFinishingHome{
+//                    isFinishingHome = true
+//                    isStartingHome = false
+//                    self.finishHomeTimer()
+//                    UserDefaults.standard.set(true, forKey: "InHomeTimerFinished")
+//
+//                    if DataManager.sharedInstance.getHours() <= 0{
+//                    if region is CLCircularRegion {
+//                        handleEvent(for: region)
+//                    }
+//
+//                    }
+////                    if region is CLCircularRegion {
+////                        handleEvent(for: region)
+////                    }
+//                }
+//            }else{
+//
+//                var hasInRegion = 0
+//                if DataManager.sharedInstance.getInHomeHours() > 0{
+//                    for i in manager.monitoredRegions{
+//                        if i.identifier == "InHome1" ||  i.identifier == "InHome2"{
+//                            hasInRegion += 1
+//                        }
+//                    }
+//                    //finishing Home and no region monitoring is available
+//                    if hasInRegion < 2{
+//                        UserDefaults.standard.set(false, forKey: "hasInRegionMonitoring")
+//                        isFinishingHome = true
+//                        isStartingHome = false
+//
+//                        self.finishHomeTimer()
+//                        UserDefaults.standard.set(true, forKey: "InHomeTimerFinished")
+//
+//                    }
+//                }
+//
+//                if !isStarting{
+//                    self.starttimer()
+//                    if region is CLCircularRegion {
+//                        UserDefaults.standard.set("", forKey: "inRegionTime")
+//                        handleEvent(for: region)
+//                    }
+//                }
+//            }
+//
+//
+////            NotificationCenter.default.post(name: Notification.Name("AppBecomeActive"), object: nil)
+////            self.starttimer()
+////            handleEvent(for: region)
+//        }
+//    }
+    
+    
+    func setupGetificationInHome(manager:CLLocationManager){
+        
+        stopMonitoringInHome()
+        
+        let state : UIApplication.State = UIApplication.shared.applicationState
+        if  UtilityManager.manager.getDriverStatus() == 2 && state != .active{
+            
+            let coordinate = CLLocationCoordinate2D.init(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG)
+            let radius = Constants.radius
+            let identifier = "InHome1"
+            let note = "Stay safe"
+            let eventType: Geotification.EventType = .onExit
+            let geotificationExit = Geotification(
+                coordinate: coordinate,
+                radius: radius,
+                identifier: identifier,
+                note: note,
+                eventType: eventType)
+            
+            geotificationExit.clampRadius(maxRadius:
+                                            locationManager.maximumRegionMonitoringDistance)
+            startMonitoring(geotification: geotificationExit)
+            isExiting = false
+        }else{
+            isExiting = false
+        }
+    }
+    
+    
+    func startMonitoring(geotification: Geotification) {
+        
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+           handleEventForFailApiCall(apiName: "No region monitoring is available.")
+            return
+        }
+        
+        let fenceRegion = geotification.region
+        locationManager.startMonitoring(for: fenceRegion)
+    }
+    
+//    func handleEvent(for region: CLRegion) {
+//
+////        if UIApplication.shared.applicationState == .active {
+////            guard let message = note(from: region.identifier) else { return }
+////            BaseVC().ShowErrorAlert(message: message, AlertTitle: message)
+////        } else {
+//            guard let body = note(from: region.identifier) else { return }
+//            let notificationContent = UNMutableNotificationContent()
+//            notificationContent.body = body
+//            notificationContent.sound = .default
+//            notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//            let request = UNNotificationRequest(
+//                identifier: "location_change",
+//                content: notificationContent,
+//                trigger: trigger)
+//            UNUserNotificationCenter.current().add(request) { error in
+//
+//                if let error = error {
+//                    print("Error: \(error)")
+//                }
+//            }
+//        }
+    
+    
+    func handleEventForFailApiCall(apiName:String) {
+        
+//        if UIApplication.shared.applicationState == .active {
+//            guard let message = note(from: region.identifier) else { return }
+//            BaseVC().ShowErrorAlert(message: message, AlertTitle: message)
+//        } else {
+             let body = "Service Name : \(apiName)"
+            let notificationContent = UNMutableNotificationContent()
+            notificationContent.body = body
+        notificationContent.sound = .default
+            notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(
+                identifier: "API_Call_Failiure",
+                content: notificationContent,
+                trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                
+                if let error = error {
+                    print("Error: \(error)")
+                }
+            }
+        }
+    
+    
+    func note(from identifier: String) -> String? {
+        var geotifications = Geotification.allGeotifications()
+        
+        if identifier == "InHome1" || identifier == "InHome2"{
+            geotifications = Geotification.allGeotificationsInRegion()
+        }
+        
+        let matched = geotifications.first { $0.identifier == identifier }
+        return matched?.note
+    }
+    
+    
+    func stopMonitoringInHome() {
+        //        UserDefaults.standard.removeObject(forKey: "savedItemsInHome")
+        //        UserDefaults.standard.synchronize()
+        for region in locationManager.monitoredRegions {
+            guard
+                let circularRegion = region as? CLCircularRegion
+            else { continue }
+            locationManager.stopMonitoring(for: circularRegion)
+        }
+    }
+    
+    
+    func emitLocation(location: CLLocation) {
+        
+        let locationDict = ["latitude":Constants.DEFAULT_LAT!,"longitude":Constants.DEFAULT_LONG!,"area_name":"area_name","city":"city","bearing":90,"booking_id":UtilityManager.manager.getBookingId() ,"user_id":UtilityManager.manager.getId()] as [String : Any]
+        
+        if socket?.status == .notConnected || socket?.status == .disconnected{
+            SocketIOManager.sharedInstance.establishConnection()
+            emitLocation(location: location)
+            return
+        }
+        
+//        socket?.emit("point-to-point-tracking", locationDict)
+        socket?.emit("point-to-point-tracking", locationDict, completion: {
+            self.handleEventForFailApiCall(apiName: "Data Added from back ground service.")
+        })
+       
+
+    }
+    
+}
+
+
+
+class LocationManager: NSObject, CLLocationManagerDelegate {
+
+    static let shared = LocationManager()
+    private var locationManager: CLLocationManager = CLLocationManager()
+    private var requestLocationAuthorizationCallback: ((CLAuthorizationStatus) -> Void)?
+
+    public func requestLocationAuthorization() {
+        self.locationManager.delegate = self
+        let currentStatus = CLLocationManager.authorizationStatus()
+
+        // Only ask authorization if it was never asked before
+        guard currentStatus == .notDetermined else { return }
+
+        // Starting on iOS 13.4.0, to get .authorizedAlways permission, you need to
+        // first ask for WhenInUse permission, then ask for Always permission to
+        // get to a second system alert
+        if #available(iOS 13.4, *) {
+            self.requestLocationAuthorizationCallback = { status in
+                if status == .authorizedWhenInUse {
+                    self.locationManager.requestAlwaysAuthorization()
+                }
+            }
+            self.locationManager.requestWhenInUseAuthorization()
+        } else {
+            self.locationManager.requestAlwaysAuthorization()
+        }
+    }
+    // MARK: - CLLocationManagerDelegate
+    public func locationManager(_ manager: CLLocationManager,
+                                didChangeAuthorization status: CLAuthorizationStatus) {
+        self.requestLocationAuthorizationCallback?(status)
+    }
 }

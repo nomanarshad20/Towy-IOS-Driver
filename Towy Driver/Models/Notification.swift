@@ -88,7 +88,7 @@ class NotificationModel{
             n.rideDropOffChange = NewRide.getRideInfo(dict: str?["booking_location_changed"] as? [String:Any] ?? [:])
             n.type = .RIDE_LOCATION_CHANGED
             return n
-        case "4":
+        case "14":
             n.type = .RIDE_CANCELED
             return n
         case "7":

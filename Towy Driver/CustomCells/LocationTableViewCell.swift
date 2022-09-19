@@ -1,9 +1,9 @@
 //
 //  LocationTableViewCell.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by Macbook Pro on 15/12/2020.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit

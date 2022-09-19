@@ -1,9 +1,9 @@
 //
 //  MenuTableViewCell.swift
-//  Oyla Captain
+//  TOWY
 //
 //  Created by apple on 11/24/20.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit
@@ -47,13 +47,13 @@ class MenuTableViewCell: UITableViewCell {
         case .HELP:
             let ds = data as! MenuModel
             self.icon.image = UIImage.init(named: ds.image)
-            self.menu.font =  UIFont.systemFont(ofSize: 17)
+//            self.menu.font =  UIFont.systemFont(ofSize: 17)
             self.menu.text = ds.title
             return self
         case .HELP_DETAILS:
             let ds = data as! HelpDataModel
             self.icon.image = UIImage.init(named: ds.image)
-            self.menu.font =  UIFont.systemFont(ofSize: 17)
+//            self.menu.font =  UIFont.systemFont(ofSize: 17)
             self.menu.text = ds.title
             return self
         case .SIDE_MENU:
@@ -63,7 +63,7 @@ class MenuTableViewCell: UITableViewCell {
             return self
         case .REFERRAL:
             let ds = data as! String
-            self.menu.font =  UIFont.systemFont(ofSize: 17)
+//            self.menu.font =  UIFont.systemFont(ofSize: 17)
             self.menu.text = ds
             self.lblreadingConstraint.constant = -25
             self.ImgRoundCheck.isHidden = true
@@ -71,21 +71,21 @@ class MenuTableViewCell: UITableViewCell {
             return self
         case .MESSAGE:
             let ds = data as! String
-            self.menu.font =  UIFont.systemFont(ofSize: 17)
+//            self.menu.font =  UIFont.systemFont(ofSize: 17)
             self.menu.text = ds
             self.lblreadingConstraint.constant = -25
             self.accessoryType = .disclosureIndicator
             return self
         case .LATERJOBS:
             let ds = data as! String
-            self.menu.font =  UIFont.systemFont(ofSize: 17)
+//            self.menu.font =  UIFont.systemFont(ofSize: 17)
             self.menu.text = ds
             self.lblreadingConstraint.constant = -25
             self.accessoryType = .none
             return self
         case .MAPS:
             let ds = data as! [String:Bool]
-            self.menu.font = UIFont.systemFont(ofSize: 17)
+//            self.menu.font = UIFont.systemFont(ofSize: 17)
             self.menu.text = ds.keys.first
             self.lblreadingConstraint.constant = -25
             self.ImgRoundCheck.isHidden = false
@@ -97,7 +97,7 @@ class MenuTableViewCell: UITableViewCell {
             return self
         case .LANGUAGES:
             let ds = data as! [String:Bool]
-            self.menu.font = UIFont.systemFont(ofSize: 17)
+//            self.menu.font = UIFont.systemFont(ofSize: 17)
             self.menu.text = ds.keys.first
             self.lblreadingConstraint.constant = -25
             self.ImgRoundCheck.isHidden = false
@@ -109,7 +109,7 @@ class MenuTableViewCell: UITableViewCell {
             return self
         case .SETTINGS:
             let ds = data as! String
-            self.menu.font =  UIFont.systemFont(ofSize: 17)
+//            self.menu.font =  UIFont.systemFont(ofSize: 17)
             self.menu.text = ds
             self.lblreadingConstraint.constant = -25
             self.accessoryType = .disclosureIndicator

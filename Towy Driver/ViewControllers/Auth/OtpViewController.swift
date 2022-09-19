@@ -153,7 +153,7 @@ class OtpViewController: UIViewController {
                 }else{
                     
                     if !self.isPasswordReset{
-                        UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
+//                        UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
                         UserDefaults.standard.set(nil, forKey: "authVerificationID")
                         
                         self.user.mobile_no = self.phoneNumber

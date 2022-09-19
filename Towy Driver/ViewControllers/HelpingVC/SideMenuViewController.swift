@@ -1,9 +1,9 @@
 //
 //  SideMenuViewController.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by apple on 11/12/20.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 
 import UIKit
 import Kingfisher
@@ -98,7 +98,7 @@ class SideMenuViewController: UIViewController {
         }
         
         if let imageUrl = UtilityManager.manager.getUserImageUrl(){
-            let u = URL.init(string: Constants.HTTP_CONNECTION_IMG+imageUrl)
+            let u = URL.init(string: Constants.HTTP_CONNECTION_ROOT_ASSETS+imageUrl)
             imgProfile.kf.setImage(with: u, placeholder: UIImage.init(named: "profile-1"), options: .none, progressBlock: nil) { (i, e, c, U) in
                 if i != nil{
                     self.imgProfile.image = i

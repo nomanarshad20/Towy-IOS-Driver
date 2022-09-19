@@ -18,6 +18,9 @@ class SSNViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UserDefaults.standard.set(3, forKey: Constants.REGISTRATION_STATUS)
+
+        
         txtSSN.delegate = self
         btnNext.disable()
         

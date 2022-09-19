@@ -10,6 +10,9 @@ import UIKit
 
 open class Constants {
     
+    
+    public static let radius = 120.0
+    
     struct ScreenSize {
         static let width = UIScreen.main.bounds.size.width
         static let height = UIScreen.main.bounds.size.height
@@ -36,10 +39,10 @@ open class Constants {
     public static let USER_PREFERENCES_NAME         = "USER_PREFERENCES_NAME"
     public static let USER_PROFILE_IMAGE            = "USER_PROFILE_IMAGE"
     public static var Currency                      = "PKR. "
-    public static let LOCATION_TIMER_DURATION_ONLINE:Double = 10
+    public static let LOCATION_TIMER_DURATION_ONLINE:Double = 20
     public static let LOCATION_TIMER_DURATION_OFFLINE:Double = 100
     public static let LOCATION_TIMER_DURATION_ONRIDE:Double = 10
-    public static let DRIVER_WAITING_TIMER_DURATION:Double = 10
+    public static let DRIVER_WAITING_TIMER_DURATION:Double = 15
     
     // ------------------------------------------------------------------------------------
     
@@ -48,10 +51,13 @@ open class Constants {
     // ------------------------------------------------------------------------------------
     //--------------------------- TEST SERVER LINK------------------------//
     //
-    public static let HTTP_CONNECTION_ROOT   =  "http://3.101.101.16/api/"
-    public static let ASSETS_BASE_URL = "http://13.213.132.157/"
     
-    public static let SOCKET_ROOT = "http://3.101.101.16:8081"
+    
+    public static let HTTP_CONNECTION_ROOT          =  "http://54.183.143.65/api/"
+    public static let HTTP_CONNECTION_ROOT_ASSETS   = "http://54.183.143.65/"
+    public static let ASSETS_BASE_URL               = "http://13.213.132.157/"
+    
+    public static let SOCKET_ROOT = "http://54.183.143.65:8081"
     
     
     
@@ -122,7 +128,8 @@ open class Constants {
     public static let SERVER_NOMBRE_ID          = "mobile_no";
     public static let SERVER_EMAIL_ID           = "email";
     public static let FRANCHISE_NAME            = "franchise_code";
-    public static let VEHICLE_TYPE_ID           = "vehicle_type_id"
+    public static let VEHICLE_TYPE_NAME         = "vehicle_type_name"
+    public static let VEHICLE_NAME              = "vehicle_name"
     public static let SERVER_OTP_CODE           = "otpCode";
     public static let SERVER_FCM_TOKEN          = "fcmToken";
     public static let LOCAL_FCM_TOKEN           = "fcmTokenLocal";
@@ -158,6 +165,7 @@ open class Constants {
     public static let RIDE_WAITING_TIME_START   = "waitingTimeStart";
     public static let APP_RUNNING_BACKGROUND    = "appIsInBackground";
     public static let VEHICLE_IMAGE_NAME        = "vehicleImageName";
+    public static let VEHICLE_TYPE_ID           = "vehicleTypeId";
     public static let DRIVER_TYPE               = "driverType";
     public static let DUAL_CAT_ID               = "dualCatId";
     public static let IS_ON_DUAL                = "isOnDual";
@@ -173,7 +181,7 @@ open class Constants {
     public static let DRIVER_VEHICLE_TYPE_ID        = "driver_vehicletype_id";
     
     public static let IS_POLYLINE_DRAWN             = "isPolylineDrawn";
-    public static let NATIONAL_ID                   = "nic";
+    public static let SSN                           = "ssn";
     public static let JOINING_DATE                  = "created_at";
     
     

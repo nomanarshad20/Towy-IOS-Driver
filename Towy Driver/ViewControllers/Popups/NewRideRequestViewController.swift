@@ -1,9 +1,9 @@
 //
 //  NewRideRequestViewController.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by Macbook Pro on 09/12/2020.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit
@@ -84,6 +84,8 @@ class NewRideRequestViewController: UIViewController {
             SocketIOManager.sharedInstance.establishConnection()
         }
         
+        setupSocketEvents()
+       
         viewRedTrailing.constant = self.view.frame.width
         viewRequestBottom.constant = -500
         radiusSlider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
@@ -114,12 +116,17 @@ class NewRideRequestViewController: UIViewController {
 //    }
 //
     
-//    func setupSocketEvents() {
-//
-//        socket?.on(clientEvent: .connect) {data, ack in
-//            self.isConnectedToSocket = true
-//
-//        }
+    func setupSocketEvents() {
+
+            self.socket!.on("\(UtilityManager.manager.getId())-finalRideStatus") { (data, ack) in
+                guard let dataInfo = data.first else { return }
+                self.dismiss(animated: true) {
+                    NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
+
+                }
+            }
+
+        }
 //
 //
 //        socket?.on(clientEvent: .ping, callback: { data,ack in
@@ -131,20 +138,11 @@ class NewRideRequestViewController: UIViewController {
 //        print("pong")
 //
 //        })
-//
-////        socket?.on("point-to-point-tracking") { (data, ack) in
-////            guard let dataInfo = data.first else { return }
-////            //               if let response: SocketPosition = try? SocketParser.convert(data: dataInfo) {
-////            //                   let position = CGPoint.init(x: response.x, y: response.y)
-////            //                   self.delegate?.didReceive(point: position)
-////            //               }
-////        }
-//
-//    }
+        
     
     
     func showDummyRequest(){
-        
+
         viewRequestBottom.constant = 0
         viewTimerBottomConstraint.constant = -25
         btnReject.isHidden = false
@@ -154,9 +152,9 @@ class NewRideRequestViewController: UIViewController {
             self.view.layoutIfNeeded()
         } completion: { _ in
             self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateViewTimer), userInfo: nil, repeats: true)
-            
+
         }
-        
+
     }
     
     
@@ -348,26 +346,28 @@ class NewRideRequestViewController: UIViewController {
         if !isAccepted{
             DispatchQueue.main.async {
                 self.dismiss(animated: false, completion: {
-//                    if self.isConnectedToSocket{
+                    if self.isConnectedToSocket{
                         self.socket?.emit("accept-reject-ride", params)
-//                    }
+                    }
                    
                     Constants.IS_RIDE_POPUP_VISIBLE = false
-                    self.dismiss(animated: true, completion: {
-                        NotificationCenter.default.post(name: NSNotification.Name("ride_Cancelled"), object: params)
-                    })
+                    self.dismiss(animated: true, completion:nil)
+//                                    {
+//                        NotificationCenter.default.post(name: NSNotification.Name("ride_Cancelled"), object: params)
+//                    })
                 })
             }
         }else{
             if socket?.status == .connected{
             socket?.emit("accept-reject-ride", params)
                 
-                NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
+                
             }else{
-//                if socket?.status == .disconnected{
-//                    SocketIOManager.sharedInstance.establishConnection()
-//                }
-                UtilityManager.manager.showAlert(self, message: "Oops socket is discunnected", title: Constants.APP_NAME)
+                if socket?.status == .disconnected{
+                    SocketIOManager.sharedInstance.establishConnection()
+                    socket?.emit("accept-reject-ride", params)
+                }
+//                UtilityManager.manager.showAlert(self, message: "Oops socket is discunnected", title: Constants.APP_NAME)
             }
         }
 //        }else{

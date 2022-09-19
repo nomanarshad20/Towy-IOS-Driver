@@ -33,23 +33,26 @@ class CustomSplashViewController: UIViewController {
                 self.viewLogo.transform = CGAffineTransform.identity // undo in 1 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
                     
-                    if UserDefaults.standard.bool(forKey: Constants.IS_LOGIN){
-                        let story = UtilityManager.manager.getMainStoryboard()
-                        let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-                        //                    let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
-                        
-                        //                    let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }else{
-                        let story = UtilityManager.manager.getAuthStoryboard()
-                        let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        
-//                        let story = UtilityManager.manager.getAuthStoryboard()
-//                        let vc = story.instantiateViewController(withIdentifier: "TruckTypeViewController") as! TruckTypeViewController
+                    
+                    self.getRegistrationStatus(status: UserDefaults.standard.integer(forKey: Constants.REGISTRATION_STATUS))
+                    
+//                    if UserDefaults.standard.bool(forKey: Constants.IS_LOGIN){
+//                        let story = UtilityManager.manager.getMainStoryboard()
+//                        let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+//                        //                    let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
+//
+//                        //                    let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
 //                        self.navigationController?.pushViewController(vc, animated: true)
-                        
-                    }
+//                    }else{
+//                        let story = UtilityManager.manager.getAuthStoryboard()
+//                        let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//
+////                        let story = UtilityManager.manager.getAuthStoryboard()
+////                        let vc = story.instantiateViewController(withIdentifier: "TruckTypeViewController") as! TruckTypeViewController
+////                        self.navigationController?.pushViewController(vc, animated: true)
+//
+//                    }
                     
                     
                 })
@@ -60,48 +63,41 @@ class CustomSplashViewController: UIViewController {
     
     
     func getRegistrationStatus(status:Int? = 0){
-        switch status {
-        case 0:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "OtpViewController") as! OtpViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 2:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 3:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "NameViewController") as! NameViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 4:
-            if UserDefaults.standard.integer(forKey: Constants.IS_VERIFIED) == 1{
-                let story = UtilityManager.manager.getMainStoryboard()
-                let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-            }else{
+            switch status {
+            case 1:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
                 let story = UtilityManager.manager.getAuthStoryboard()
-                let vc = story.instantiateViewController(withIdentifier: "ReferralCodeViewController") as! ReferralCodeViewController
+                let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 2:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 3:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "SSNViewController") as! SSNViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 4:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
+                if UserDefaults.standard.integer(forKey: Constants.IS_VERIFIED) == 1{
+                    let story = UtilityManager.manager.getMainStoryboard()
+                    let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+                    UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    let story = UtilityManager.manager.getAuthStoryboard()
+                    let vc = story.instantiateViewController(withIdentifier: "WaitForApprovalViewController") as! WaitForApprovalViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            default:
+                let story = UtilityManager.manager.getAuthStoryboard()
+                let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        case 5:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "CityNameViewController") as! CityNameViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 6:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        default:
-            let story = UtilityManager.manager.getAuthStoryboard()
-            let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
         
-    }
+     }
     
 }
 

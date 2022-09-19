@@ -1,9 +1,9 @@
 //
 //  DriverPortalViewController.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by apple on 11/26/20.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit

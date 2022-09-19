@@ -1,9 +1,9 @@
 //
 //  RateAndReviewViewController.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by apple on 11/17/20.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class RateAndReviewViewController: UIViewController{
     @IBOutlet weak var btnSubmit:UIButton!
     
     var delegate:RatingDelegate!
-    var ride:NewRide!
+    var booking:BookingInfo!
     var rating = ""
     
     override func viewDidLoad() {
@@ -36,10 +36,10 @@ class RateAndReviewViewController: UIViewController{
     
     @IBAction func submittTapped(_ sender:UIButton){
         
-        if rating != "" && ride != nil{
+        if rating != "" && booking != nil{
             SHOW_CUSTOM_LOADER()
             //"user_id":UtilityManager.manager.getId(),,"type": 2
-            RatingManager.manager.RateAndReview(params:["passenger_id":ride.passenger_id ?? 0,"rating":rating,"message":txtDescription.text ?? "","booking_id":ride.booking_id ?? 0]) { (bool, err) in
+            RatingManager.manager.RateAndReview(params:["passenger_id":booking.passenger_id ?? 0,"rating":rating,"message":txtDescription.text ?? "","booking_id":booking.id ?? 0]) { (bool, err) in
                 if bool{
                     DispatchQueue.main.async {
                         self.delegate.didRatePassenger()

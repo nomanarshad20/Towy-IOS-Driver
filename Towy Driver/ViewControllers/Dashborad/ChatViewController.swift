@@ -3,7 +3,7 @@
 //  TOWY Driver
 //
 //  Created by Macbook Pro on 12/07/2021.
-//  Copyright © 2021 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit

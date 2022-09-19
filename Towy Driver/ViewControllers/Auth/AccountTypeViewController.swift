@@ -22,6 +22,9 @@ class AccountTypeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UserDefaults.standard.set(1, forKey: Constants.REGISTRATION_STATUS)
+
+        
 //        if user.mobileNumber == nil{
 //            user = User.init(dictionary: UtilityManager.manager.getModelFromUserDefalts(key: Constants.APP_USER)!)
 //        }

@@ -34,7 +34,7 @@ public func ShowLoaderWithMessage(message:String) {
   //  displayAlertWithTitle(APP_NAME, andMessage: "Please check your internet connection and try again.", buttons: ["Dismiss"], completion: nil)
 //}
 public func SHOW_CUSTOM_LOADER() {
-    startActivityAnimating(size: CGSize(width:56, height:56), message: nil, type: NVActivityIndicatorType.ballGridPulse, color:UIColor.white, padding: 2,isFromOnView: false)
+    startActivityAnimating(size: CGSize(width:56, height:56), message: nil, type: NVActivityIndicatorType.circleStrokeSpin, color:UIColor.white, padding: 2,isFromOnView: false)
 }
 
 public func SHOW_CUSTOM_LOADER_MSG(message: String) {

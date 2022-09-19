@@ -65,7 +65,7 @@ extension TruckTypeViewController:UITableViewDataSource,UITableViewDelegate{
         let ds = datasource[indexPath.row]
         cell.lblName.text = ds.name
         cell.lblDescription.text = ds.description
-        cell.imgaeIcon.kf.setImage(with: URL.init(string: "http://3.101.101.16/"+ds.image!), placeholder: nil, options: nil, progressBlock: nil) { image, error, cacheType, imageURL in
+        cell.imgaeIcon.kf.setImage(with: URL.init(string: Constants.HTTP_CONNECTION_ROOT_ASSETS+ds.image!), placeholder: nil, options: nil, progressBlock: nil) { image, error, cacheType, imageURL in
             if image != nil{
                 cell.imgaeIcon.image = image!
             }else{

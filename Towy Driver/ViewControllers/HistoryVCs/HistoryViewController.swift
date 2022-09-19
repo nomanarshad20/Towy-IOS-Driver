@@ -3,7 +3,7 @@
 //  TOWY Driver
 //
 //  Created by Macbook Pro on 19/03/2021.
-//  Copyright © 2021 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit
@@ -31,7 +31,7 @@ class HistoryViewController: UIViewController {
         HistoryManager.manager.getHistory(params: nil) { (data, err) in
             HIDE_CUSTOM_LOADER()
             if err == nil{
-                let trips = data?["rides"] as? [[String:Any]]
+                let trips = data?["past_booking"] as? [[String:Any]]
                 for i in trips! {
                     self.datasource.append(Trip.init(dict: i))
                 }
@@ -62,15 +62,15 @@ extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RideHistoryTableViewCell", for: indexPath) as! RideHistoryTableViewCell
         let ds = datasource[indexPath.row]
-//        cell.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.updated_at)
-//
-//        cell.lblPrice.text = Constants.Currency + ": \(ds.passenger_cash_paid ?? 0)"
-//        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pickup_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pickup_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
-//            cell.lblPickup.text = adress
-//        })
-//        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.dropoff_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.dropoff_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
-//            cell.lblDropoff.text = adress
-//        })
+        cell.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.updated_at)
+
+        cell.lblPrice.text = Constants.Currency + ": \(ds.final_amount ?? 0)"
+        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pick_up_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pick_up_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
+            cell.lblPickup.text = adress
+        })
+        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.drop_off_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.drop_off_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
+            cell.lblDropoff.text = adress
+        })
         return cell
     }
     

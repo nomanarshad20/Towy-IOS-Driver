@@ -12,7 +12,8 @@ class WaitForApprovalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        UserDefaults.standard.set(0, forKey: Constants.REGISTRATION_STATUS)
+
     }
     
 

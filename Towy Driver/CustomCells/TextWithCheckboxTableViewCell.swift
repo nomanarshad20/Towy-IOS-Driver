@@ -1,9 +1,9 @@
 //
 //  TextWithCheckboxTableViewCell.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by apple on 11/12/20.
-//  Copyright © 2020 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY Solutions. All rights reserved.
 //
 
 import UIKit

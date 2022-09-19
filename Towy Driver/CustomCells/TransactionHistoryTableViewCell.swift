@@ -1,9 +1,9 @@
 //
 //  TransactionHistoryTableViewCell.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by Macbook Pro on 29/06/2021.
-//  Copyright © 2021 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit

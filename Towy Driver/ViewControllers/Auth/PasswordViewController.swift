@@ -306,18 +306,22 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
     func getRegistrationStatus(status:Int? = 0){
             switch status {
             case 1:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
                 let story = UtilityManager.manager.getAuthStoryboard()
                 let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             case 2:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
                 let story = UtilityManager.manager.getAuthStoryboard()
                 let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             case 3:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
                 let story = UtilityManager.manager.getAuthStoryboard()
                 let vc = story.instantiateViewController(withIdentifier: "SSNViewController") as! SSNViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             case 4:
+                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
                 if UserDefaults.standard.integer(forKey: Constants.IS_VERIFIED) == 1{
                     let story = UtilityManager.manager.getMainStoryboard()
                     let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController

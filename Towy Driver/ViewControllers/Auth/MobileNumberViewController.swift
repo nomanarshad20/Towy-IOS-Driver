@@ -49,6 +49,8 @@ class MobileNumberViewController: UIViewController {
         
         UserDefaults.standard.set(0, forKey: Constants.REGISTRATION_STATUS)
 
+        txtPhone.keyboardType = .phonePad
+        txtEmail.keyboardType = .emailAddress
         
         btnNext.disable()
         txtEmail.setPadding(12)

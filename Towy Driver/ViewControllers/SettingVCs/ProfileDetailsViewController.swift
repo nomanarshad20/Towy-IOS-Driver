@@ -1,9 +1,9 @@
 //
 //  ProfileDetailsViewController.swift
-//  Oyla Captain
+//  TOWY Driver
 //
 //  Created by Macbook Pro on 17/03/2021.
-//  Copyright © 2021 Cyber Advance Solutions. All rights reserved.
+//  Copyright © TOWY. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class ProfileDetailsViewController: UIViewController {
     @IBOutlet weak var tblSettings:UITableView!
     @IBOutlet weak var profileImage:UIImageView!
     @IBOutlet weak var lblName:UILabel!
-    @IBOutlet weak var tblsSettingHeightConstraint:NSLayoutConstraint!
+//    @IBOutlet weak var tblsSettingHeightConstraint:NSLayoutConstraint!
     
     
     var detailsDatasource = [[String]]()
@@ -24,19 +24,22 @@ class ProfileDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        detailsDatasource = [["\(manager.getId())","\(manager.getDriverStatus())","\(manager.getFranchiseName())","\(manager.getNIC() ?? "_")","\(manager.getDateOfJoining() ?? "_")"],["\(manager.getVehicleNumber()!)","\(manager.getVehicleModelYear()!)","_"]]
+        detailsDatasource = [["\(manager.getId())","\(manager.getDriverStatus())","\(manager.getFranchiseName())","\(manager.getSSN() ?? "_")","\(manager.getDateOfJoining() ?? "_")"],["\(manager.getVehicleNumber()!)","\(manager.getVehicleModelYear()!)","_"]]
         
         
-        mainDatasource = [["Captain ID","Status","Franchise Name","NIC","Date of Joining"],["Model","Year","Passenger Capacity"]]
+        mainDatasource = [["Captain ID","Status","Franchise Name","SSN","Date of Joining"],["Model","Year"]]
         
         
         tblSettings.register(UINib.init(nibName: "ProfileTableViewCell", bundle: .main), forCellReuseIdentifier: "ProfileTableViewCell")
         tblSettings.estimatedRowHeight = 200
-        tblsSettingHeightConstraint.constant = CGFloat((mainDatasource[0].count + mainDatasource[1].count) * 52 )
+//        tblsSettingHeightConstraint.constant = CGFloat((mainDatasource[0].count + mainDatasource[1].count) * 52 )
         
         lblName.text = UtilityManager.manager.getUserName()
+        
+        
+        
         if let imageUrl = UtilityManager.manager.getUserImageUrl(){
-            let u = URL.init(string: Constants.HTTP_CONNECTION_IMG+imageUrl)
+            let u = URL.init(string: Constants.HTTP_CONNECTION_ROOT_ASSETS+imageUrl)
             profileImage.kf.setImage(with: u, placeholder: UIImage.init(named: "profile-1"), options: .none, progressBlock: nil) { (i, e, c, U) in
                 if i != nil{
                     self.profileImage.image = i
@@ -63,7 +66,7 @@ extension ProfileDetailsViewController:UITableViewDelegate,UITableViewDataSource
         if section == 0{
             return 5
         }else{
-           return 3
+           return 2
         }
     }
     
@@ -86,7 +89,7 @@ extension ProfileDetailsViewController:UITableViewDelegate,UITableViewDataSource
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 80))
         let lbl = UILabel.init(frame: CGRect.init(x: v.frame.width / 2 - 50, y: 30, width: v.frame.width, height: 40))
         lbl.text = "Car Info"
-//        lbl.font = UIFont(name: "Montserrat-Bold", size: 22)!
+        lbl.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         v.addSubview(lbl)
         return v
     }
