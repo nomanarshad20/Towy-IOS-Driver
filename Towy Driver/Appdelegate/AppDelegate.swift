@@ -34,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
 
         registerForRemoteNotification()
-        
+//        window!.overrideUserInterfaceStyle = .light
+
         
         return true
     }

@@ -112,7 +112,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
                   endingLineNumber = "140"
-                  offsetFromSymbolStart = "1104">
+                  offsetFromSymbolStart = "1480">
                </Location>
                <Location
                   uuid = "AFA5CE65-37A0-4673-A9E6-2BD03A60B55F - 9e69afe3df5ce7f6"
@@ -127,7 +127,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
                   endingLineNumber = "140"
-                  offsetFromSymbolStart = "2890">
+                  offsetFromSymbolStart = "3296">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -174,118 +174,10 @@
             filePath = "Towy Driver/ViewControllers/Dashborad/DashBoardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "669"
-            endingLineNumber = "669"
+            startingLineNumber = "680"
+            endingLineNumber = "680"
             landmarkName = "openGoogleMap()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "472DA4F7-CEF0-4037-B416-9102A886545E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Towy Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "RideCancelledByUserViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "472DA4F7-CEF0-4037-B416-9102A886545E - c317fe690dde8408"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Towy_Driver.RideCancelledByUserViewController.noti.getter : Swift.Optional&lt;Towy_Driver.NotificationModel&gt;"
-                  moduleName = "Towy Driver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/towy_driver_app_ios/Towy%20Driver/Towy%20Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "90">
-               </Location>
-               <Location
-                  uuid = "472DA4F7-CEF0-4037-B416-9102A886545E - 9849b0fcca785c1c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Towy_Driver.RideCancelledByUserViewController.noti.setter : Swift.Optional&lt;Towy_Driver.NotificationModel&gt;"
-                  moduleName = "Towy Driver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/towy_driver_app_ios/Towy%20Driver/Towy%20Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "116">
-               </Location>
-               <Location
-                  uuid = "472DA4F7-CEF0-4037-B416-9102A886545E - b8ff100616087e0d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Towy_Driver.RideCancelledByUserViewController.noti.modify : Swift.Optional&lt;Towy_Driver.NotificationModel&gt;"
-                  moduleName = "Towy Driver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/towy_driver_app_ios/Towy%20Driver/Towy%20Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "472DA4F7-CEF0-4037-B416-9102A886545E - f240aafb4abf8807"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Towy_Driver.RideCancelledByUserViewController.noti.modify : Swift.Optional&lt;Towy_Driver.NotificationModel&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Towy Driver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/towy_driver_app_ios/Towy%20Driver/Towy%20Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "472DA4F7-CEF0-4037-B416-9102A886545E - 89ecb6d20d860d09"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Towy_Driver.RideCancelledByUserViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Towy_Driver.RideCancelledByUserViewController"
-                  moduleName = "Towy Driver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/towy_driver_app_ios/Towy%20Driver/Towy%20Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "518">
-               </Location>
-               <Location
-                  uuid = "472DA4F7-CEF0-4037-B416-9102A886545E - 2ed390a9ff31f94f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Towy_Driver.RideCancelledByUserViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Towy_Driver.RideCancelledByUserViewController&gt;"
-                  moduleName = "Towy Driver"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/towy_driver_app_ios/Towy%20Driver/Towy%20Driver/ViewControllers/Popups/RideCancelledByUserViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "475">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,9 +190,25 @@
             filePath = "Towy Driver/ViewControllers/Dashborad/DashBoardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "addSocketListerForRide()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2FAE3BA6-C271-428A-911B-3E72CC9C89CE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Towy Driver/Appdelegate/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "application(_:didReceiveRemoteNotification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

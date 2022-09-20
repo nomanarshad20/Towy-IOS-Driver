@@ -119,11 +119,17 @@ class NewRideRequestViewController: UIViewController {
     func setupSocketEvents() {
 
             self.socket!.on("\(UtilityManager.manager.getId())-finalRideStatus") { (data, ack) in
-                guard let dataInfo = data.first else { return }
-                self.dismiss(animated: true) {
-                    NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
+                guard let dataInfo = data.first as? [String:Any] else { return }
+                
+                if dataInfo["data"] as? [String:Any] != nil{
+                    self.dismiss(animated: true) {
+                        NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
 
+                    }
+                }else{
+                    self.dismiss(animated: true) {}
                 }
+               
             }
 
         }
@@ -232,9 +238,12 @@ class NewRideRequestViewController: UIViewController {
                 self.view.layoutSubviews()
                 self.view.layoutIfNeeded()
             } completion: { _ in
+//                Constants.IS_RIDE_POPUP_VISIBLE = false
                 self.stopTimer()
                 self.timeSlider = 0
                 self.viewRedTrailing.constant = self.view.frame.width
+                NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: nil)
+                
             }
             
         }
@@ -254,12 +263,14 @@ class NewRideRequestViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        
-
-        
+      
     }
     
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Constants.IS_RIDE_POPUP_VISIBLE = false
+    }
     
     
     @objc func rideCancelByUserOnReceive(){
@@ -282,11 +293,11 @@ class NewRideRequestViewController: UIViewController {
     
     @IBAction func rejectTapped(_ sender:UIButton){
         
+        isAccepted = false
         let params = ["user_id":UtilityManager.manager.getId(),"driver_action":0,"booking_id":noti?.booking?.id ?? ""] as [String : Any]
         self.setupNewRide(params: params)
 
         
-//        isAccepted = false
 //        viewRequestBottom.constant = -500
 //        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
 //            self.view.layoutSubviews()
@@ -345,30 +356,34 @@ class NewRideRequestViewController: UIViewController {
         
         if !isAccepted{
             DispatchQueue.main.async {
-                self.dismiss(animated: false, completion: {
-                    if self.isConnectedToSocket{
-                        self.socket?.emit("accept-reject-ride", params)
-                    }
-                   
-                    Constants.IS_RIDE_POPUP_VISIBLE = false
-                    self.dismiss(animated: true, completion:nil)
-//                                    {
-//                        NotificationCenter.default.post(name: NSNotification.Name("ride_Cancelled"), object: params)
-//                    })
-                })
+//                Constants.IS_RIDE_POPUP_VISIBLE = false
+                if self.isConnectedToSocket{
+                    self.socket?.emit("accept-reject-ride", params)
+                    self.dismiss(animated: true, completion: {
+                        NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: params)
+                    })
+                }else{
+                    SocketIOManager.sharedInstance.establishConnection()
+                    self.socket?.emit("accept-reject-ride", params)
+                    self.dismiss(animated: true, completion: {
+                        NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: params)
+                    })
+                }
+                
+
             }
         }else{
+//            Constants.IS_RIDE_POPUP_VISIBLE = false
             if socket?.status == .connected{
-            socket?.emit("accept-reject-ride", params)
-                
+                socket?.emit("accept-reject-ride", params)
                 
             }else{
-                if socket?.status == .disconnected{
+//                if socket?.status == .disconnected{
                     SocketIOManager.sharedInstance.establishConnection()
                     socket?.emit("accept-reject-ride", params)
                 }
 //                UtilityManager.manager.showAlert(self, message: "Oops socket is discunnected", title: Constants.APP_NAME)
-            }
+//            }
         }
 //        }else{
 //            SHOW_CUSTOM_LOADER()

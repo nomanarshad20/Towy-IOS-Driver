@@ -111,7 +111,10 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         
         NotificationCenter.default.addObserver(self, selector: #selector(rideDataReceived(notify:)), name:NSNotification.Name( Constants.NotificationObservers.RIDE_ACCEPTED.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.rideCancelByUser), name:NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_USER.rawValue) , object: nil)
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.rideCancelByDriver), name:NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue) , object: nil)
+        
+        
        
 //        UtilityManager.manager.saveDriverStatus(status: 1)
        
@@ -285,6 +288,18 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         
     }
     
+    @objc func rideCancelByDriver(){
+
+        
+        DriverStatusManager.manager.UpdateStatus(status: 1) { [self] res, message in
+            HIDE_CUSTOM_LOADER()
+            if message == nil{
+                UtilityManager.manager.saveDriverStatus(status: res ?? 1)
+                updateStatusUI()
+            }
+        }
+    }
+    
     
     @objc func updateLocation(){
         
@@ -345,10 +360,6 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 UtilityManager.manager.showAlert(self, message: err ?? "error getting statue", title: Constants.APP_NAME)
             }
         }
-    }
-    
-    func checkRideStatus(){
-        
     }
     
     
