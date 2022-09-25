@@ -20,18 +20,19 @@ protocol RideCompletionDelegate {
 
 class PayableViewController: UIViewController {
     
-    @IBOutlet weak var viewActualAmount: UIView!
-    @IBOutlet weak var lblActualAmount: UILabel!
-    @IBOutlet weak var viewAmountReceived: UIView!
-    @IBOutlet weak var txtAmountReceived: SkyFloatingLabelTextField!
-    @IBOutlet weak var txtdescription: SkyFloatingLabelTextField!
-    @IBOutlet weak var viewDescription: UIView!
-    @IBOutlet weak var txtExtraAmount: SkyFloatingLabelTextField!
+//    @IBOutlet weak var viewActualAmount: UIView!
+    @IBOutlet weak var lblTripFare: UILabel!
+    @IBOutlet weak var lblToll: UILabel!
+    @IBOutlet weak var lblCredit: UILabel!
+    @IBOutlet weak var lblPromotion: UILabel!
+    @IBOutlet weak var lblOutstanding: UILabel!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var lblTime:UILabel!
+    @IBOutlet weak var lblTotalAmount: UILabel!
+
     @IBOutlet weak var lblDistance:UILabel!
-    @IBOutlet weak var lblBookingId:UILabel!
-    @IBOutlet weak var lblDescription:UILabel!
+//    @IBOutlet weak var lblBookingId:UILabel!
+//    @IBOutlet weak var lblDescription:UILabel!
     
     var delegate:RideCompletionDelegate!
     var fare = 0.0
@@ -50,56 +51,34 @@ class PayableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.fare = Double(booking.actual_fare ?? "0.0") ?? 0.0
-        self.bookingId = "\(booking.id!)"
-        self.lblDistance.text = booking.total_distance
-        
-        
-        
-        //        self.btnSave.isHidden = true
+       
         ref = Database.database().reference()
-        if UtilityManager.manager.getUserType() == 0{
-            txtExtraAmount.isHidden = true
-        }else{
-            txtExtraAmount.isHidden = false
-        }
-        
-        txtExtraAmount.delegate = self
-        txtAmountReceived.delegate = self
-        lblTime.text = time
-        lblDistance.text = "\(distance.rounded(toPlaces: 1)) km"
-        lblActualAmount.text = "\(fare.rounded())"
-        lblBookingId.text = bookingId
-        lblDescription.text = des
-        
-        
-        viewActualAmount.layer.cornerRadius = 6
-        viewActualAmount.layer.borderWidth = 1
-        viewActualAmount.layer.borderColor = UIColor.black.cgColor
-        
-        viewAmountReceived.layer.cornerRadius = 6
-        viewAmountReceived.layer.borderWidth = 1
-        viewAmountReceived.layer.borderColor = UIColor.black.cgColor
-        
-        viewDescription.layer.cornerRadius = 6
-        viewDescription.layer.borderWidth = 1
-        viewDescription.layer.borderColor = UIColor.black.cgColor
+//
+//        viewActualAmount.layer.cornerRadius = 6
+//        viewActualAmount.layer.borderWidth = 1
+//        viewActualAmount.layer.borderColor = UIColor.black.cgColor
+//
+//        viewAmountReceived.layer.cornerRadius = 6
+//        viewAmountReceived.layer.borderWidth = 1
+//        viewAmountReceived.layer.borderColor = UIColor.black.cgColor
+//
+//        viewDescription.layer.cornerRadius = 6
+//        viewDescription.layer.borderWidth = 1
+//        viewDescription.layer.borderColor = UIColor.black.cgColor
+//
+//
+//        txtdescription.layer.cornerRadius = 4
+//        txtdescription.layer.borderColor = UIColor.darkGray.cgColor
+//        txtdescription.layer.borderWidth = 1
+//
+//        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 30))
+//        txtdescription.leftViewMode = .always
+//        txtdescription.leftView = leftView
+//        txtdescription.addSubview(leftView)
         
         btnSave.layer.cornerRadius = 4
-        
-        txtdescription.layer.cornerRadius = 4
-        txtdescription.layer.borderColor = UIColor.darkGray.cgColor
-        txtdescription.layer.borderWidth = 1
-        
-        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 30))
-        txtdescription.leftViewMode = .always
-        txtdescription.leftView = leftView
-        txtdescription.addSubview(leftView)
-        
-        if fare == 0.0 {
-            txtAmountReceived.text = "0"
-            txtAmountReceived.isUserInteractionEnabled = false
-        }
+
+        checkDriverStatus()
         getdata()
     }
     
@@ -107,6 +86,47 @@ class PayableViewController: UIViewController {
         super.viewDidAppear(true)
 //        UtilityManager.manager.showAlertView(title: "Distance Traveled", message: "Total Distance: \(totaldistance)")
     }
+    
+    func setupIbOutlets(){
+        self.fare = Double(booking.actual_fare ?? "0.0") ?? 0.0
+        self.bookingId = "\(booking.id!)"
+        self.lblDistance.text = (booking.total_distance ?? "0") + " km"
+        
+        
+        
+        //        self.btnSave.isHidden = true
+       
+//        if UtilityManager.manager.getUserType() == 0{
+//            txtExtraAmount.isHidden = true
+//        }else{
+//            txtExtraAmount.isHidden = false
+//        }
+        
+//        txtExtraAmount.delegate = self
+//        txtAmountReceived.delegate = self
+//
+        if Double(booking.total_ride_minutes ?? "0.0") ?? 0.0 > 60{
+            let h = Double(booking.total_ride_minutes ?? "0.0") ?? 0.0 / 60
+            let min = Int(booking.total_ride_minutes ?? "0") ?? 0 % 60
+            lblTime.text = "\(h)" + "H" + "\(min)" + "min"
+        }else{
+            lblTime.text = "\(Int(booking.total_ride_minutes ?? "0") ?? 0) min"
+
+        }
+        
+        //        lblDistance.text = "\(distance.rounded(toPlaces: 1)) "
+        lblTotalAmount.text = "\(fare.rounded())"
+//        lblTotalAmount.text = "\(fare.rounded())"
+//        lblBookingId.text = bookingId
+//        lblDescription.text = des
+        
+//        if fare == 0.0 {
+//            txtAmountReceived.text = "0"
+//            txtAmountReceived.isUserInteractionEnabled = false
+//        }
+        
+    }
+    
     
     @IBAction func backTapped(_ sender:UIButton){
         //        delegate.didCancel()
@@ -128,8 +148,25 @@ class PayableViewController: UIViewController {
 //        }
     }
     
+    
+    func checkDriverStatus(){
+
+        SHOW_CUSTOM_LOADER()
+        DriverStatusManager.manager.getCurrnetStatus { b,u,err  in
+            HIDE_CUSTOM_LOADER()
+            if err == nil{
+                if b != nil{
+                    self.booking = b!
+                    self.setupIbOutlets()
+                }
+            }else{
+                UtilityManager.manager.showAlert(self, message: err ?? "error getting statue", title: Constants.APP_NAME)
+            }
+        }
+    }
+    
+    
     func finishRide(){
-        
         
         self.dismiss(animated: true) {
             SHOW_CUSTOM_LOADER()
@@ -182,60 +219,60 @@ class PayableViewController: UIViewController {
         }
     }
     
-    func checkVaidation()->Bool{
-        if fare > 0{
-            if txtAmountReceived.text == ""{
-                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "Received amount can't be empty.")
-                return false
-            }
-            if Double(txtAmountReceived.text!) ?? 0.0 < fare.rounded(){
-                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "Received amount can't be less than Total Amount.")
-                return false
-            }
-            if Double(txtAmountReceived.text!) ?? 0.0 >= fare.rounded() && Double(txtAmountReceived.text!) ?? 0.0 > fare.rounded() + 300.0{
-                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "You can't Receive more than \(fare+300.0) \(Constants.Currency).")
-                return false
-            }
-            
-            
-            return true
-        }else{
-            return true
-        }
-    }
+//    func checkVaidation()->Bool{
+//        if fare > 0{
+////            if txtAmountReceived.text == ""{
+////                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "Received amount can't be empty.")
+////                return false
+////            }
+////            if Double(txtAmountReceived.text!) ?? 0.0 < fare.rounded(){
+////                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "Received amount can't be less than Total Amount.")
+////                return false
+////            }
+////            if Double(txtAmountReceived.text!) ?? 0.0 >= fare.rounded() && Double(txtAmountReceived.text!) ?? 0.0 > fare.rounded() + 300.0{
+////                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "You can't Receive more than \(fare+300.0) \(Constants.Currency).")
+////                return false
+////            }
+//
+//
+//            return true
+//        }else{
+//            return true
+//        }
+//    }
 }
 
 extension PayableViewController:UITextFieldDelegate{
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//        if textField == txtExtraAmount && textField.text != ""{
+//            if let text = textField.text,
+//               let textRange = Range(range, in: text) {
+//                let updatedText = text.replacingCharacters(in:textRange,with:string)
+//                if updatedText.count > 3{
+//                    return false
+//                }else{
+//                    return true
+//                }
+//            }
+//        }
         
-        if textField == txtExtraAmount && textField.text != ""{
-            if let text = textField.text,
-               let textRange = Range(range, in: text) {
-                let updatedText = text.replacingCharacters(in:textRange,with:string)
-                if updatedText.count > 3{
-                    return false
-                }else{
-                    return true
-                }
-            }
-        }
         
-        
-        if textField == txtAmountReceived && textField.text != ""{
-            if let text = textField.text,
-               let textRange = Range(range, in: text) {
-                let updatedText = text.replacingCharacters(in:textRange,with:string)
-                if updatedText.count > 5{
-                    return false
-                }else{
-                    return true
-                }
-            }
-        }
-        
-        return true
-    }
+//        if textField == txtAmountReceived && textField.text != ""{
+//            if let text = textField.text,
+//               let textRange = Range(range, in: text) {
+//                let updatedText = text.replacingCharacters(in:textRange,with:string)
+//                if updatedText.count > 5{
+//                    return false
+//                }else{
+//                    return true
+//                }
+//            }
+//        }
+//        
+//        return true
+//    }
     
     
 }

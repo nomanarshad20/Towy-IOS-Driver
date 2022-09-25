@@ -237,7 +237,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             var rideDict:[String:Any]  = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
             
             if status == 3{
-                rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"total_distance":"50","mobile_final_distance":"40","mobile_initial_distance":"10","lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
+                rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"total_distance":"0","mobile_final_distance":"0","mobile_initial_distance":"0","lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
             }
             
             SHOW_CUSTOM_LOADER()
@@ -847,7 +847,10 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 
             case Constants.RideDriverStatus.FARE_COLLECTED.rawValue:
                 //UISETP
-                print("")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateAndReviewViewController") as! RateAndReviewViewController
+                vc.booking = self.booking
+                vc.delegate = self
+                self.navigationController?.pushViewController(vc, animated: true)
             default:
                 print("")
             }
