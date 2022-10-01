@@ -194,8 +194,8 @@ open class Constants {
         case RIDE_CANCELED              = "14";
         case SCHEDULE_RIDE              = "7";
         case LOGOUT_USER                = "8";
-        case OFFLINE_PARTNER            = "2";
-        case RIDE_CANCEL_ON_RECEIVE     = "15";
+        case OFFLINE_PARTNER            = "15";
+        case RIDE_CANCEL_ON_RECEIVE     = "10";
         case MESSAGE_RECEIVE            = "20";
         case NONE                       = "0";
         case WARNING                    = "21"

@@ -33,7 +33,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     @IBOutlet weak var viewNameBottomConstraint:NSLayoutConstraint!
     @IBOutlet weak var viewMeetAtBottomConstraint:NSLayoutConstraint!
-//    @IBOutlet weak var viewRequestBottom:NSLayoutConstraint!
+    @IBOutlet weak var timerTopConstraint:NSLayoutConstraint!
 //    @IBOutlet weak var viewRedTrailing:NSLayoutConstraint!
     @IBOutlet weak var btnReachNearBy:UIButton!
     @IBOutlet weak var btnStatus:UIButton!
@@ -58,7 +58,11 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     var totalTime = 10
     var time = 0
     var driverMarker = GMSMarker()
-    var booking : BookingInfo? = nil
+    var booking : BookingInfo? = nil{
+        didSet{
+            UtilityManager.manager.saveModelInUserDefaults(key: Constants.SCHEDUAL_RIDE, data: BookingInfo.getBookinDict(r: booking ?? BookingInfo.init()))
+        }
+    }
     var locationManager = CLLocationManager()
     var mapView:GMSMapView = GMSMapView()
     var waitingTime:Int? = 0
@@ -120,12 +124,12 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
        
         setupUserCurrentLocation()
         //        isAddViewed = false
-        Constants.DEFAULT_LAT = 32.213966354308674
-        Constants.DEFAULT_LONG = 74.74826776310091
-        if Constants.DEFAULT_LAT != nil && Constants.DEFAULT_LONG != nil{
+//        Constants.DEFAULT_LAT = 32.213966354308674
+//        Constants.DEFAULT_LONG = 74.74826776310091
+//        if Constants.DEFAULT_LAT != nil && Constants.DEFAULT_LONG != nil{
             self.loadGoogleMapLayer()
-            setCarMarker()
-        }
+//            setCarMarker()
+//        }
         
 //        self.updateStatusUI()
 //        apiTimer = Timer.scheduledTimer(timeInterval: Constants.LOCATION_TIMER_DURATION_ONLINE, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
@@ -182,6 +186,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             
              if dataInfo["data"] as? [String:Any] != nil{
                  self.booking = BookingInfo.getRideInfo(dict: dataInfo["data"] as! [String:Any])
+                 
                  UtilityManager.manager.saveDriverStatus(status: 2)
                  DispatchQueue.main.async(execute: {
                      self.updateStatusUI()
@@ -366,25 +371,38 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     func loadGoogleMapLayer()
     {
         
-        let camera = GMSCameraPosition.camera(withLatitude:Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG, zoom: 14.0)
+        if Constants.DEFAULT_LONG != nil{
+            let camera = GMSCameraPosition.camera(withLatitude:Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG, zoom: 14.0)
+            
+            let screenRect = UIScreen.main.bounds
+            let screenWidth = screenRect.size.width
+            let screenHeight = screenRect.size.height
+            mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), camera: camera)
+            mapView.delegate = self
+            self.mapView.isMyLocationEnabled = false
+            mapView.settings.allowScrollGesturesDuringRotateOrZoom = false
+            
+            //        self.lblMarker?.isHidden = true
+            //        self.bearing = "\(camera.bearing)"
+            self.mainMapView.addSubview(mapView)
+            self.setCarMarker()
+        }else{
+            checkLocationPermission()
+            setupUserCurrentLocation()
+            DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: { [self] in
+                loadGoogleMapLayer()
+            })
+        }
         
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
-        mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), camera: camera)
-        mapView.delegate = self
-        self.mapView.isMyLocationEnabled = false
-        mapView.settings.allowScrollGesturesDuringRotateOrZoom = false
-        
-        //        self.lblMarker?.isHidden = true
-        //        self.bearing = "\(camera.bearing)"
-        self.mainMapView.addSubview(mapView)
-        setupUserCurrentLocation()
+       
         
     }
     
     func setupUserCurrentLocation()
     {
+        
+        checkLocationPermission()
+        
         LocationManager.shared.requestLocationAuthorization()
         locationManagerInitilize()
         locationManager.startUpdatingLocation()
@@ -796,6 +814,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                     self.btnChat.isHidden = false
                     self.btnNavigation.isHidden = false
                     self.viewNameBottomConstraint.constant = 27
+                    timerTopConstraint.constant = 25
                     UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn) {
                         self.view.layoutSubviews()
                         self.view.layoutIfNeeded()
@@ -813,6 +832,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 DispatchQueue.main.async { [self] in
                     setDestination(coordinates: CLLocationCoordinate2D.init(latitude: Double(self.booking!.drop_off_latitude!) ?? 0.0, longitude: Double(self.booking!.drop_off_longitude!) ?? 0.0))
                     self.drawPolyline(CurrentCoordinate: CLLocationCoordinate2D(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG), destinationcordinate: CLLocationCoordinate2D.init(latitude: Double(self.booking!.drop_off_latitude!) ?? 0.0, longitude: Double(self.booking!.drop_off_longitude!) ?? 0.0))
+                    timerTopConstraint.constant = -40
                     viewStartService.isHidden = false
                     self.btnChat.isHidden = false
                     self.btnNavigation.isHidden = false

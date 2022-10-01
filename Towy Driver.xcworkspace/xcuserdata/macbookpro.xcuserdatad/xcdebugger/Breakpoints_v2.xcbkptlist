@@ -7,38 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4D929593-46DE-4D86-8469-0122CA8C8B6C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Towy Driver/ViewControllers/Auth/OtpViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "resendOtp(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8AD3C756-3F65-4BA1-88F0-007DC0457469"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Towy Driver/ViewControllers/Auth/OtpViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "btnNext(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2614D0E4-7963-4942-80E3-18751C399608"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -158,8 +126,8 @@
             filePath = "Towy Driver/ViewControllers/Dashborad/DashBoardViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "680"
-            endingLineNumber = "680"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
             landmarkName = "openGoogleMap()"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,7 +152,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             uuid = "A6395972-9ED1-4492-871E-88E29ADDBE12"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             breakpointStackSelectionBehavior = "1"
@@ -195,16 +163,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0243B99E-111D-43EA-B22A-36EF6370FB0C"
+            uuid = "DF430E4B-08AD-4D8F-B40C-6239FDD3ED41"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Towy Driver/ViewControllers/Popups/NewRideRequestViewController.swift"
+            filePath = "Towy Driver/ViewControllers/Auth/OtpViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
-            landmarkName = "setupNewRide(params:)"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "btnNext(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

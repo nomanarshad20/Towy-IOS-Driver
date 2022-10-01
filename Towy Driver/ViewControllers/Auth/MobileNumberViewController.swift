@@ -110,13 +110,15 @@ class MobileNumberViewController: UIViewController {
             
             if isEmail{
                 
-                OTPManager.manager.sendEmailOTP(email:txtEmail.text!) { [self] result, message in
-                    if result{
+                OTPManager.manager.sendEmailOTP(email:txtEmail.text!) { [self] otp, message in
+                    HIDE_CUSTOM_LOADER()
+                    if otp != nil{
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpViewController") as! OtpViewController
                         self.user.email =  self.txtEmail.text!
                         UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
                         vc.phoneNumber = txtEmail.text!
                         vc.isEmail = true
+                        vc.serverOtp = otp!
                         self.navigationController?.pushViewController(vc, animated: true)
 
                     }else{

@@ -23,6 +23,7 @@ class OtpViewController: UIViewController {
     var waitingTime = 30
     var user = User()
     var isEmail = false
+    var serverOtp = ""
     var isPasswordReset = false
     
     override func viewDidLoad() {
@@ -38,7 +39,7 @@ class OtpViewController: UIViewController {
         pinView.style = .box
         pinView.font = UIFont.systemFont(ofSize: 23, weight: .semibold)
         if isEmail{
-            pinView.pinLength = 4
+            pinView.pinLength = 6
         }
         pinView.becomeFirstResponderAtIndex = 0
         pinView.frame = self.view.frame
@@ -62,6 +63,8 @@ class OtpViewController: UIViewController {
         super.viewWillAppear(animated)
         if UserDefaults.standard.bool(forKey: Constants.IS_PASSWORD_FORGOT){
            isPasswordReset = true
+        }else{
+            isPasswordReset = false
         }
     }
     
@@ -104,24 +107,38 @@ class OtpViewController: UIViewController {
     
     @IBAction func resendOtp(_ sender: Any) {
         
-        
-        
-        
-        SHOW_CUSTOM_LOADER()
-        PhoneAuthProvider.provider()
-            .verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { verificationID, error in
-                HIDE_CUSTOM_LOADER()
-                if let error = error {
-                    UtilityManager.manager.showAlert(self, message: error.localizedDescription, title: "Oops")
-                    return
-                }else{
+        if isEmail{
+            
+            OTPManager.manager.sendEmailOTP(email:self.phoneNumber) { [self] otp, message in
+                if otp != nil{
+                    self.serverOtp = otp!
                     self.pinView.clearPin(completionHandler: nil)
-                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                     self.WT = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateWaitingTime), userInfo: nil, repeats: true)
+                }else{
+                    UtilityManager.manager.showAlert(self, message: message ?? "error sending OTP", title: "Oops")
                 }
-                // Sign in using the verificationID and the code sent to the user
-                // ...
             }
+            
+        }else{
+            
+            SHOW_CUSTOM_LOADER()
+            PhoneAuthProvider.provider()
+                .verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { verificationID, error in
+                    HIDE_CUSTOM_LOADER()
+                    if let error = error {
+                        UtilityManager.manager.showAlert(self, message: error.localizedDescription, title: "Oops")
+                        return
+                    }else{
+                        self.pinView.clearPin(completionHandler: nil)
+                        UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                        self.WT = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateWaitingTime), userInfo: nil, repeats: true)
+                    }
+                    // Sign in using the verificationID and the code sent to the user
+                    // ...
+                }
+        }
+        
+        
 
     }
     
@@ -130,14 +147,24 @@ class OtpViewController: UIViewController {
         
         if isEmail{
             SHOW_CUSTOM_LOADER()
-            OTPManager.manager.codeVerifyApi(email:self.phoneNumber, pin: pinView.getPin()) { result, message in
+            
+            if pinView.getPin() == serverOtp{
+                
+                moveForward()
                 HIDE_CUSTOM_LOADER()
-                if result{
-                    print("llkfnkd")
-                }else{
-                    UtilityManager.manager.showAlert(self, message: message ?? "error verifying OTP" , title: "Oops")
-                }
+
+            }else{
+                UtilityManager.manager.showAlert(self, message: "Invalid OTP" , title: "Oops")
             }
+            
+//            OTPManager.manager.codeVerifyApi(email:self.phoneNumber, pin: pinView.getPin()) { result, message in
+//                HIDE_CUSTOM_LOADER()
+//                if result{
+//                    print("llkfnkd")
+//                }else{
+//                    UtilityManager.manager.showAlert(self, message: message ?? "error verifying OTP" , title: "Oops")
+//                }
+//            }
         }else{
             let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") ?? ""
             
@@ -151,37 +178,34 @@ class OtpViewController: UIViewController {
                     UtilityManager.manager.showAlert(self, message: error.localizedDescription , title: "Oops")
                     
                 }else{
-                    
-                    if !self.isPasswordReset{
-//                        UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
-                        UserDefaults.standard.set(nil, forKey: "authVerificationID")
-                        
-                        self.user.mobile_no = self.phoneNumber
-                        
-                        let st = UtilityManager.manager.getAuthStoryboard()
-                        let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
-                        vc.user = self.user
-                        UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
-                        //                  UserDefaults.standard.set(2, forKey: Constants.REGISTRATION_STATUS)
-                        
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }else{
-                        let st = UtilityManager.manager.getAuthStoryboard()
-                        let vc = st.instantiateViewController(withIdentifier: "PasswordResetViewController") as! PasswordResetViewController
-                        vc.login = self.phoneNumber
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                    
+                    self.moveForward()
                    
                 }
-                
-                
             }
-            
         }
-        
-        
-        
+    }
+    
+    func moveForward(){
+        if !self.isPasswordReset{
+//                        UserDefaults.standard.set(true, forKey: Constants.IS_LOGIN)
+            UserDefaults.standard.set(nil, forKey: "authVerificationID")
+            
+            self.user.mobile_no = self.phoneNumber
+            
+            let st = UtilityManager.manager.getAuthStoryboard()
+            let vc = st.instantiateViewController(withIdentifier: "PasswordViewController") as! PasswordViewController
+            vc.user = self.user
+            UtilityManager.manager.saveModelInUserDefaults(key: Constants.APP_USER, data: User.getDictFromUser(user: self.user))
+            //                  UserDefaults.standard.set(2, forKey: Constants.REGISTRATION_STATUS)
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let st = UtilityManager.manager.getAuthStoryboard()
+            let vc = st.instantiateViewController(withIdentifier: "PasswordResetViewController") as! PasswordResetViewController
+            vc.login = self.phoneNumber
+            vc.isEmail = isEmail
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     

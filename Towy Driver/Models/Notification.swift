@@ -100,9 +100,9 @@ class NotificationModel{
         case "8":
             n.type = .LOGOUT_USER
             return n
-//        case "11":
-//            n.type = .OFFLINE_PARTNER
-//            return n
+        case "15":
+            n.type = .OFFLINE_PARTNER
+            return n
         case "10":
             n.type = .RIDE_CANCEL_ON_RECEIVE
             return n

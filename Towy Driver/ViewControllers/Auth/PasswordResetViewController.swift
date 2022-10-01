@@ -30,6 +30,8 @@ class PasswordResetViewController: UIViewController, UITextFieldDelegate {
     
     
     var login = ""
+    var isEmail = false
+    
     
     var isStrongPassword = false{
         didSet{
@@ -144,6 +146,8 @@ class PasswordResetViewController: UIViewController, UITextFieldDelegate {
                            
                         }else{
                             UtilityManager.manager.showAlert(self, message: message ?? "Error updating password", title: Constants.APP_NAME)
+                            UserDefaults.standard.set(false, forKey: Constants.IS_PASSWORD_FORGOT)
+
                         }
                     }
 

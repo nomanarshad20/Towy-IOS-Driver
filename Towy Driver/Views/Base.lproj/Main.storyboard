@@ -401,7 +401,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQS-DP-aCJ">
-                                <rect key="frame" x="0.0" y="574.5" width="414" height="287.5"/>
+                                <rect key="frame" x="0.0" y="614" width="414" height="248"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-jw-zFE">
                                         <rect key="frame" x="35" y="10" width="343" height="30"/>
@@ -423,13 +423,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting time : 00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBL-BC-HwP">
-                                        <rect key="frame" x="35" y="80" width="188.5" height="63.5"/>
+                                        <rect key="frame" x="35" y="80" width="188.5" height="24"/>
                                         <fontDescription key="fontDescription" name="UberMoveText-Medium" family="Uber Move Text" pointSize="20"/>
                                         <color key="textColor" name="gray142"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqF-oj-GTV">
-                                        <rect key="frame" x="20" y="230.5" width="374" height="45"/>
+                                        <rect key="frame" x="20" y="191" width="374" height="45"/>
                                         <color key="backgroundColor" name="redText"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ehb-X7-jxd"/>
@@ -449,7 +449,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4a2-nv-62Q">
-                                        <rect key="frame" x="20" y="173.5" width="374" height="45"/>
+                                        <rect key="frame" x="20" y="134" width="374" height="45"/>
                                         <color key="backgroundColor" name="ThemeBtnColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="5SU-zj-CTS"/>
@@ -469,7 +469,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-9o-7EL">
-                                        <rect key="frame" x="20" y="173.5" width="374" height="45"/>
+                                        <rect key="frame" x="20" y="134" width="374" height="45"/>
                                         <color key="backgroundColor" name="ThemeBtnColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="BXy-8u-fFf"/>
@@ -598,14 +598,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1o1-6w-JKw" secondAttribute="trailing" id="iwu-28-a3P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JQS-DP-aCJ" secondAttribute="trailing" id="pF4-8M-ysa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zQr-o3-MaC" secondAttribute="trailing" id="pzE-ha-1di"/>
-                            <constraint firstItem="JQS-DP-aCJ" firstAttribute="height" secondItem="zQr-o3-MaC" secondAttribute="height" id="uQf-Rf-wrs"/>
                             <constraint firstItem="5cv-cw-K3m" firstAttribute="leading" secondItem="zQr-o3-MaC" secondAttribute="leading" id="xEM-li-oav"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="1o1-6w-JKw"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="backView" destination="1o1-6w-JKw" id="VGV-Yd-p1S"/>
@@ -620,6 +614,7 @@
                         <outlet property="lblWaitingTime" destination="gBL-BC-HwP" id="97B-wT-NBu"/>
                         <outlet property="mainMapView" destination="EMF-yw-hn9" id="0l5-7K-Tsq"/>
                         <outlet property="tblReasons" destination="0eM-Tl-aD7" id="SKH-Ps-hh4"/>
+                        <outlet property="timerTopConstraint" destination="4sN-Ul-MGK" id="Chm-co-DFz"/>
                         <outlet property="viewMeetAt" destination="5cv-cw-K3m" id="b0h-8o-m6Y"/>
                         <outlet property="viewMeetAtBottomConstraint" destination="fQy-mv-n1U" id="UFM-VN-MnX"/>
                         <outlet property="viewNameBottomConstraint" destination="4sN-Ul-MGK" id="A4B-Q3-Z7b"/>
@@ -4364,10 +4359,10 @@
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l5-OX-BqH">
-                                                        <rect key="frame" x="30" y="80.5" width="104.5" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l5-OX-BqH">
+                                                        <rect key="frame" x="30" y="80.5" width="50" height="20.5"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="104.5" id="1S0-HY-yar"/>
+                                                            <constraint firstAttribute="width" constant="50" id="1S0-HY-yar"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="17"/>
                                                         <color key="textColor" name="Gray97"/>
@@ -4419,7 +4414,7 @@
                                                             <action selector="btnSave:" destination="UfK-b2-RiA" eventType="touchUpInside" id="XK2-Q2-MBs"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCR-dX-vn4">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jCR-dX-vn4">
                                                         <rect key="frame" x="334" y="161.5" width="50" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="VIP-oN-fIX"/>
@@ -4428,7 +4423,7 @@
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-v4-6rq">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cYW-v4-6rq">
                                                         <rect key="frame" x="334" y="202" width="50" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="Nb3-31-JLl"/>
@@ -4446,7 +4441,7 @@
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kls-zt-fh0">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kls-zt-fh0">
                                                         <rect key="frame" x="334" y="121" width="50" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="VJX-4m-6iY"/>
@@ -4475,7 +4470,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ec-gR-gsV">
-                                                        <rect key="frame" x="142.5" y="90.5" width="153.5" height="1"/>
+                                                        <rect key="frame" x="88" y="90.5" width="208" height="1"/>
                                                         <color key="backgroundColor" name="Gray200"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="0dc-A1-W5g"/>
@@ -4523,7 +4518,7 @@
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-Ep-4Kx">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dJz-Ep-4Kx">
                                                         <rect key="frame" x="334" y="242.5" width="50" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="mr8-2r-67e"/>
@@ -4551,17 +4546,17 @@
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuM-0N-cQY">
-                                                        <rect key="frame" x="334" y="331.5" width="50" height="23"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuM-0N-cQY">
+                                                        <rect key="frame" x="304" y="331.5" width="80" height="23"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="TPA-M5-Owf"/>
+                                                            <constraint firstAttribute="width" constant="80" id="TPA-M5-Owf"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="UberMoveText-Medium" family="Uber Move Text" pointSize="19"/>
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIt-9b-zyB">
-                                                        <rect key="frame" x="120.5" y="342.5" width="205.5" height="1"/>
+                                                        <rect key="frame" x="120.5" y="342.5" width="175.5" height="1"/>
                                                         <color key="backgroundColor" name="Gray200"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="04A-aV-dgD"/>
@@ -4579,7 +4574,7 @@
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDb-Ke-aJO">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZDb-Ke-aJO">
                                                         <rect key="frame" x="304" y="281" width="80" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="j7g-N8-wob"/>
@@ -4720,7 +4715,8 @@
                         <outlet property="lblPromotion" destination="cYW-v4-6rq" id="ym8-S3-697"/>
                         <outlet property="lblTime" destination="sOw-v6-3YF" id="tGr-Ut-qpV"/>
                         <outlet property="lblToll" destination="Kls-zt-fh0" id="v4n-7n-eVd"/>
-                        <outlet property="lblTotalAmount" destination="wuT-eR-Pzu" id="ua5-2m-YOm"/>
+                        <outlet property="lblTotalAmount" destination="CuM-0N-cQY" id="Nof-lu-oNG"/>
+                        <outlet property="lblTotalAmountHeader" destination="wuT-eR-Pzu" id="ead-zF-auv"/>
                         <outlet property="lblTripFare" destination="Jcq-bO-8Cx" id="HB4-ET-FGV"/>
                     </connections>
                 </viewController>
@@ -4729,6 +4725,17 @@
             <point key="canvasLocation" x="1011.5942028985507" y="2159.5982142857142"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="C2y-Xi-uDC">
+            <size key="intrinsicContentSize" width="243" height="34"/>
+        </designable>
+        <designable name="RBc-67-JTk">
+            <size key="intrinsicContentSize" width="108" height="34"/>
+        </designable>
+        <designable name="Ziu-l4-uwn">
+            <size key="intrinsicContentSize" width="32" height="34"/>
+        </designable>
+    </designables>
     <resources>
         <image name="accept" width="44" height="44"/>
         <image name="account" width="25" height="25"/>

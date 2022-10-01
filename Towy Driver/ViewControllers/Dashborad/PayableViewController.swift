@@ -29,6 +29,7 @@ class PayableViewController: UIViewController {
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var lblTime:UILabel!
     @IBOutlet weak var lblTotalAmount: UILabel!
+    @IBOutlet weak var lblTotalAmountHeader: UILabel!
 
     @IBOutlet weak var lblDistance:UILabel!
 //    @IBOutlet weak var lblBookingId:UILabel!
@@ -90,7 +91,7 @@ class PayableViewController: UIViewController {
     func setupIbOutlets(){
         self.fare = Double(booking.actual_fare ?? "0.0") ?? 0.0
         self.bookingId = "\(booking.id!)"
-        self.lblDistance.text = (booking.total_distance ?? "0") + " km"
+        self.lblDistance.text = (booking.total_calculated_distance ?? "0") + " km"
         
         
         
@@ -105,17 +106,23 @@ class PayableViewController: UIViewController {
 //        txtExtraAmount.delegate = self
 //        txtAmountReceived.delegate = self
 //
-        if Double(booking.total_ride_minutes ?? "0.0") ?? 0.0 > 60{
-            let h = Double(booking.total_ride_minutes ?? "0.0") ?? 0.0 / 60
-            let min = Int(booking.total_ride_minutes ?? "0") ?? 0 % 60
+        
+        let time = getTotalTime()
+        
+        if  time > 60{
+            let h = time / 60
+            let min = time % 60
             lblTime.text = "\(h)" + "H" + "\(min)" + "min"
         }else{
-            lblTime.text = "\(Int(booking.total_ride_minutes ?? "0") ?? 0) min"
+            lblTime.text = "\(time) min"
 
         }
         
         //        lblDistance.text = "\(distance.rounded(toPlaces: 1)) "
         lblTotalAmount.text = "\(fare.rounded())"
+        lblTotalAmountHeader.text = "\(fare.rounded())"
+        lblTripFare.text = "\(fare.rounded())"
+        
 //        lblTotalAmount.text = "\(fare.rounded())"
 //        lblBookingId.text = bookingId
 //        lblDescription.text = des
@@ -125,6 +132,13 @@ class PayableViewController: UIViewController {
 //            txtAmountReceived.isUserInteractionEnabled = false
 //        }
         
+    }
+    
+    func getTotalTime()->Int{
+        let pickupMinutes = Double(booking.total_minutes_to_reach_pick_up_point ?? "0.0") ?? 0.0
+        let waitingTime = Double(booking.driver_waiting_time ?? "0.0") ?? 0.0
+        let servingTime = Double(booking.total_ride_minutes ?? "0.0") ?? 0.0
+        return Int(pickupMinutes+waitingTime+servingTime)
     }
     
     

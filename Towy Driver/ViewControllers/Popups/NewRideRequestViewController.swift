@@ -243,6 +243,8 @@ class NewRideRequestViewController: UIViewController {
                 self.timeSlider = 0
                 self.viewRedTrailing.constant = self.view.frame.width
                 NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: nil)
+                Constants.IS_RIDE_POPUP_VISIBLE = false
+                self.dismiss(animated: true)
                 
             }
             

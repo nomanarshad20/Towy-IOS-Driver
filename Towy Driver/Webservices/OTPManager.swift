@@ -15,7 +15,7 @@ class OTPManager{
     static var manager = OTPManager()
     
     
-    func sendEmailOTP(email:String,completionHandler:@escaping (_ result : Bool, _ message:String?)-> Void){
+    func sendEmailOTP(email:String,completionHandler:@escaping (_ otp : String?, _ message:String?)-> Void){
         let urlString = UtilityManager().getAPIBaseUrl(api:Constants.SEND_OTP_EMAIL)
             let header = UtilityManager().getAuthHeader()
             let params = [
@@ -29,10 +29,10 @@ class OTPManager{
             if let data = mainDict?["data"].dictionaryObject
             {
                 print("OTP=====",data)
-                    completionHandler(true,nil)
+                    completionHandler("\(data["otp"] as! Int)",nil)
                 
             }else{
-                completionHandler(false,err)
+                completionHandler(nil,err)
             }
         }
         

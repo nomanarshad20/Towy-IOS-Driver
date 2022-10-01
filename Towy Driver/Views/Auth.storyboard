@@ -2765,8 +2765,7 @@ account.</string>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT2-gL-9tR">
                                                 <rect key="frame" x="30" y="541.5" width="354" height="220"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <connections>
                                                     <action selector="btnImageTapped:" destination="YDI-O3-AVO" eventType="touchUpInside" id="6vb-6g-jTx"/>
                                                 </connections>
@@ -3071,8 +3070,7 @@ slick continue </string>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7G8-GX-SUN">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="200"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <connections>
                                                             <action selector="btnTowTapped:" destination="5kZ-qT-eS8" eventType="touchUpInside" id="9Ml-7u-9hY"/>
                                                         </connections>
@@ -3131,8 +3129,7 @@ slick continue </string>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBq-nI-ldA">
                                                         <rect key="frame" x="0.0" y="0.0" width="354" height="200"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <connections>
                                                             <action selector="btnWorkshopTapped:" destination="5kZ-qT-eS8" eventType="touchUpInside" id="dmR-Zv-IPi"/>
                                                         </connections>
@@ -5403,34 +5400,31 @@ including those not on this list.</string>
     </scenes>
     <designables>
         <designable name="E6a-By-Xgp">
-            <size key="intrinsicContentSize" width="354" height="53.531671875000001"/>
-        </designable>
-        <designable name="He0-M2-V3r">
-            <size key="intrinsicContentSize" width="305" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="170.5" height="33"/>
         </designable>
         <designable name="KGm-jz-VEp">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="181.5" height="34"/>
         </designable>
         <designable name="Sfo-C7-qw4">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="124" height="34"/>
         </designable>
         <designable name="c0g-EC-Wzp">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="178" height="34"/>
         </designable>
         <designable name="drt-Y2-Mvf">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="123" height="34"/>
         </designable>
         <designable name="eWJ-b0-VAa">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="179.5" height="34"/>
         </designable>
         <designable name="etj-bB-ULE">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="99" height="34"/>
         </designable>
         <designable name="gnu-qp-r34">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="161" height="34"/>
         </designable>
         <designable name="iXZ-5Z-JTR">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
+            <size key="intrinsicContentSize" width="189.5" height="34"/>
         </designable>
     </designables>
     <resources>

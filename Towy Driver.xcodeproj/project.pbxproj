@@ -204,6 +204,7 @@
 		5204795B2887EA4B006B6268 /* DeviceConfigeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceConfigeration.swift; sourceTree = "<group>"; };
 		520B2F0828910A9700361F86 /* TrucksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrucksManager.swift; sourceTree = "<group>"; };
 		5211418028D2578400EC57BD /* PayableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayableViewController.swift; sourceTree = "<group>"; };
+		521D167F28E185AF0004A6F8 /* QilaAhmadabad.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = QilaAhmadabad.gpx; sourceTree = "<group>"; };
 		5228FD1928D7A3040050CDCF /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DhoongiGround.gpx; sourceTree = "<group>"; };
 		5233E29D28819BBD00F93FFC /* Home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Home.gpx; sourceTree = "<group>"; };
@@ -414,6 +415,7 @@
 				5204790E2887E654006B6268 /* Webservices */,
 				5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */,
 				5233E29D28819BBD00F93FFC /* Home.gpx */,
+				521D167F28E185AF0004A6F8 /* QilaAhmadabad.gpx */,
 				52FDC7C52863A1C30075952C /* Models */,
 				528305E0285F89E400D854A7 /* Fonts */,
 				528305DF285F89C300D854A7 /* Appdelegate */,
