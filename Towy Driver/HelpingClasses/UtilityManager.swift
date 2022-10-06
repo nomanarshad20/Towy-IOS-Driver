@@ -189,7 +189,7 @@ class UtilityManager: NSObject
     
     func getDashboardStoryboard() -> UIStoryboard
     {
-        let storyboard = UIStoryboard.init(name: "Dashboard", bundle: .main)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
         return storyboard
     }
     func isIPAD() -> Bool
@@ -959,5 +959,21 @@ extension UIApplication {
         print(base)
         print("base returned")
         return base
+    }
+}
+
+
+
+public extension UIDevice {
+    enum PowerModeState: String, Codable {
+        case lowPower
+        case normalPower
+        
+        init(isLowPowerModeEnabled: Bool) {
+            switch isLowPowerModeEnabled {
+            case true: self = .lowPower
+            case false: self = .normalPower
+            }
+        }
     }
 }

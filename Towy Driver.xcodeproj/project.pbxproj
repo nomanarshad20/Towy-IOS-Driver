@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06B102F2FA38966CCB7A9E42 /* Pods_Towy_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B1D87394302AD44A2A6A76 /* Pods_Towy_Driver.framework */; };
+		52042B5A28EF1D12005BB66F /* RideDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52042B5928EF1D12005BB66F /* RideDetailsViewController.swift */; };
 		520479102887E6DB006B6268 /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204790F2887E6DB006B6268 /* WebServiceManager.swift */; };
 		520479122887E739006B6268 /* PushnotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520479112887E739006B6268 /* PushnotificationSender.swift */; };
 		520479142887E785006B6268 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520479132887E785006B6268 /* Reachability.swift */; };
@@ -163,6 +164,7 @@
 
 /* Begin PBXFileReference section */
 		2B4604BCF46DD826D1C3AFEB /* Pods_Towy_DriverTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Towy_DriverTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52042B5928EF1D12005BB66F /* RideDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsViewController.swift; sourceTree = "<group>"; };
 		5204790F2887E6DB006B6268 /* WebServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceManager.swift; sourceTree = "<group>"; };
 		520479112887E739006B6268 /* PushnotificationSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushnotificationSender.swift; sourceTree = "<group>"; };
 		520479132887E785006B6268 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 		528D124B28B5FC31001A1F68 /* SettingVCs */ = {
 			isa = PBXGroup;
 			children = (
+				52042B5928EF1D12005BB66F /* RideDetailsViewController.swift */,
 				52D3A61828D66632001B7CEB /* MapsViewController.swift */,
 				52D3A61628D65595001B7CEB /* HelpViewController.swift */,
 				52D3A61428D5D05F001B7CEB /* SettingViewController.swift */,
@@ -957,6 +960,7 @@
 				5266422D28605E6100167A6A /* CustomSplashViewController.swift in Sources */,
 				5204794B2887E9FA006B6268 /* Message.swift in Sources */,
 				528D125128B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift in Sources */,
+				52042B5A28EF1D12005BB66F /* RideDetailsViewController.swift in Sources */,
 				528D124D28B5FC4F001A1F68 /* DriverPortalViewController.swift in Sources */,
 				520479592887E9FA006B6268 /* BookingInfo.swift in Sources */,
 				5266424B28607C6000167A6A /* BaseViewController.swift in Sources */,

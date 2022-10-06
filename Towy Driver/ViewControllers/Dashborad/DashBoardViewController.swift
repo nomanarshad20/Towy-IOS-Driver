@@ -51,7 +51,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     var isToDropOff:Bool? = nil
     
     var dataSource = [Precaution]()
-    
+    var isMapLoaded = false
     var apiTimer:Timer?
     var WT:Timer!
     var timer:Timer? = Timer()
@@ -99,17 +99,8 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         tblReasons.dataSource = self
         tblReasons.register(UINib.init(nibName: "TextWithCheckboxTableViewCell", bundle: .main), forCellReuseIdentifier: "TextWithCheckboxTableViewCell")
         
-        checkDriverStatus()
-        
         
         viewStartService.CurveViewsTop(corner: 30)
-       
-        
-//        booking = NewRide.init(vehicle_amount: 2, amount: 300, driver_id: 2, pickup_longitude: "71.34342", temp_id: 23, passenger_id: 213, vehicle_type: "2", oyla_pay: "jb", dropoff_latitude: "31.343", user_id: "12", distance_kilomiters: 2.33, pickup_latitude: "31.34343", estimate_minutes: "10", dropoff_longitude: "71.3434", booking_id: 223, driver_status: 2, ride_complete_time: 23, estimated_amount: 23, final_amount: 2300, oyla_wallet_pay: 0, descriptions: "kjdbjsdkbfjks", booking_unique_id: "dsfdsf", booking_changes: 0, payment_type: "CASH", pre_book: false, peak_factor_rate: "1.2", passenger_name: "Mursha_PAK", passenger_ratings: 4.5, passenger_profile_pic: "jjk", status: 1, passenger_mobile_no: 034566666666, is_skip_dropoff: 1, distance_radius: 30)
-        //    let trackRect =  radiusSlider.trackRect(forBounds: radiusSlider.bounds)
-        //    let thumbRect = radiusSlider.thumbRect(forBounds: radiusSlider.bounds, trackRect: trackRect, value: radiusSlider.value)
-        //    viewDistance.center = CGPoint(x: thumbRect.origin.x + radiusSlider.frame.origin.x, y: radiusSlider.frame.origin.y)
-      
         
         NotificationCenter.default.addObserver(self, selector: #selector(ratingCompleted), name:NSNotification.Name( Constants.NotificationObservers.DRIVER_RATED_THE_CUSTOMER.rawValue), object: nil)
         
@@ -117,40 +108,68 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         NotificationCenter.default.addObserver(self, selector: #selector(self.rideCancelByUser), name:NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_USER.rawValue) , object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rideCancelByDriver), name:NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue) , object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.appBecomeActive), name:NSNotification.Name(Constants.NotificationObservers.APP_BECOME_ACTIVE.rawValue) , object: nil)
+
         
        
-//        UtilityManager.manager.saveDriverStatus(status: 1)
-       
-        setupUserCurrentLocation()
-        //        isAddViewed = false
-//        Constants.DEFAULT_LAT = 32.213966354308674
-//        Constants.DEFAULT_LONG = 74.74826776310091
-//        if Constants.DEFAULT_LAT != nil && Constants.DEFAULT_LONG != nil{
-            self.loadGoogleMapLayer()
-//            setCarMarker()
-//        }
-        
-//        self.updateStatusUI()
-//        apiTimer = Timer.scheduledTimer(timeInterval: Constants.LOCATION_TIMER_DURATION_ONLINE, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-//            self.showDummyRequest()
-        })
+        let mode = UIDevice.PowerModeState(isLowPowerModeEnabled: ProcessInfo.processInfo.isLowPowerModeEnabled)
+        if mode == .lowPower{
+            openLocationSettingsForLowPower()
+        }
+        checkLocationPermission()
+        checkDriverStatus()
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        let trackRect =  radiusSlider.trackRect(forBounds: radiusSlider.bounds)
-//        let thumbRect = radiusSlider.thumbRect(forBounds: radiusSlider.bounds, trackRect: trackRect, value: radiusSlider.value)
-//        viewDistance.center = CGPoint(x: thumbRect.origin.x + radiusSlider.frame.origin.x+15.5 , y: radiusSlider.frame.origin.y+15.5)
-        //        UtilityManager.manager.showAlertView(title: "Hey", message: "ldjfbdsjk", VC: self)
+        
     }
     
+    
+    
+       func checkLocationPermission(){
+           if CLLocationManager.locationServicesEnabled() {
+               switch CLLocationManager.authorizationStatus() {
+               case .notDetermined, .restricted,.denied :
+                   self.openLocationSettings()
+               case .authorizedWhenInUse:
+                   self.openLocationSettings()
+               case .authorizedAlways:
+                   self.setupUserCurrentLocation()
+                   self.loadGoogleMapLayer()
+               @unknown default:
+                   openLocationSettings()
+               }
+           } else {
+               print("Location services are not enabled")
+           }
+       }
+    
+    
+   
+    
+    
+    
+    func openLocationSettings(){
+        UtilityManager.manager.showAlertWithAction(self, message: "Please enable location services to 'Always' to use app.", title: "Allow Location services", buttons: ["Go to Settings"]) { index in
+            if let bundleId = Bundle.main.bundleIdentifier,
+               let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)")
+            {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    
+    func openLocationSettingsForLowPower(){
+       
+        UtilityManager.manager.showAlert(self, message: "Please turn off Low power mode for better performance.", title: "Low Power Mode")
+    }
     
     func stopTimerLocation(){
         if apiTimer != nil{
@@ -277,6 +296,18 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     }
     
     
+    @objc func appBecomeActive(){
+        
+        viewWillAppear(false)
+    }
+    
+    @objc func appEnterBackGround(){
+        if  apiTimer != nil {
+            apiTimer?.invalidate()
+            apiTimer = nil
+        }
+    }
+    
     @objc func rideCancelByUser(notify:Notification){
         UtilityManager.manager.saveModelInUserDefaults(key: Constants.CURRENT_RIDE, data: nil)
 //        self.backViewForPopup.isHidden = true
@@ -335,7 +366,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         UtilityManager.manager.saveDriverStatus(status: 2)
         updateStatusUI()
         viewMeetAt.isHidden = false
-        self.viewMeetAtBottomConstraint.constant = -25
+        self.viewMeetAtBottomConstraint.constant = -20
         self.btnReachNearBy.isHidden = false
         self.btnChat.isHidden = false
         self.btnNavigation.isHidden = false
@@ -372,27 +403,24 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     {
         
         if Constants.DEFAULT_LONG != nil{
-            let camera = GMSCameraPosition.camera(withLatitude:Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG, zoom: 14.0)
-            
-            let screenRect = UIScreen.main.bounds
-            let screenWidth = screenRect.size.width
-            let screenHeight = screenRect.size.height
-            mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), camera: camera)
-            mapView.delegate = self
-            self.mapView.isMyLocationEnabled = false
-            mapView.settings.allowScrollGesturesDuringRotateOrZoom = false
-            
-            //        self.lblMarker?.isHidden = true
-            //        self.bearing = "\(camera.bearing)"
-            self.mainMapView.addSubview(mapView)
+            if !isMapLoaded{
+                let camera = GMSCameraPosition.camera(withLatitude:Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG, zoom: 14.0)
+                
+                let screenRect = UIScreen.main.bounds
+                let screenWidth = screenRect.size.width
+                let screenHeight = screenRect.size.height
+                mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight), camera: camera)
+                mapView.delegate = self
+                self.mapView.isMyLocationEnabled = false
+                mapView.settings.allowScrollGesturesDuringRotateOrZoom = false
+                self.mainMapView.addSubview(mapView)
+                isMapLoaded = true
+            }
             self.setCarMarker()
-        }else{
-            checkLocationPermission()
-            setupUserCurrentLocation()
-            DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: { [self] in
-                loadGoogleMapLayer()
-            })
         }
+//        else{
+//            checkLocationPermission()
+//        }
         
        
         
@@ -400,65 +428,19 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     func setupUserCurrentLocation()
     {
-        
-        checkLocationPermission()
-        
-        LocationManager.shared.requestLocationAuthorization()
-        locationManagerInitilize()
-        locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
-        
-        
-    }
-    
-    
-    func checkLocationPermission(){
-        var status:CLAuthorizationStatus!
-        if #available(iOS 14.0, *) {
-            status = CLLocationManager().authorizationStatus
-        } else {
-            status = CLLocationManager.authorizationStatus()
-        }
-        
-        switch status {
-        case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
-            return
-            
-        case .denied, .restricted:
-            
-            UtilityManager.manager.showAlertWithAction(self, message: Constants.LOCATION_PERMISSION, title: Constants.APP_NAME, buttons: ["Enable","Cancel"]) { index in
-                if index == 0{
-                    if let BUNDLE_IDENTIFIER = Bundle.main.bundleIdentifier,
-                       let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(BUNDLE_IDENTIFIER)") {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }
-            }
-        case .authorizedAlways, .authorizedWhenInUse:
-            print("Location permission is granted")
-            
-        default:
-            print("unknow staus")
-        }
-    }
-    
-    
-    func locationManagerInitilize(){
         if CLLocationManager.locationServicesEnabled(){
             locationManager.delegate = self
             locationManager.allowsBackgroundLocationUpdates = false
             locationManager.showsBackgroundLocationIndicator = true
-            locationManager.requestAlwaysAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-            if #available(iOS 14.0, *) {
-                locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "Tracking")
-            } else {
-                // Fallback on earlier versions
-            }
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
         }
+        
+        
+        
     }
-    
     
     func setCarMarker(){
         let coordinates = CLLocationCoordinate2D(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG)
@@ -787,7 +769,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 //UISETP
                 isToDropOff = false
                 viewMeetAt.isHidden = false
-                self.viewMeetAtBottomConstraint.constant = -25
+                self.viewMeetAtBottomConstraint.constant = -20
                 self.btnReachNearBy.isHidden = false
                 self.btnChat.isHidden = false
                 self.btnNavigation.isHidden = false
@@ -1028,12 +1010,16 @@ extension DashBoardViewController:CLLocationManagerDelegate{
     // MARK: CLLocation Manager Delegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+        
         guard let currentLocation:CLLocation = manager.location else{
             self.locationManager.stopUpdatingLocation()
             return}
         Constants.DEFAULT_LAT = currentLocation.coordinate.latitude
         Constants.DEFAULT_LONG = currentLocation.coordinate.longitude
         emitLocation(location: currentLocation)
+        if !isMapLoaded{
+            loadGoogleMapLayer()
+        }
 //        self.current_lat = currentLocation.coordinate.latitude
 //        self.current_lang = currentLocation.coordinate.longitude
         //        if UtilityManager.manager.getDriverStatus() != 2{
@@ -1073,15 +1059,20 @@ extension DashBoardViewController:UITableViewDataSource,UITableViewDelegate{
 
             self.cancelBooking(params: ["cancel_reason_id":self.dataSource[indexPath.row].id ?? 0,"booking_id":booking?.id ?? 0,"other_reason":self.dataSource[indexPath.row].text ?? "chal oye","chat_messages": ""])
 //            }
-            
-            
        
     }
 }
 
-
 extension DashBoardViewController:RatingDelegate{
     func didRatePassenger() {
+        
+        if socket?.status == .connected{
+            self.emitRideStatus(status: 4)
+        }else{
+            SocketIOManager.sharedInstance.establishConnection()
+            self.emitRideStatus(status: 4)
+        }
+        
         checkDriverStatus()
         self.mapView.clear()
         self.setCarMarker()
@@ -1090,12 +1081,7 @@ extension DashBoardViewController:RatingDelegate{
     func didCancelRating() {
         print("rating cancelled.")
     }
-    
-    
-    
-    
 }
-
 
 extension DashBoardViewController:RideCompletionDelegate{
     
@@ -1114,8 +1100,4 @@ extension DashBoardViewController:RideCompletionDelegate{
     func didCancel() {
         print("cancel finishing ride")
     }
-    
-    
-    
-    
 }

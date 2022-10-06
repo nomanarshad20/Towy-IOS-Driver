@@ -62,9 +62,9 @@ extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RideHistoryTableViewCell", for: indexPath) as! RideHistoryTableViewCell
         let ds = datasource[indexPath.row]
-        cell.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.updated_at)
+        cell.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.ride_status_updated_at)
 
-        cell.lblPrice.text = Constants.Currency + ": \(ds.final_amount ?? 0)"
+        cell.lblPrice.text = Constants.Currency + ": " + (ds.estimated_fare ?? "0")
         UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pick_up_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pick_up_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
             cell.lblPickup.text = adress
         })
@@ -78,16 +78,16 @@ extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cel = cell as! RideHistoryTableViewCell
         
-//        let ds = datasource[indexPath.row]
-//        cel.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.updated_at)
-//        
-//        cel.lblPrice.text = Constants.Currency + ": \(ds.passenger_cash_paid ?? 0)"
-//        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pickup_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pickup_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
-//            cel.lblPickup.text = adress
-//        })
-//        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.dropoff_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.dropoff_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
-//            cel.lblDropoff.text = adress
-//        })
+        let ds = datasource[indexPath.row]
+        cel.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.ride_status_updated_at)
+
+        cel.lblPrice.text = Constants.Currency + ": \(ds.estimated_fare ?? "0.0")"
+        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pick_up_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pick_up_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
+            cel.lblPickup.text = adress
+        })
+        UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.drop_off_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.drop_off_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
+            cel.lblDropoff.text = adress
+        })
         
     }
     
@@ -97,10 +97,10 @@ extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let st = UtilityManager.manager.getDashboardStoryboard()
-//        let vc = st.instantiateViewController(withIdentifier: "RideDetailsViewController") as! RideDetailsViewController
-//        vc.trip = datasource[indexPath.row]
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let st = UtilityManager.manager.getMainStoryboard()
+        let vc = st.instantiateViewController(withIdentifier: "RideDetailsViewController") as! RideDetailsViewController
+        vc.trip = datasource[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

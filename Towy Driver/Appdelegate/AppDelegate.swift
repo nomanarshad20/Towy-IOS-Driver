@@ -35,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         registerForRemoteNotification()
 //        window!.overrideUserInterfaceStyle = .light
-
+        
+        LocationManager.shared.requestLocationAuthorization()
         
         return true
     }
@@ -76,7 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+        NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.APP_BECOME_ACTIVE.rawValue), object: nil)
         stopMonitoringInHome()
         UIApplication.shared.applicationIconBadgeNumber = 0
         SocketIOManager.sharedInstance.establishConnection()

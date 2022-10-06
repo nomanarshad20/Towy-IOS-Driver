@@ -38,7 +38,8 @@ open class Constants {
     public static let USER_PREFERENCES_EMAIL        = "USER_PREFERENCES_EMAIL"
     public static let USER_PREFERENCES_NAME         = "USER_PREFERENCES_NAME"
     public static let USER_PROFILE_IMAGE            = "USER_PROFILE_IMAGE"
-    public static var Currency                      = "PKR. "
+    public static var Currency                      = "$ "
+    public static var DISTANCE_UNIT                      = "mi "
     public static let LOCATION_TIMER_DURATION_ONLINE:Double = 20
     public static let LOCATION_TIMER_DURATION_OFFLINE:Double = 100
     public static let LOCATION_TIMER_DURATION_ONRIDE:Double = 10

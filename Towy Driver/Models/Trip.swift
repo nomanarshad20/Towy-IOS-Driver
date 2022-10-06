@@ -52,7 +52,7 @@ class Trip:Codable{
     var drop_off_latitude : String?
     var drop_off_longitude : String?
     var driver_initial_distance :Double?
-    var total_distance : Double?
+    var total_distance : String?
     var estimate_minutes : Double?
     var vehicle_type : String?
     var vehicle_type_id : Int?
@@ -68,7 +68,7 @@ class Trip:Codable{
     var ride_cancelled_at : String?
     var waiting_rate : Double?
     var waiting_minuts : Double?
-    var estimated_fare : Double?
+    var estimated_fare : String?
     var final_amount : Double?
     var extra_amount : Double?
     var passenger_cash_paid : Double?
@@ -77,7 +77,7 @@ class Trip:Codable{
     var ride_status : Int?
     var peak_factor_rate :  Double?
     var descriptions : String?
-    var fine_amount : String?
+    var fine_amount : Double?
     var fine_user_type : String?
     var promo_discount :  Double?
     var refresh_logout : Int?
@@ -87,8 +87,27 @@ class Trip:Codable{
     var drop_off_area : String?
     
     
+    var otp : String?
+    var passenger_mobile_no : String?
+    var is_driver_rating_given : Int?
+    var passenger_rating : Double?
+    var booking_type : String?
+    var pick_up_date : String?
+    var passenger_image : String?
+    var passenger_comment_from_driver : String?
+    var driver_rating_from_passenger : Double?
+    var driver_comment_from_passenger : String?
+    var passenger_last_name : String?
+    var cancel_reason : String?
+    var actual_fare : String?
+    var is_passenger_rating_given : Int?
+    var passenger_first_name : String?
+    var vehicle_registration_number : String?
+    var vehicle_name : String?
     
-    init(id: Int? = nil, booking_unique_id: String? = nil, passenger_id: Int? = nil, driver_id: Int? = nil, franchise_id: Int? = nil, pick_up_latitude: String? = nil, pick_up_longitude: String? = nil, drop_off_latitude: String? = nil, drop_off_longitude: String? = nil, driver_initial_distance: Double? = nil, total_distance: Double? = nil, estimate_minutes: Double? = nil, vehicle_type: String? = nil, vehicle_type_id: Int? = nil, vehicle_amount: Int? = nil, min_ride_fares: Double? = nil, payment_type: String? = nil, oyla_wallet_pay: String? = nil, wallet_pay_amount: Double? = nil, driver_ride_status: Int? = nil, ride_status_updated_at: String? = nil, pick_up_time: String? = nil, ride_complete_time: String? = nil, ride_cancelled_at: String? = nil, waiting_rate: Double? = nil, waiting_minuts: Double? = nil, estimated_fare: Double? = nil, final_amount: Double? = nil, extra_amount: Double? = nil, passenger_cash_paid: Double? = nil, passenger_rating_from_driver: Double? = nil, booking_changes: Int? = nil, ride_status: Int? = nil, peak_factor_rate: Double? = nil, descriptions: String? = nil, fine_amount: String? = nil, fine_user_type: String? = nil, promo_discount: Double? = nil, refresh_logout: Int? = nil, created_at: String? = nil, updated_at: String? = nil, pick_up_area : String? = "DHA Phase 5 street no 1" , drop_off_area : String? = "Model Town ATR Heights") {
+    
+    
+    init(id: Int? = nil, booking_unique_id: String? = nil, passenger_id: Int? = nil, driver_id: Int? = nil, franchise_id: Int? = nil, pick_up_latitude: String? = nil, pick_up_longitude: String? = nil, drop_off_latitude: String? = nil, drop_off_longitude: String? = nil, driver_initial_distance: Double? = nil, total_distance: String? = nil, estimate_minutes: Double? = nil, vehicle_type: String? = nil, vehicle_type_id: Int? = nil, vehicle_amount: Int? = nil, min_ride_fares: Double? = nil, payment_type: String? = nil, oyla_wallet_pay: String? = nil, wallet_pay_amount: Double? = nil, driver_ride_status: Int? = nil, ride_status_updated_at: String? = nil, pick_up_time: String? = nil, ride_complete_time: String? = nil, ride_cancelled_at: String? = nil, waiting_rate: Double? = nil, waiting_minuts: Double? = nil, estimated_fare: String? = nil, final_amount: Double? = nil, extra_amount: Double? = nil, passenger_cash_paid: Double? = nil, passenger_rating_from_driver: Double? = nil, booking_changes: Int? = nil, ride_status: Int? = nil, peak_factor_rate: Double? = nil, descriptions: String? = nil, fine_amount: Double? = nil, fine_user_type: String? = nil, promo_discount: Double? = nil, refresh_logout: Int? = nil, created_at: String? = nil, updated_at: String? = nil, pick_up_area : String? = "DHA Phase 5 street no 1" , drop_off_area : String? = "Model Town ATR Heights",is_driver_rating_given : Int? = nil,passenger_rating:Double? = nil,booking_type:String? = nil,pick_up_date:String? = nil,passenger_image:String? = nil,passenger_comment_from_driver:String? = nil,driver_rating_from_passenger:Double? = nil,driver_comment_from_passenger:String? = nil,passenger_last_name:String? = nil,cancel_reason:String? = nil,actual_fare:String? = nil,is_passenger_rating_given:Int? = nil,passenger_first_name:String? = nil,vehicle_registration_number:String? = nil,vehicle_name:String? = nil) {
         self.id = id
         self.booking_unique_id = booking_unique_id
         self.passenger_id = passenger_id
@@ -132,6 +151,22 @@ class Trip:Codable{
         self.updated_at = updated_at
         self.pick_up_area = pick_up_area
         self.drop_off_area = drop_off_area
+        self.is_passenger_rating_given = is_passenger_rating_given
+        
+        self.is_driver_rating_given = is_driver_rating_given
+        self.passenger_rating = passenger_rating
+        self.booking_type = booking_type
+        self.pick_up_date = pick_up_date
+        self.passenger_image = passenger_image
+        self.passenger_comment_from_driver = passenger_comment_from_driver
+        self.driver_rating_from_passenger = driver_rating_from_passenger
+        self.driver_comment_from_passenger = driver_comment_from_passenger
+        self.passenger_last_name = passenger_last_name
+        self.cancel_reason = cancel_reason
+        self.actual_fare = actual_fare
+        self.passenger_first_name = passenger_first_name
+        self.vehicle_registration_number = vehicle_registration_number
+        self.vehicle_name = vehicle_name
     }
     
     
@@ -142,13 +177,13 @@ class Trip:Codable{
         self.passenger_id = dict["passenger_id"] as? Int ?? nil
         self.driver_id = dict["driver_id"] as? Int ?? nil
         self.franchise_id = dict["franchise_id"] as? Int ?? nil
-        self.pick_up_latitude = dict["pick_up_latitude"] as? String ?? ""
-        self.pick_up_longitude = dict["pick_up_longitude"] as? String ?? ""
-        self.drop_off_latitude = dict["drop_off_latitude"] as? String ?? ""
-        self.drop_off_longitude = dict["drop_off_longitude"] as? String ?? ""
+        self.pick_up_latitude = dict["pick_up_latitude"] as? String ?? nil
+        self.pick_up_longitude = dict["pick_up_longitude"] as? String ?? nil
+        self.drop_off_latitude = dict["drop_off_latitude"] as? String ?? nil
+        self.drop_off_longitude = dict["drop_off_longitude"] as? String ?? nil
         
         self.driver_initial_distance = dict["driver_initial_distance"] as? Double ?? 0
-        self.total_distance = dict["total_distance"] as? Double ?? 0
+        self.total_distance = dict["total_distance"] as? String ?? nil
         self.estimate_minutes = dict["estimate_minutes"] as? Double ?? 0
         self.vehicle_type = dict["vehicle_type"] as? String ?? ""
         self.vehicle_type_id = dict["vehicle_type_id"] as? Int ?? 0
@@ -165,7 +200,7 @@ class Trip:Codable{
         self.waiting_rate = dict["waiting_rate"] as? Double ?? 0
         self.waiting_minuts = dict["waiting_minuts"] as? Double
             ?? 0
-        self.estimated_fare = dict["estimated_fare"] as? Double ?? 0
+        self.estimated_fare = dict["estimated_fare"] as? String ?? "0"
         self.final_amount = dict["final_amount"] as? Double ?? 0
         self.extra_amount = dict["extra_amount"] as? Double ?? 0
         self.passenger_cash_paid = dict["passenger_cash_paid"] as? Double ?? 0
@@ -174,7 +209,7 @@ class Trip:Codable{
         self.ride_status = dict["ride_status"] as? Int ?? 0
         self.peak_factor_rate = dict["peak_factor_rate"] as? Double ?? 0
         self.descriptions = dict["descriptions"] as? String ?? ""
-        self.fine_amount = dict["fine_amount"] as? String ?? ""
+        self.fine_amount = dict["fine_amount"] as? Double ?? nil
         self.fine_user_type = dict["fine_user_type"] as? String ?? ""
         self.promo_discount = dict["promo_discount"] as? Double ?? 0
         self.refresh_logout = dict["refresh_logout"] as? Int ?? 0
@@ -182,6 +217,25 @@ class Trip:Codable{
         self.updated_at = dict["updated_at"] as? String ?? ""
         self.pick_up_area = dict["pick_up_area"] as? String ?? ""
         self.drop_off_area = dict["drop_off_area"] as? String ?? ""
+        
+        self.is_passenger_rating_given = dict["is_passenger_rating_given"] as? Int ?? 0
+        
+        self.is_driver_rating_given = dict["is_driver_rating_given"] as? Int ?? 0
+        self.passenger_rating = dict["passenger_rating"] as? Double ?? 0
+        self.booking_type = dict["booking_type"] as? String ?? ""
+        self.pick_up_date = dict["pick_up_date"] as? String ?? ""
+        self.passenger_image = dict["passenger_image"] as? String ?? ""
+        self.passenger_comment_from_driver = dict["passenger_comment_from_driver"] as? String ?? ""
+        self.driver_rating_from_passenger = dict["driver_rating_from_passenger"] as? Double ?? 0.0
+        self.driver_comment_from_passenger = dict["driver_comment_from_passenger"] as? String ?? ""
+        self.passenger_last_name = dict["passenger_last_name"] as? String ?? ""
+        self.cancel_reason = dict["cancel_reason"] as? String ?? ""
+        self.actual_fare = dict["actual_fare"] as? String ?? nil
+        self.passenger_first_name = dict["passenger_first_name"] as? String ?? ""
+        self.vehicle_registration_number = dict["vehicle_registration_number"] as? String ?? ""
+        self.vehicle_name = dict["vehicle_name"] as? String ?? ""
+
+        
 
     }
     

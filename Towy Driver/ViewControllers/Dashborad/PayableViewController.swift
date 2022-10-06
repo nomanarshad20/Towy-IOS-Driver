@@ -22,13 +22,10 @@ class PayableViewController: UIViewController {
     
 //    @IBOutlet weak var viewActualAmount: UIView!
     @IBOutlet weak var lblTripFare: UILabel!
-    @IBOutlet weak var lblToll: UILabel!
-    @IBOutlet weak var lblCredit: UILabel!
     @IBOutlet weak var lblPromotion: UILabel!
     @IBOutlet weak var lblOutstanding: UILabel!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var lblTime:UILabel!
-    @IBOutlet weak var lblTotalAmount: UILabel!
     @IBOutlet weak var lblTotalAmountHeader: UILabel!
 
     @IBOutlet weak var lblDistance:UILabel!
@@ -91,7 +88,7 @@ class PayableViewController: UIViewController {
     func setupIbOutlets(){
         self.fare = Double(booking.actual_fare ?? "0.0") ?? 0.0
         self.bookingId = "\(booking.id!)"
-        self.lblDistance.text = (booking.total_calculated_distance ?? "0") + " km"
+        self.lblDistance.text = (booking.total_calculated_distance ?? "0") + " \(Constants.DISTANCE_UNIT)"
         
         
         
@@ -119,7 +116,6 @@ class PayableViewController: UIViewController {
         }
         
         //        lblDistance.text = "\(distance.rounded(toPlaces: 1)) "
-        lblTotalAmount.text = "\(fare.rounded())"
         lblTotalAmountHeader.text = "\(fare.rounded())"
         lblTripFare.text = "\(fare.rounded())"
         
