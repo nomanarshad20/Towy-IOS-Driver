@@ -55,3 +55,5 @@ class LocationModel: NSObject, NSCoding {
     
     
 }
+
+

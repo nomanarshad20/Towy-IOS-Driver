@@ -38,7 +38,7 @@ open class Constants {
     public static let USER_PREFERENCES_EMAIL        = "USER_PREFERENCES_EMAIL"
     public static let USER_PREFERENCES_NAME         = "USER_PREFERENCES_NAME"
     public static let USER_PROFILE_IMAGE            = "USER_PROFILE_IMAGE"
-    public static var Currency                      = "$ "
+    public static var Currency                      = " $ "
     public static var DISTANCE_UNIT                      = "mi "
     public static let LOCATION_TIMER_DURATION_ONLINE:Double = 20
     public static let LOCATION_TIMER_DURATION_OFFLINE:Double = 100
@@ -82,9 +82,9 @@ open class Constants {
     public static let APP_KEY   = "$2y$10$nhVMfqloBOM7JeDaDP.UgO9LOJbLDcFG60BJ.mHX.XBF6RUtu8IAW";
     public static let PLACEHOLDER_URL   = "https://projects.scpr.org/static-files/_v4/images/default_avatar.png";
     public static let NO_IMAGE_URL = "https://www.hearthsidedistributors.com/site/hearthgrillsales/images/noimage.png";
-    public static let GOOGLE_APIKEY   = "AIzaSyBsdpz4AX5T6uqLxqJXUgEDtoxd0TIiJ2w";
+    public static let GOOGLE_APIKEY   = "AIzaSyBVe-9o7ukhkUBl8hhdNo150Z0eip4EFbw";
     public static let GOOGLE_CLIENT_ID   = "935000554849-gkjqopeja7nenfatqu5rfq62s0cpk0ji.apps.googleusercontent.com";
-    public static var DEFAULT_AVG_DISTANCE:Double = 12.0
+    public static var DEFAULT_AVG_DISTANCE:Double = 24
     public static var DEFAULT_LAT:Double!
     public static var DEFAULT_LONG:Double!
     public static var IS_RIDE_POPUP_VISIBLE:Bool = false

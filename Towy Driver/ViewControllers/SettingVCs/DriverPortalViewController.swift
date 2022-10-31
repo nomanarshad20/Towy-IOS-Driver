@@ -340,22 +340,22 @@ class DriverPortalViewController: UIViewController {
         self.datasoutce = PortalData.getData(dict: ["ratingsAvg":" \(portalData.ratingsAvg?.rounded(toPlaces: 2) ?? 0)","totalLoginHours": "0" ,"acceptRidesPercent":"\(portalData.acceptRidesPercent?.rounded(toPlaces: 2) ?? 0) %","percentage": percentage.rounded(toPlaces: 2)])
 
         self.collectionV.reloadData()
-        self.lblCashTripAmount.text = "\(currency) \(portalData.totalDriverCashEarnings?.rounded(toPlaces: 2) ?? 0.0)"
-        self.lblCreditTripsAmount.text = self.currency + " \(portalData.totalDriverWalletAmount?.rounded(toPlaces: 0) ?? 0)"
-        self.lblLastMonthAdjust.text = self.currency + " \(portalData.previous_total_amount?.rounded(toPlaces: 0) ?? 0)"
+        self.lblCashTripAmount.text = " \(portalData.totalDriverCashEarnings?.rounded(toPlaces: 2) ?? 0.0)"+currency
+        self.lblCreditTripsAmount.text = " \(portalData.totalDriverWalletAmount?.rounded(toPlaces: 0) ?? 0)" +  self.currency
+        self.lblLastMonthAdjust.text =  " \(portalData.previous_total_amount?.rounded(toPlaces: 0) ?? 0)"+self.currency
         self.lblNoOfTrips.text = "\(portalData.totalCompletedRides ?? 0) X"
         self.lblNoOfTripsCancelled.text = "\(portalData.totalDriverCancelRides ?? 0) X"
-        self.lblDriverCancelAmount.text = self.currency + " \(portalData.totalDriverCancelPenalty?.rounded() ?? 0.0)"
-        self.lblBouns.text = self.currency + " \(portalData.driverTotalBonus?.rounded() ?? 0.0)"
+        self.lblDriverCancelAmount.text = " \(portalData.totalDriverCancelPenalty?.rounded() ?? 0.0)"+self.currency
+        self.lblBouns.text = " \(portalData.driverTotalBonus?.rounded() ?? 0.0)"+self.currency
         self.lblNoOfPassengerCancel.text = "\(portalData.totalPassengerCancelRides ?? 0) X"
-        self.cashReceivedByHand.text = self.currency + " \(portalData.totalCashCollectedByDriver?.rounded() ?? 0)"
-        self.grandTotal.text = self.currency + " \(portalData.newSum?.rounded(toPlaces: 0) ?? 0)"
+        self.cashReceivedByHand.text = " \(portalData.totalCashCollectedByDriver?.rounded() ?? 0)"+self.currency
+        self.grandTotal.text =  " \(portalData.newSum?.rounded(toPlaces: 0) ?? 0)"+self.currency
 //        let PR = Double((portalData.newSum?.rounded(toPlaces: 0) ?? 0)-portalData.totalCashCollectedByDriver!).rounded(toPlaces: 2) + (portalData.driverTotalBonus?.rounded(toPlaces: 2))!
-        self.payableReceivable.text = self.currency + " \(portalData.final_total_amount?.rounded() ?? 0.0)"
-        self.passengerCancelAmount.text = self.currency + " \(portalData.totalDriverCancelPenalty?.rounded(toPlaces: 2) ?? 0)"
+        self.payableReceivable.text = " \(portalData.final_total_amount?.rounded() ?? 0.0)"+self.currency
+        self.passengerCancelAmount.text = " \(portalData.totalDriverCancelPenalty?.rounded(toPlaces: 2) ?? 0)"+self.currency
         if portalData.final_total_amount ?? 0 < 0 {
             self.payableReceivable.textColor = UIColor.systemRed
-            self.payableReceivable.text = self.currency + " \(portalData.final_total_amount?.rounded() ?? 0.0)"
+            self.payableReceivable.text = " \(portalData.final_total_amount?.rounded() ?? 0.0)"+self.currency
         }else{
             self.payableReceivable.textColor = UIColor.systemGreen
         }
@@ -366,10 +366,10 @@ class DriverPortalViewController: UIViewController {
             self.lblLastMonthAdjust.textColor = UIColor.systemGreen
         }
         
-        lblTax.text = "\(currency) \(portalData.totalTaxAmount?.rounded(toPlaces: 0) ?? 0.0)"
-        lblCashReceivedByPartner.text = "\(currency) \(portalData.amountPaidToDriver?.rounded(toPlaces: 0) ?? 0.0)"
-        lblCashpPaidByPartner.text = "\(currency) \(portalData.amountReceivedFromDriver?.rounded(toPlaces: 0) ?? 0.0)"
-        lblRemainings.text = "\(currency) \(portalData.remainings?.rounded(toPlaces: 0) ?? 0.0)"
+        lblTax.text = "\(portalData.totalTaxAmount?.rounded(toPlaces: 0) ?? 0.0)"+self.currency
+        lblCashReceivedByPartner.text = "\(portalData.amountPaidToDriver?.rounded(toPlaces: 0) ?? 0.0)"+self.currency
+        lblCashpPaidByPartner.text = "\(portalData.amountReceivedFromDriver?.rounded(toPlaces: 0) ?? 0.0)"+self.currency
+        lblRemainings.text = "\(portalData.remainings?.rounded(toPlaces: 0) ?? 0.0)"+self.currency
     }
     
 }

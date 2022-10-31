@@ -48,45 +48,47 @@ class UtilityManager: NSObject
             return distance / 1000.0
         }
     
-//    func p2pDistance(from: LocationModel, to: LocationModel) -> CLLocationDistance {
-//
-//        let start = CLLocation(latitude: from.lat, longitude: from.lng)
-//        let end = CLLocation(latitude: to.lat, longitude: to.lng)
-//        let distance =  start.distance(from: end)
-//        if distance < 15{
-//            return CLLocationDistance.init(0.0)
-//        }else{
-////            return distance
-//            return checkIfDistanceIsTooMuch(distance: distance, from: from, to: to) / 1000.0
-//        }
-//    }
     
-//    func checkIfDistanceIsTooMuch(distance:Double,from: LocationModel, to: LocationModel)->Double{
-//        let time = UtilityManager.manager.secondsInTimeIntervals(startTime: to.time, endTime: from.time)
-//        //before 10 sec
-//        if time <= 10 && distance <= Constants.DEFAULT_AVG_DISTANCE * time{
+    
+    func p2pDistance(from: LocationModel, to: LocationModel) -> CLLocationDistance {
+
+        let start = CLLocation(latitude: from.lat, longitude: from.lng)
+        let end = CLLocation(latitude: to.lat, longitude: to.lng)
+        let distance =  start.distance(from: end)
+        if distance < 15{
+            return CLLocationDistance.init(0.0)
+        }else{
 //            return distance
-//        }else
-//        //after 10 sec efor 20
-//        if time > 10 && distance >= Constants.DEFAULT_AVG_DISTANCE * time{
-//            return Constants.DEFAULT_AVG_DISTANCE * time
-//        }else if time <= 10 && distance >= Constants.DEFAULT_AVG_DISTANCE * time{
-//                return Constants.DEFAULT_AVG_DISTANCE * time
-//        }else{
-//            return distance
-//        }
-//    }
+            return checkIfDistanceIsTooMuch(distance: distance, from: from, to: to) / 1000.0
+        }
+    }
+    
+    func checkIfDistanceIsTooMuch(distance:Double,from: LocationModel, to: LocationModel)->Double{
+        let time = UtilityManager.manager.secondsInTimeIntervals(startTime: to.time, endTime: from.time)
+        //before 10 sec
+        if time <= 60 && distance <= Constants.DEFAULT_AVG_DISTANCE * time{
+            return distance
+        }else
+        //after 10 sec efor 20
+        if time > 60 && distance >= Constants.DEFAULT_AVG_DISTANCE * time{
+            return Constants.DEFAULT_AVG_DISTANCE * time
+        }else if time <= 60 && distance >= Constants.DEFAULT_AVG_DISTANCE * time{
+                return Constants.DEFAULT_AVG_DISTANCE * time
+        }else{
+            return distance
+        }
+    }
     
     
-//    func removeDuplicateElements(posts: [LocationModel]) -> [LocationModel] {
-//        var uniquePosts = [LocationModel]()
-//        for post in posts {
-//            if !uniquePosts.contains(where: {$0.time == post.time }) {
-//                uniquePosts.append(post)
-//            }
-//        }
-//        return uniquePosts
-//    }
+    func removeDuplicateElements(posts: [LocationModel]) -> [LocationModel] {
+        var uniquePosts = [LocationModel]()
+        for post in posts {
+            if !uniquePosts.contains(where: {$0.time == post.time }) {
+                uniquePosts.append(post)
+            }
+        }
+        return uniquePosts
+    }
     
     func saveModelInUserDefaults(key:String,data:[String:Any]?){
         do{
@@ -706,7 +708,7 @@ class UtilityManager: NSObject
     }
     func getServerDateFormatter()->DateFormatter{
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss Z"
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         return df
     }
     func getCountryCallingCode(countryRegionCode:String)->String{

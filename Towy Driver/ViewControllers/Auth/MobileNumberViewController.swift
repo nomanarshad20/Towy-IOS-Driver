@@ -49,7 +49,7 @@ class MobileNumberViewController: UIViewController {
         
         UserDefaults.standard.set(0, forKey: Constants.REGISTRATION_STATUS)
 
-        txtPhone.keyboardType = .phonePad
+        txtPhone.keyboardType = .namePhonePad
         txtEmail.keyboardType = .emailAddress
         
         btnNext.disable()

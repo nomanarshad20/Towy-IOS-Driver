@@ -116,7 +116,7 @@ class PayableViewController: UIViewController {
         }
         
         //        lblDistance.text = "\(distance.rounded(toPlaces: 1)) "
-        lblTotalAmountHeader.text = "\(fare.rounded())"
+        lblTotalAmountHeader.text = "\(fare.rounded())"+Constants.Currency
         lblTripFare.text = "\(fare.rounded())"
         
 //        lblTotalAmount.text = "\(fare.rounded())"

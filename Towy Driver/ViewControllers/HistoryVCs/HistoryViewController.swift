@@ -62,7 +62,7 @@ extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RideHistoryTableViewCell", for: indexPath) as! RideHistoryTableViewCell
         let ds = datasource[indexPath.row]
-        cell.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.ride_status_updated_at)
+        cell.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.created_at)
 
         cell.lblPrice.text = Constants.Currency + ": " + (ds.estimated_fare ?? "0")
         UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pick_up_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pick_up_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in
@@ -79,7 +79,7 @@ extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
         let cel = cell as! RideHistoryTableViewCell
         
         let ds = datasource[indexPath.row]
-        cel.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.ride_status_updated_at)
+        cel.lblDate.text =  UtilityManager.manager.getDateOfJoining(date: ds.created_at)
 
         cel.lblPrice.text = Constants.Currency + ": \(ds.estimated_fare ?? "0.0")"
         UtilityManager.manager.getAddressFromLatLong(latitude: Double(ds.pick_up_latitude ?? "0.0") ?? 0.0, longitude: Double(ds.pick_up_longitude ?? "0.0") ?? 0.0, completionHandler: { (adress) in

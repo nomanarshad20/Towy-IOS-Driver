@@ -65,7 +65,7 @@ class ChatViewController: UIViewController {
             if fcm != nil{
                 self.pasengerFcm = fcm
             }else{
-                
+                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "Oops error getting passnger fcm token.")
             }
         }
         

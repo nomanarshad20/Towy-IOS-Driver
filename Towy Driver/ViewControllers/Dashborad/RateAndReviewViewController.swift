@@ -50,8 +50,21 @@ class RateAndReviewViewController: UIViewController{
                 }
             }
         }else{
-            NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.DRIVER_RATED_THE_CUSTOMER.rawValue), object: nil, userInfo: nil)
-            self.navigationController?.popViewController(animated: true)
+            
+            RatingManager.manager.RateAndReview(params:["passenger_id":booking.passenger_id ?? 0,"rating":0,"message":txtDescription.text ?? "","booking_id":booking.id ?? 0]) { (bool, err) in
+                if bool{
+                    DispatchQueue.main.async {
+                        self.delegate.didRatePassenger()
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }else{
+                    UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: err ?? "something went wrong")
+                }
+            }
+            
+            
+//            NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.DRIVER_RATED_THE_CUSTOMER.rawValue), object: nil, userInfo: nil)
+//            self.navigationController?.popViewController(animated: true)
 //            UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: Constants.RATE_FIRST)
         }
         

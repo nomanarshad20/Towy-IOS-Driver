@@ -18,7 +18,7 @@ class RideDetailsViewController: UIViewController {
     @IBOutlet weak var lblPaymentType: UILabel!
     @IBOutlet weak var lblTax: UILabel!
     @IBOutlet weak var lblDistance: UILabel!
-//     @IBOutlet weak var lblTime: UILabel!
+     @IBOutlet weak var lblTime: UILabel!
     
     var trip:Trip!
     
@@ -43,7 +43,8 @@ class RideDetailsViewController: UIViewController {
         self.lblTax.text = currency + "0"
         self.lblDistance.text = "\(trip.total_distance ?? "0") : \(Constants.DISTANCE_UNIT)"
 
-//        self.lblTime.text = "\(trip.ride_complete_time ?? "0")"
+        
+        self.lblTime.text = UtilityManager.manager.getDateOfJoining(date: trip.created_at)
 
         
     }

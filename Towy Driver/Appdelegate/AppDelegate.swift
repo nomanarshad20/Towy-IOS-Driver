@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isExiting = false
     let socket = SocketIOManager.sharedInstance.socket
     var locationManager = CLLocationManager()
-
+    var location:CLLocationCoordinate2D? = nil
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -36,11 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerForRemoteNotification()
 //        window!.overrideUserInterfaceStyle = .light
         
+        locationManagerInitilize()
         LocationManager.shared.requestLocationAuthorization()
         
         return true
     }
 
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
+    {
+        return UIInterfaceOrientationMask.portrait
+    }
 
     func registerForRemoteNotification() {
             if #available(iOS 10.0, *) {
@@ -71,15 +76,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        locationManagerInitilize()
-        setupGetificationInHome(manager: locationManager)
         SocketIOManager.sharedInstance.closeConnection()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
 
         NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.APP_BECOME_ACTIVE.rawValue), object: nil)
-        stopMonitoringInHome()
+       
         UIApplication.shared.applicationIconBadgeNumber = 0
         SocketIOManager.sharedInstance.establishConnection()
     }
@@ -398,7 +401,9 @@ extension AppDelegate:CLLocationManagerDelegate{
             return}
         Constants.DEFAULT_LAT = currentLocation.coordinate.latitude
         Constants.DEFAULT_LONG = currentLocation.coordinate.longitude
+        self.location = currentLocation.coordinate
         emitLocation(location: currentLocation)
+        DriverLocationManager.manager.updateLocalLocation(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude, bearing: "0.0")
         self.locationManager.stopUpdatingLocation()
         
     }
@@ -499,9 +504,9 @@ extension AppDelegate:CLLocationManagerDelegate{
         stopMonitoringInHome()
         
         let state : UIApplication.State = UIApplication.shared.applicationState
-        if  UtilityManager.manager.getDriverStatus() == 2 && state != .active{
+        if  UtilityManager.manager.getDriverStatus() == 2{
             
-            let coordinate = CLLocationCoordinate2D.init(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG)
+            let coordinate = CLLocationCoordinate2D.init(latitude: location?.latitude ?? Constants.DEFAULT_LAT, longitude: location?.longitude ?? Constants.DEFAULT_LONG)
             let radius = Constants.radius
             let identifier = "InHome1"
             let note = "Stay safe"
@@ -620,7 +625,7 @@ extension AppDelegate:CLLocationManagerDelegate{
         
 //        socket?.emit("point-to-point-tracking", locationDict)
         socket?.emit("point-to-point-tracking", locationDict, completion: {
-            self.handleEventForFailApiCall(apiName: "Data Added from back ground service.")
+            self.handleEventForFailApiCall(apiName: "Location updated from background service.")
         })
        
 

@@ -41,8 +41,9 @@ class CustomSplashViewController: UIViewController {
 //                        let vc = story.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
 //                        //                    let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
 //
-//                        //                    let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
-//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "CityNameViewController") as! CityNameViewController
+//                    vc.user = User()
+//                    self.navigationController?.pushViewController(vc, animated: true)
 //                    }else{
 //                        let story = UtilityManager.manager.getAuthStoryboard()
 //                        let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController

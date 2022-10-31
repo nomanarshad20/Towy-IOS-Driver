@@ -60,7 +60,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     var driverMarker = GMSMarker()
     var booking : BookingInfo? = nil{
         didSet{
-            UtilityManager.manager.saveModelInUserDefaults(key: Constants.SCHEDUAL_RIDE, data: BookingInfo.getBookinDict(r: booking ?? BookingInfo.init()))
+            UtilityManager.manager.saveModelInUserDefaults(key: Constants.CURRENT_RIDE, data: BookingInfo.getBookinDict(r: booking ?? BookingInfo.init()))
         }
     }
     var locationManager = CLLocationManager()
@@ -110,7 +110,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         NotificationCenter.default.addObserver(self, selector: #selector(self.rideCancelByDriver), name:NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue) , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.appBecomeActive), name:NSNotification.Name(Constants.NotificationObservers.APP_BECOME_ACTIVE.rawValue) , object: nil)
 
-        
+        checkLocationPermission()
+
+        checkDriverStatus()
        
     }
     
@@ -120,8 +122,6 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         if mode == .lowPower{
             openLocationSettingsForLowPower()
         }
-        checkLocationPermission()
-        checkDriverStatus()
     }
     
     
@@ -252,16 +252,13 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
 
     }
     
-    func emitRideStatus(status:Int){
-        
-//        "lat":"31.508589373410803","lng":"74.32253116023432"
-        
+    func emitRideStatus(status:Int,finalDistance:Double? = nil,initialDistance:Double? = nil){
         
         if Constants.DEFAULT_LAT != nil && Constants.DEFAULT_LONG != nil{
             var rideDict:[String:Any]  = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
             
             if status == 3{
-                rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"total_distance":"0","mobile_final_distance":"0","mobile_initial_distance":"0","lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
+                rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"total_distance":finalDistance ?? 0.0,"mobile_final_distance":finalDistance ?? 0.0,"mobile_initial_distance":initialDistance ?? 0.0,"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
             }
             
             SHOW_CUSTOM_LOADER()
@@ -297,7 +294,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     
     @objc func appBecomeActive(){
-        
+        checkDriverStatus()
         viewWillAppear(false)
     }
     
@@ -376,7 +373,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         self.drawPolyline(CurrentCoordinate: CLLocationCoordinate2D(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG), destinationcordinate: CLLocationCoordinate2D.init(latitude: Double(self.booking!.pick_up_latitude!) ?? 0.0, longitude: Double(self.booking!.pick_up_longitude!) ?? 0.0))
         
         setDestination(coordinates: CLLocationCoordinate2D.init(latitude: Double(self.booking!.pick_up_latitude!) ?? 0.0, longitude: Double(self.booking!.pick_up_longitude!) ?? 0.0))
-        
+        AppDelegate().setupGetificationInHome(manager: locationManager)
     }
     
     
@@ -562,17 +559,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     @IBAction func endServiceBtnTapped(_ sender:UIButton){
         
-        
-        
-        
-        if socket?.status == .connected{
-            self.emitRideStatus(status: 3)
-        }else{
-            SocketIOManager.sharedInstance.establishConnection()
-            self.emitRideStatus(status: 3)
-        }
-        
-       
+     moveToPayable()
         
     }
     
@@ -728,6 +715,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             self.viewMeetAtBottomConstraint.constant = -100
 //            self.viewTimerBottomConstraint.constant = -100
             stopTimerLocation()
+            AppDelegate().stopMonitoringInHome()
             SocketIOManager.sharedInstance.closeConnection()
             
         case 1:
@@ -738,13 +726,14 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             self.btnNavigation.isHidden = true
             self.viewMeetAtBottomConstraint.constant = -100
             self.observeDriverLocation()
+            AppDelegate().stopMonitoringInHome()
             
 
         case 2:
 
             self.btnStatus.setImage(UIImage.init(named: "onRide"), for: .normal)
             getRideStatus()
-            self.observeDriverLocation()
+//            self.observeDriverLocation()
 //        case 3:
 //            DriverStatusManager.manager.UpdateStatus(status: 1) { [self] res, message in
 //                HIDE_CUSTOM_LOADER()
@@ -760,13 +749,14 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     
     func getRideStatus(){
-        
+        SHOW_CUSTOM_LOADER()
         if booking != nil{
             UserDefaults.standard.set(booking!.id, forKey: "booking_id")
             lblCustomerName.text = booking?.passenger_first_name ?? "Customer Name"
             switch booking?.driver_status{
             case Constants.RideDriverStatus.ON_THE_WAY.rawValue:
                 //UISETP
+
                 isToDropOff = false
                 viewMeetAt.isHidden = false
                 self.viewMeetAtBottomConstraint.constant = -20
@@ -777,9 +767,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 viewRequest.isHidden = false
                 
                 setDestination(coordinates: CLLocationCoordinate2D.init(latitude: Double(self.booking!.pick_up_latitude!) ?? 0.0, longitude: Double(self.booking!.pick_up_longitude!) ?? 0.0))
-                
-                self.drawPolyline(CurrentCoordinate: CLLocationCoordinate2D(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG), destinationcordinate: CLLocationCoordinate2D.init(latitude: Double(self.booking!.pick_up_latitude!) ?? 0.0, longitude: Double(self.booking!.pick_up_longitude!) ?? 0.0))
-                
+                if Constants.DEFAULT_LAT != nil{
+                    self.drawPolyline(CurrentCoordinate: CLLocationCoordinate2D(latitude: Constants.DEFAULT_LAT, longitude: Constants.DEFAULT_LONG), destinationcordinate: CLLocationCoordinate2D.init(latitude: Double(self.booking!.pick_up_latitude!) ?? 0.0, longitude: Double(self.booking!.pick_up_longitude!) ?? 0.0))}
+                HIDE_CUSTOM_LOADER()
                 
             case Constants.RideDriverStatus.REACH_PICKUP.rawValue:
                 
@@ -804,7 +794,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                         
                     }
                 }
-                
+                HIDE_CUSTOM_LOADER()
                 
                 
             case Constants.RideDriverStatus.START.rawValue:
@@ -836,9 +826,11 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                     
                     
                 }
+                HIDE_CUSTOM_LOADER()
+                
             case Constants.RideDriverStatus.COMPLETED.rawValue:
                 //UISETP
-                print("")
+                AppDelegate().stopMonitoringInHome()
                 if self.booking?.is_driver_rating_given  ?? 0 == 0{
                     let vc = storyboard?.instantiateViewController(withIdentifier: "PayableViewController") as! PayableViewController
                     vc.booking = self.booking
@@ -846,12 +838,14 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                     vc.delegate = self
                     self.present(vc, animated: true)
                 }
-                
+                HIDE_CUSTOM_LOADER()
             case Constants.RideDriverStatus.FARE_COLLECTED.rawValue:
                 //UISETP
+                AppDelegate().stopMonitoringInHome()
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateAndReviewViewController") as! RateAndReviewViewController
                 vc.booking = self.booking
                 vc.delegate = self
+                HIDE_CUSTOM_LOADER()
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 print("")
@@ -865,6 +859,110 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         waitingTime! += 1
         lblWaitingTime.isHidden = false
         lblWaitingTime.text = "Waiting Time : " + timeString(time: TimeInterval(waitingTime!))
+    }
+    
+    
+    func moveToPayable(){
+        
+        var afterStart:Double =  0
+        var beforeStart:Double =  0
+        var watingTime:Double =  0
+        var totalDistance:Double = 0
+        
+        var locations = RideManager.manager.getPreviousLocations(sorted: true)
+        if locations != []{
+            locations = UtilityManager.manager.removeDuplicateElements(posts: locations)
+            for i in 0..<locations.count-1{
+                let obj = locations[i]
+                let obj1 = locations[i+1]
+//                let start:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: obj.lat, longitude: obj.lng)
+//                let end:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: obj1.lat, longitude: obj1.lng)
+                let distance = UtilityManager.manager.p2pDistance(from: obj, to: obj1)
+                switch obj.driver_status {
+                case 0:
+                    totalDistance += distance
+                    beforeStart += distance
+                case 1:
+                    totalDistance += distance
+                    watingTime += distance
+                case 2:
+                    totalDistance += distance
+                    afterStart += distance
+                default:
+                    print("")
+                }
+            }
+        }
+        
+        if UtilityManager.manager.getFareFromUSD() != nil{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PayableViewController") as! PayableViewController
+            vc.delegate = self
+            vc.fare = UtilityManager.manager.getFareFromUSD() ?? 0.0
+            vc.distance = UtilityManager.manager.getDistnaceFromUSD() ?? 0.0
+            vc.totaldistance = totalDistance
+            vc.time = UtilityManager.manager.getTimeFromUSD() ?? "00:00"
+            vc.des = UtilityManager.manager.getDescriptionFromUSD() ?? ""
+            vc.bookingId = UtilityManager.manager.getBookingIdFromUSD() ?? ""
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }else{
+            
+            let b = UtilityManager.manager.getModelFromUserDefalts(key: Constants.CURRENT_RIDE)
+            if let booking_Id =  b?["id"] as? Double {
+                
+                
+//                let params = ["booking_id":"\(booking_Id)","driver_status":3,"ride_locations": [
+//                    "coordinates": [],
+//                    "total_distance_after_started": afterStart,
+//                    "total_distance_before_reached": beforeStart,
+//                    "total_distance_during_wait": watingTime,
+//                    "total_distance_traveled": totalDistance
+//                ]] as [String : Any]
+//                
+//                let data =  ["total_distance":totalDistance,"mobile_final_distance":totalDistance,"mobile_initial_distance":beforeStart]
+//                
+                
+                
+                if socket?.status == .connected{
+                    self.emitRideStatus(status: 3,finalDistance: totalDistance,initialDistance: beforeStart)
+                }else{
+                    SocketIOManager.sharedInstance.establishConnection()
+                    self.emitRideStatus(status: 3,finalDistance: totalDistance,initialDistance: beforeStart)
+
+                }
+                
+                
+                //                ,"total_distance_after_started":afterStart,"total_distance_before_reached":beforeStart,"total_distance_during_wait":watingTime,"total_distance_traveled":totalDistance
+//                RideManager.manager.getFinalFare(params:params) { (data, err) in
+//                    if err == nil{
+//                        if self.apiTimer != nil{
+//                            self.apiTimer?.invalidate()
+//                            self.apiTimer = nil
+//                        }
+//                        let bookingInfo = data?["bookingInfo"] as? [String:Any]
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "PayableViewController") as! PayableViewController
+//                        vc.delegate = self
+//                        let amountData = data?["amountData"] as? [String:Any]
+//                        vc.fare = amountData?["rideFinalAmount"] as? Double ?? 0.0
+//                        vc.distance = amountData?["rideFinalDistance"] as? Double ?? 0.0
+//                        vc.time = amountData?["rideFinalTime"] as? String ?? "00:00"
+//                        vc.des = amountData?["rideDescription"] as? String ?? ""
+//                        vc.bookingId = bookingInfo?["booking_unique_id"] as? String ?? ""
+//                        UtilityManager.manager.saveBookingIdInUSD(fare:bookingInfo?["booking_unique_id"] as? String ?? "")
+//                        UtilityManager.manager.saveDescriptionInUSD(fare:amountData?["rideDescription"] as? String ?? "")
+//                        UtilityManager.manager.saveFareInUSD(fare:amountData?["rideFinalAmount"] as? Double ?? 0.0)
+//                        UtilityManager.manager.saveDistanceInUSD(fare:amountData?["rideFinalDistance"] as? Double ?? 0.0)
+//                        UtilityManager.manager.saveTimeInUSD(fare:amountData?["rideFinalTime"] as? String ?? "00:00")
+//                        vc.totaldistance = totalDistance
+//                        vc.modalPresentationStyle = .fullScreen
+//                        self.present(vc, animated: true, completion: nil)
+//                    }else{
+//                        UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: err ?? "something went wrong.")
+//                    }
+//                }
+            }
+        }
+        
     }
     
     
@@ -995,8 +1093,11 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 polyLine.map = self.mapView
                 self.setCarMarker()
                 let cameraUpdate = GMSCameraUpdate.fit(GMSCoordinateBounds(coordinate: CurrentCoordinate, coordinate: destinationcordinate))
-                self.mapView.moveCamera(cameraUpdate)
-//                self.mapView.animate(toZoom: self.zoomLevel)
+                DispatchQueue.main.async {
+                    self.mapView.moveCamera(cameraUpdate)
+                    let currentZoom = self.mapView.camera.zoom
+                    self.mapView.animate(toZoom: currentZoom - 1.4)
+                }
                 
                 
             }
@@ -1066,13 +1167,6 @@ extension DashBoardViewController:UITableViewDataSource,UITableViewDelegate{
 extension DashBoardViewController:RatingDelegate{
     func didRatePassenger() {
         
-        if socket?.status == .connected{
-            self.emitRideStatus(status: 4)
-        }else{
-            SocketIOManager.sharedInstance.establishConnection()
-            self.emitRideStatus(status: 4)
-        }
-        
         checkDriverStatus()
         self.mapView.clear()
         self.setCarMarker()
@@ -1088,13 +1182,8 @@ extension DashBoardViewController:RideCompletionDelegate{
     
     func didFinishRide() {
         SHOW_CUSTOM_LOADER()
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            HIDE_CUSTOM_LOADER()
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RateAndReviewViewController") as! RateAndReviewViewController
-            vc.booking = self.booking
-            vc.delegate = self
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        self.emitRideStatus(status: 4)
+        HIDE_CUSTOM_LOADER()
     }
     
     func didCancel() {

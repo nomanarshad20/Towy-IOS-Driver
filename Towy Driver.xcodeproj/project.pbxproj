@@ -51,7 +51,7 @@
 		520B2F0928910A9700361F86 /* TrucksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520B2F0828910A9700361F86 /* TrucksManager.swift */; };
 		5211418128D2578400EC57BD /* PayableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211418028D2578400EC57BD /* PayableViewController.swift */; };
 		5228FD1A28D7A3040050CDCF /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228FD1928D7A3040050CDCF /* Geotification.swift */; };
-		5233E29E28819BBD00F93FFC /* DhoongiGround.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */; };
+		5233E29E28819BBD00F93FFC /* stadium.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5233E29C28819BBD00F93FFC /* stadium.gpx */; };
 		5233E29F28819BBD00F93FFC /* Home.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5233E29D28819BBD00F93FFC /* Home.gpx */; };
 		5239883628A81D2800CC1034 /* RateAndReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239883528A81D2800CC1034 /* RateAndReviewViewController.swift */; };
 		523D6E2A2861F364006F8117 /* AllExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D6E292861F364006F8117 /* AllExtensions.swift */; };
@@ -136,6 +136,9 @@
 		52D3A61528D5D05F001B7CEB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3A61428D5D05F001B7CEB /* SettingViewController.swift */; };
 		52D3A61728D65595001B7CEB /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3A61628D65595001B7CEB /* HelpViewController.swift */; };
 		52D3A61928D66632001B7CEB /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3A61828D66632001B7CEB /* MapsViewController.swift */; };
+		52DB5ABB28F759A000A97160 /* selectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB5ABA28F759A000A97160 /* selectLocationVC.swift */; };
+		52DB5ABE28F761B800A97160 /* PlacesTBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52DB5ABC28F761B700A97160 /* PlacesTBCell.xib */; };
+		52DB5ABF28F761B800A97160 /* PlacesTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB5ABD28F761B800A97160 /* PlacesTBCell.swift */; };
 		52EE2ABA2893F21200D8C2FF /* Truck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE2AB92893F21200D8C2FF /* Truck.swift */; };
 		52FDC7C328638C260075952C /* TruckTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDC7C128638C260075952C /* TruckTypeTableViewCell.swift */; };
 		52FDC7C428638C260075952C /* TruckTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FDC7C228638C260075952C /* TruckTypeTableViewCell.xib */; };
@@ -206,9 +209,9 @@
 		5204795B2887EA4B006B6268 /* DeviceConfigeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceConfigeration.swift; sourceTree = "<group>"; };
 		520B2F0828910A9700361F86 /* TrucksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrucksManager.swift; sourceTree = "<group>"; };
 		5211418028D2578400EC57BD /* PayableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayableViewController.swift; sourceTree = "<group>"; };
-		521D167F28E185AF0004A6F8 /* QilaAhmadabad.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = QilaAhmadabad.gpx; sourceTree = "<group>"; };
+		521D167F28E185AF0004A6F8 /* office.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = office.gpx; sourceTree = "<group>"; };
 		5228FD1928D7A3040050CDCF /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
-		5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DhoongiGround.gpx; sourceTree = "<group>"; };
+		5233E29C28819BBD00F93FFC /* stadium.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = stadium.gpx; sourceTree = "<group>"; };
 		5233E29D28819BBD00F93FFC /* Home.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Home.gpx; sourceTree = "<group>"; };
 		5239883528A81D2800CC1034 /* RateAndReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateAndReviewViewController.swift; sourceTree = "<group>"; };
 		523D6E292861F364006F8117 /* AllExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllExtensions.swift; sourceTree = "<group>"; };
@@ -298,6 +301,9 @@
 		52D3A61428D5D05F001B7CEB /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		52D3A61628D65595001B7CEB /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		52D3A61828D66632001B7CEB /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		52DB5ABA28F759A000A97160 /* selectLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = selectLocationVC.swift; sourceTree = "<group>"; };
+		52DB5ABC28F761B700A97160 /* PlacesTBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacesTBCell.xib; sourceTree = "<group>"; };
+		52DB5ABD28F761B800A97160 /* PlacesTBCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTBCell.swift; sourceTree = "<group>"; };
 		52EE2AB92893F21200D8C2FF /* Truck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truck.swift; sourceTree = "<group>"; };
 		52FDC7C128638C260075952C /* TruckTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckTypeTableViewCell.swift; sourceTree = "<group>"; };
 		52FDC7C228638C260075952C /* TruckTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TruckTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -415,9 +421,9 @@
 			children = (
 				528B9DA828C5293400E168DE /* Towy Driver.entitlements */,
 				5204790E2887E654006B6268 /* Webservices */,
-				5233E29C28819BBD00F93FFC /* DhoongiGround.gpx */,
+				5233E29C28819BBD00F93FFC /* stadium.gpx */,
 				5233E29D28819BBD00F93FFC /* Home.gpx */,
-				521D167F28E185AF0004A6F8 /* QilaAhmadabad.gpx */,
+				521D167F28E185AF0004A6F8 /* office.gpx */,
 				52FDC7C52863A1C30075952C /* Models */,
 				528305E0285F89E400D854A7 /* Fonts */,
 				528305DF285F89C300D854A7 /* Appdelegate */,
@@ -476,6 +482,8 @@
 		528305DB285F894900D854A7 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				52DB5ABD28F761B800A97160 /* PlacesTBCell.swift */,
+				52DB5ABC28F761B700A97160 /* PlacesTBCell.xib */,
 				528D125828B618B3001A1F68 /* ProfileTableViewCell.swift */,
 				528D125628B618A1001A1F68 /* ProfileTableViewCell.xib */,
 				528D125028B602BF001A1F68 /* CaptainProtalCollectionViewCell.swift */,
@@ -555,6 +563,7 @@
 		528305E1285F8A2100D854A7 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				52DB5ABA28F759A000A97160 /* selectLocationVC.swift */,
 				5266422C28605E6100167A6A /* CustomSplashViewController.swift */,
 				5266422E286063B300167A6A /* WelcomeViewController.swift */,
 				52664230286063D300167A6A /* MobileNumberViewController.swift */,
@@ -789,10 +798,11 @@
 				5262473F28A6FF1E00264E92 /* MenuTableViewCell.xib in Resources */,
 				52B69CE5286A13DE00BC2FA4 /* UberMoveTextMedium.otf in Resources */,
 				52FDC7C428638C260075952C /* TruckTypeTableViewCell.xib in Resources */,
+				52DB5ABE28F761B800A97160 /* PlacesTBCell.xib in Resources */,
 				52B69CE6286A13DE00BC2FA4 /* UberMoveTextBold.otf in Resources */,
 				528D125728B618A1001A1F68 /* ProfileTableViewCell.xib in Resources */,
 				52C76DC7288026CE00360706 /* InspectionTableViewCell.xib in Resources */,
-				5233E29E28819BBD00F93FFC /* DhoongiGround.gpx in Resources */,
+				5233E29E28819BBD00F93FFC /* stadium.gpx in Resources */,
 				528B9DAF28C73AC500E168DE /* TextWithCheckboxTableViewCell.xib in Resources */,
 				52B69CE4286A13DE00BC2FA4 /* UberMoveTextRegular.otf in Resources */,
 				52C5E7C728A043C400EFD6CF /* ReceiverTableViewCell.xib in Resources */,
@@ -951,6 +961,7 @@
 				5204794F2887E9FA006B6268 /* MenuModel.swift in Sources */,
 				5244A4D9287563C900016BC7 /* ReferralCodeViewController.swift in Sources */,
 				5266424328606FA200167A6A /* VehicleRegistrationBookViewController.swift in Sources */,
+				52DB5ABB28F759A000A97160 /* selectLocationVC.swift in Sources */,
 				520479522887E9FA006B6268 /* NewRideModel.swift in Sources */,
 				52C5E7D428A049FF00EFD6CF /* TransactionHistoryViewController.swift in Sources */,
 				5228FD1A28D7A3040050CDCF /* Geotification.swift in Sources */,
@@ -1005,6 +1016,7 @@
 				52D3A61728D65595001B7CEB /* HelpViewController.swift in Sources */,
 				52664235286063F400167A6A /* PasswordViewController.swift in Sources */,
 				526642372860642300167A6A /* DriverDetailsViewController.swift in Sources */,
+				52DB5ABF28F761B800A97160 /* PlacesTBCell.swift in Sources */,
 				5204795C2887EA4B006B6268 /* DeviceConfigeration.swift in Sources */,
 				5204792F2887E807006B6268 /* LeadgerManager.swift in Sources */,
 				52FDC7C92863A2950075952C /* DocumentAddViewController.swift in Sources */,
@@ -1188,7 +1200,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Towy Driver/Towy Driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4769DJ9MMA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Towy Driver/Info.plist";
@@ -1203,6 +1215,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1225,7 +1238,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Towy Driver/Towy Driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 4769DJ9MMA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Towy Driver/Info.plist";
@@ -1240,6 +1253,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

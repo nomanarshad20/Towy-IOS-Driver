@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="UberMoveTextMedium.otf">
+            <string>UberMoveText-Medium</string>
+        </array>
+        <array key="UberMoveTextRegular.otf">
+            <string>UberMoveText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="PlacesTBCell" customModule="Towy_Driver" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="397" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IV3-rL-Mzs">
+                        <rect key="frame" x="0.0" y="0.0" width="397" height="64"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gV-6e-PP3">
+                                <rect key="frame" x="55" y="24" width="327" height="16"/>
+                                <fontDescription key="fontDescription" name="UberMoveText-Medium" family="Uber Move Text" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nkd-yf-KDc">
+                                <rect key="frame" x="20" y="17.5" width="30" height="29"/>
+                                <color key="tintColor" red="0.83529411760000005" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6ES-2h-5Sc"/>
+                                    <constraint firstAttribute="width" constant="30" id="pUd-tB-fJb"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrs-Uz-DB5">
+                                <rect key="frame" x="55" y="45" width="327" height="13.5"/>
+                                <fontDescription key="fontDescription" name="UberMoveText-Regular" family="Uber Move Text" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nrs-Uz-DB5" firstAttribute="trailing" secondItem="9gV-6e-PP3" secondAttribute="trailing" id="K8B-Vu-zW1"/>
+                            <constraint firstItem="nrs-Uz-DB5" firstAttribute="top" secondItem="9gV-6e-PP3" secondAttribute="bottom" constant="5" id="MIC-P7-bbn"/>
+                            <constraint firstItem="nkd-yf-KDc" firstAttribute="leading" secondItem="IV3-rL-Mzs" secondAttribute="leading" constant="20" id="OQJ-yi-89K"/>
+                            <constraint firstItem="9gV-6e-PP3" firstAttribute="leading" secondItem="nkd-yf-KDc" secondAttribute="trailing" constant="5" id="X4Y-5X-IkW"/>
+                            <constraint firstItem="nrs-Uz-DB5" firstAttribute="leading" secondItem="9gV-6e-PP3" secondAttribute="leading" id="YGy-Ev-ueY"/>
+                            <constraint firstAttribute="trailing" secondItem="9gV-6e-PP3" secondAttribute="trailing" constant="15" id="ZV9-vw-h7T"/>
+                            <constraint firstItem="nkd-yf-KDc" firstAttribute="centerY" secondItem="IV3-rL-Mzs" secondAttribute="centerY" id="wFw-06-FfS"/>
+                            <constraint firstItem="9gV-6e-PP3" firstAttribute="centerY" secondItem="IV3-rL-Mzs" secondAttribute="centerY" id="xeM-Ku-11N"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="IV3-rL-Mzs" secondAttribute="bottom" id="3h9-lq-gfX"/>
+                    <constraint firstItem="IV3-rL-Mzs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MWd-MO-yn1"/>
+                    <constraint firstAttribute="trailing" secondItem="IV3-rL-Mzs" secondAttribute="trailing" id="VAR-kj-ORt"/>
+                    <constraint firstItem="IV3-rL-Mzs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="x3D-XZ-n6u"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblSubTitle" destination="nrs-Uz-DB5" id="0RU-ZZ-4VV"/>
+                <outlet property="lblTitle" destination="9gV-6e-PP3" id="zA4-B3-Nbm"/>
+            </connections>
+            <point key="canvasLocation" x="193.47826086956522" y="84.375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

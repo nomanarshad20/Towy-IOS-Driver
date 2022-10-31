@@ -74,6 +74,8 @@ class NewRideRequestViewController: UIViewController {
     override func viewDidLoad() {
         
 
+        ref = Database.database().reference()
+        
         
         if bookingInfo != nil{
             lblCustomerName.text = bookingInfo.passenger_name
@@ -375,40 +377,38 @@ class NewRideRequestViewController: UIViewController {
 
             }
         }else{
-//            Constants.IS_RIDE_POPUP_VISIBLE = false
-            if socket?.status == .connected{
-                socket?.emit("accept-reject-ride", params)
-                
-            }else{
-//                if socket?.status == .disconnected{
-                    SocketIOManager.sharedInstance.establishConnection()
-                    socket?.emit("accept-reject-ride", params)
-                }
-//                UtilityManager.manager.showAlert(self, message: "Oops socket is discunnected", title: Constants.APP_NAME)
-//            }
-        }
-//        }else{
-//            SHOW_CUSTOM_LOADER()
+            
 //            RideManager.manager.sendNotificationToUser(params: params) { (dict, err) in
 //                HIDE_CUSTOM_LOADER()
 //                if err == nil && dict != nil{
-//                    UtilityManager.manager.saveDriverStatus(status: 2)
-//                    Constants.IS_RIDE_POPUP_VISIBLE = false
-//                    self.bookingInfo = NewRide.getRideInfo(dict: dict?["bookingInfo"] as! [String : Any])
-//                    NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.bookingInfo)
-//                    let fcm = UtilityManager.manager.getFcmToken()
-//
-//                    self.ref.child("\(self.bookingInfo.booking_id ?? 343445345)").child("fcm").child("fcm2").setValue(fcm) { err, reffer in
-//                        self.dismiss(animated: false, completion: nil)
-//                    }
-//
+                    let fcm = UtilityManager.manager.getFcmToken()
+                    
+                    self.ref.child("\(self.noti?.booking?.id ?? 343445345)").child("fcm").child("fcm2").setValue(fcm) { [self] err, reffer in
+                        
+                        if socket?.status == .connected{
+                            socket?.emit("accept-reject-ride", params)
+                            
+                        }else{
+                            //                if socket?.status == .disconnected{
+                            SocketIOManager.sharedInstance.establishConnection()
+                            socket?.emit("accept-reject-ride", params)
+                        }
+                        
+                    }
+                    
 //                }else{
-//                    Constants.IS_RIDE_POPUP_VISIBLE = false
 //                    self.dismiss(animated: false, completion: nil)
 //                }
+            }
+        }
+//            Constants.IS_RIDE_POPUP_VISIBLE = false
+           
+//                UtilityManager.manager.showAlert(self, message: "Oops socket is discunnected", title: Constants.APP_NAME)
 //            }
-//        }
-    }
+        
+//        }else{
+//            SHOW_CUSTOM_LOADER()
+//    }
     
     func schedualRide(params:[String:Any]){
         if !isAccepted{

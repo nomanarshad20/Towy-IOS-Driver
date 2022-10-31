@@ -44,23 +44,18 @@ class DriverLocationManager{
 
     }
     
-    func updateLocalLocation(lat:Double,lng:Double,bearing:String? = "0.0",completion:@escaping ()-> Void){
+    func updateLocalLocation(lat:Double,lng:Double,bearing:String? = "0.0"){
 
         if UtilityManager.manager.getDriverStatus() == 2{
             if let bookinginfo = UtilityManager.manager.getModelFromUserDefalts(key: Constants.CURRENT_RIDE){
-                let bookingModel = NewRide.getRideInfo(dict: bookinginfo)
-                if bookingModel.driver_status != 3{
-                    RideManager.manager.saveLocations(locations: LocationModel(booking_id: (bookingModel.booking_id)!, driver_status: (bookingModel.driver_status) ?? 0, lat: lat , lng: lng , speed: 0, time: Int(Date().timeIntervalSince1970)))
-                    Database.database().reference().child("\(bookingModel.booking_id!)").child("tracking").setValue(["lat":lat,"lng":lng,"bearing":bearing!])
-                    completion()
-                }else{
-                    completion()
+                let bookingModel = BookingInfo.getRideInfo(dict: bookinginfo)
+                if bookingModel.driver_status != 3 || bookingModel.driver_status != 4{
+                    RideManager.manager.saveLocations(locations: LocationModel(booking_id: (bookingModel.id)!, driver_status: (bookingModel.driver_status) ?? 0, lat: lat , lng: lng , speed: 0, time: Int(Date().timeIntervalSince1970)))
+//                    Database.database().reference().child("\(bookingModel.booking_id!)").child("tracking").setValue(["lat":lat,"lng":lng,"bearing":bearing!])
                 }
 
-            }else{
-                completion()
             }
         }
-        completion()
+        
     }
 }
