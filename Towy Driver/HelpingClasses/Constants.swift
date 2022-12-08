@@ -53,12 +53,23 @@ open class Constants {
     //--------------------------- TEST SERVER LINK------------------------//
     //
     
-    
+//    Public URL
     public static let HTTP_CONNECTION_ROOT          =  "http://54.183.143.65/api/"
+    public static let SOCKET_ROOT                   = "http://54.183.143.65:8081"
     public static let HTTP_CONNECTION_ROOT_ASSETS   = "http://54.183.143.65/"
+
+
+//    client URL
+//    public static let HTTP_CONNECTION_ROOT          = "http://52.52.244.89/api/"
+//    public static let SOCKET_ROOT                   = "http://52.52.244.89:8081"
+//    public static let HTTP_CONNECTION_ROOT_ASSETS   = "http://52.52.244.89/"
+
+
+    
+    
     public static let ASSETS_BASE_URL               = "http://13.213.132.157/"
     
-    public static let SOCKET_ROOT = "http://54.183.143.65:8081"
+
     
     
     
@@ -139,6 +150,7 @@ open class Constants {
     public static let SERVER_VEHICLE_MODEL      = "vehicle_model";
     public static let SERVER_VEHICLE_MODEL_YEAR = "vehicle_model_year";
     public static let GET_HELP_DATA             = "getPageData";
+    public static let GET_HELP_DATA_WEB             = "driver-help"
     
     public static let SERVER_ACCESS_TOKEN       = "accessToken";
     public static let SERVER_USER_SID           = "id";
@@ -194,6 +206,7 @@ open class Constants {
         case NEW_RIDE_REQUEST           = "11"
         case RIDE_CANCELED              = "14";
         case SCHEDULE_RIDE              = "7";
+        case SERVICE_REQUEST            = "13";
         case LOGOUT_USER                = "8";
         case OFFLINE_PARTNER            = "15";
         case RIDE_CANCEL_ON_RECEIVE     = "10";
@@ -241,6 +254,8 @@ open class Constants {
     // --------------------                 End Points                ----------------------------
     // ------------------------------------------------------------------------------------
     
+    
+    public static let RESEND_APPROVAL_REQUEST       = "resend-approval-request"
     public static let DRIVER_REGISTERATION          = "driver-register"
     public static let ALL_FRANCHISES                = "franchisesAll"
     public static let SEND_SSN                      = "driver-save-social-security-number?ssn="
@@ -278,6 +293,8 @@ open class Constants {
     public static let UPDATE_USER_TYPE              = "save-user-type?user_type="
     public static let GET_VEHICLE_TYPE              = "driver-get-vehicle-types"
     public static let SAVE_VEHICLE_TYPE             =  "driver-save-vehicle-type?"
+    public static let GET_SERVICES_LIST             = "services-list"
+    public static let SAVE_SERVICES_LIST             = "save-driver-service"
     
     // ------------------------------------------------------------------------------------
     // --------------------                 Alert Messages                ----------------------------
@@ -359,6 +376,7 @@ open class Constants {
         
         case RIDE_COMPLETED             = "ride_Completed";
         case DRIVER_RATED_THE_CUSTOMER    = "reting_Completed";
+        case NEW_SERVICE_ADDED           = "newServiceAdded";
         case RIDE_CANCEL_BY_DRIVER      = "ride_Cancelled";
         case RIDE_CANCEL_BY_USER        = "ride_Cancelled_By_User";
         case RIDE_CANCEL_BY_USER_ON_RECEIVE = "ride_Cancelled_By_User_ON_RECEIVE";

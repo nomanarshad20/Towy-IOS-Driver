@@ -14,6 +14,8 @@ class ProfileDetailsViewController: UIViewController {
     @IBOutlet weak var tblSettings:UITableView!
     @IBOutlet weak var profileImage:UIImageView!
     @IBOutlet weak var lblName:UILabel!
+    @IBOutlet weak var btnServices:UIButton!
+    @IBOutlet weak var stackServices:UIStackView!
 //    @IBOutlet weak var tblsSettingHeightConstraint:NSLayoutConstraint!
     
     
@@ -24,6 +26,12 @@ class ProfileDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        if UtilityManager.manager.getUserType() == 2{
+            btnServices.isHidden = true
+            stackServices.isHidden = true
+        }
+        
         detailsDatasource = [["\(manager.getId())","\(manager.getDriverStatus())","\(manager.getFranchiseName())","\(manager.getSSN() ?? "_")","\(manager.getDateOfJoining() ?? "_")"],["\(manager.getVehicleNumber()!)","\(manager.getVehicleModelYear()!)","_"]]
         
         
@@ -57,6 +65,11 @@ class ProfileDetailsViewController: UIViewController {
     @IBAction func historyTapped(_ sender:UIButton){
         UtilityManager.manager.navigateToVc(from: self, identifier: "HistoryViewController", storyBoard: UtilityManager.manager.getDashboardStoryboard())
     }
+    
+    @IBAction func servicesTapped(_ sender:UIButton){
+        UtilityManager.manager.navigateToVc(from: self, identifier: "ServicesListViewController", storyBoard: UtilityManager.manager.getDashboardStoryboard())
+    }
+    
     
     
 }

@@ -97,6 +97,12 @@ class NotificationModel{
             n.newRide = NewRide.getRideInfo(dict: str?["bookingInfo"] as? [String:Any] ?? [:])
             n.type = .SCHEDULE_RIDE
             return n
+        case "13":
+            let data = dict["data"] as? String ?? ""
+            let str = self.convertStringToDictionary(text: data)
+            n.newRide = NewRide.getRideInfo(dict: str ?? [:])
+            n.type = .SERVICE_REQUEST
+            return n
         case "8":
             n.type = .LOGOUT_USER
             return n

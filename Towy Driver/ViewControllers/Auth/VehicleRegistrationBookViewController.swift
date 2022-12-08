@@ -72,7 +72,7 @@ class VehicleRegistrationBookViewController: UIViewController {
         
         lblTitle.text = "Vehicle Registration Book"
         lblDes.text = "So how did the classical Latin become so incoherent? According to McClintock, a 15th century typesetter likely scrambled part of Cicero's De Finibus in order to provide placeholder text to mockup various fonts for a type specimen book."
-        imgView.image = UIImage.init(named: "registration")
+//        imgView.image = UIImage.init(named: "camera.fill")
         
         txtName.setPadding(12)
         txtYear.setPadding(12)

@@ -183,6 +183,26 @@ extension AppDelegate:MessagingDelegate{
                 let params = ["temp_id":noti.newRide?.temp_id ?? "","user_id":UtilityManager.manager.getId(),"driver_action":2,"pre_book":false] as [String : Any]
                 cancelRide(params: params)
             }
+           
+        case .SERVICE_REQUEST:
+            if UserDefaults.standard.bool(forKey: Constants.IS_HAPTIC_FEEDBACK){
+                if #available(iOS 13.0, *) {
+                    UtilityManager.manager.addHapticFeedback(.rigid)
+                } else {
+                    if #available(iOS 13.0, *) {
+                        UtilityManager.manager.addHapticFeedback(.soft)
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
+            }
+            
+            if !Constants.IS_RIDE_POPUP_VISIBLE{
+                navigateToVC(identifier: "NewRideRequestViewController", storyBoard: UtilityManager.manager.getMainStoryboard(), noti: noti)
+            }else{
+                let params = ["temp_id":noti.newRide?.temp_id ?? "","user_id":UtilityManager.manager.getId(),"driver_action":2,"pre_book":false] as [String : Any]
+                cancelRide(params: params)
+            }
             
         case .SCHEDULE_RIDE:
             if UserDefaults.standard.bool(forKey: Constants.IS_HAPTIC_FEEDBACK){

@@ -168,6 +168,20 @@ class DocumentManager{
     }
     
     
+    func resendRequest(message:String,completionHandler:@escaping (_ result : Bool?, _ message:String?)-> Void)
+    {
+        
+        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.RESEND_APPROVAL_REQUEST
+        webServiceManager.manager.postData(url: baseUrl, param: ["message":message], headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
+            HIDE_CUSTOM_LOADER()
+            if let data = mainDict?["result"].string
+            {
+                    completionHandler(true,nil)
+            }else{
+                completionHandler(nil,err)
+            }
+        }
+    }
     
     
 }

@@ -24,6 +24,8 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     @IBOutlet weak var lblCustomerName:UILabel!
     @IBOutlet weak var viewTbl:UIView!
 
+    @IBOutlet weak var btnServiceDetail:UIButton!
+    
     @IBOutlet weak var tblReasons:UITableView!
     @IBOutlet weak var btnChat:UIButton!
     @IBOutlet weak var viewMeetAt:UIView!
@@ -42,14 +44,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     @IBOutlet weak var btnNavigation:UIButton!
 
     @IBOutlet weak var btnEndService:UIButton!
-    
-    
     @IBOutlet weak var btnCancelRideOnReach:UIButton!
-    
-    
-    
+
     var isToDropOff:Bool? = nil
-    
     var dataSource = [Precaution]()
     var isMapLoaded = false
     var apiTimer:Timer?
@@ -58,6 +55,10 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     var totalTime = 10
     var time = 0
     var driverMarker = GMSMarker()
+    
+    var socketEvent = "driver-change-booking-driver-status"
+    
+    
     var booking : BookingInfo? = nil{
         didSet{
             UtilityManager.manager.saveModelInUserDefaults(key: Constants.CURRENT_RIDE, data: BookingInfo.getBookinDict(r: booking ?? BookingInfo.init()))
@@ -68,6 +69,12 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     var waitingTime:Int? = 0
     var isServing = false
     var zoomLevel:Float = 17
+    var isService = false{
+        didSet{
+            if isService{
+                socketEvent = "driver-change-service-driver-status"}
+        }
+    }
 
 //    var socket: SocketIOClient? = nil
     
@@ -258,12 +265,17 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             var rideDict:[String:Any]  = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
             
             if status == 3{
-                rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"total_distance":finalDistance ?? 0.0,"mobile_final_distance":finalDistance ?? 0.0,"mobile_initial_distance":initialDistance ?? 0.0,"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
+                if isService{
+                    rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
+                }else{
+                    rideDict = ["booking_id":self.booking?.id ?? 0,"driver_status":status,"user_id":UtilityManager.manager.getId(),"total_distance":finalDistance ?? 0.0,"mobile_final_distance":finalDistance ?? 0.0,"mobile_initial_distance":initialDistance ?? 0.0,"lat":Constants.DEFAULT_LAT!,"lng":Constants.DEFAULT_LONG!]
+                }
+                
             }
             
             SHOW_CUSTOM_LOADER()
             
-            socket?.emit("driver-change-booking-driver-status", rideDict, completion: {
+            socket?.emit(socketEvent, rideDict, completion: {
                 HIDE_CUSTOM_LOADER()
             })
             
@@ -351,9 +363,15 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     }
     
     @objc func rideDataReceived(notify:Notification){
-        let info = notify.object as! BookingInfo
-        UserDefaults.standard.set(info.id, forKey: "booking_id")
-        setupRide(info: info)
+        if let info = notify.object as? BookingInfo{
+            UserDefaults.standard.set(info.id, forKey: "booking_id")
+            setupRide(info: info)
+        }else{
+            let info = notify.object as? NewRide
+            UserDefaults.standard.set(info?.booking_id, forKey: "booking_id")
+            setupRide(info: BookingInfo().getBookingFromNewRide(r: info!))
+        }
+        
         
     }
    
@@ -379,10 +397,16 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     func checkDriverStatus(){
 //        driver
-        DriverStatusManager.manager.getCurrnetStatus { b,u,err  in
+        DriverStatusManager.manager.getCurrnetStatus { [self] b,u,err  in
             if err == nil{
                 if b != nil{
                     self.booking = b!
+                    if booking?.services == nil{
+                        btnServiceDetail.isHidden = false
+                        isService = true
+                    }else{
+                        btnServiceDetail.isHidden = true
+                    }
                     UtilityManager.manager.saveDriverStatus(status: 2)
                 }
                 if u != nil{
@@ -390,14 +414,19 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                 }
                 self.updateStatusUI()
             }else{
-                UtilityManager.manager.showAlert(self, message: err ?? "error getting statue", title: Constants.APP_NAME)
+                if err == "Unauthenticated."{
+                    UtilityManager.manager.clearUserData()
+                    self.moveToLogin()
+                }else{
+                    UtilityManager.manager.showAlert(self, message: err ?? "error getting statue", title: Constants.APP_NAME)
+
+                }
             }
         }
     }
     
     
-    func loadGoogleMapLayer()
-    {
+    func loadGoogleMapLayer(){
         
         if Constants.DEFAULT_LONG != nil{
             if !isMapLoaded{
@@ -510,6 +539,19 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
         }
     }
    
+    
+    
+    @IBAction func servicesDetailsTapped(_ sender:UIButton){
+
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ServicesListViewController") as! ServicesListViewController
+        vc.datasource = Service.getServiceArr(dict: booking?.services ?? [])
+        vc.isDetails = true
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
+    
+    
+    
     @IBAction func cancelCancellingRide(_ sender:UIButton){
         self.viewTbl.isHidden = true
     }
@@ -558,6 +600,8 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     }
     
     @IBAction func endServiceBtnTapped(_ sender:UIButton){
+       
+        // Handle service here
         
      moveToPayable()
         
@@ -793,13 +837,41 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                     } completion:{_ in
                         
                     }
+                    if isService{
+                        btnStartService.setTitle("Start Service", for: .normal)
+                    }
+                    
                 }
+                
+                
                 HIDE_CUSTOM_LOADER()
                 
                 
             case Constants.RideDriverStatus.START.rawValue:
                 //UISETP
                 print("")
+                if isService{
+                    timerTopConstraint.constant = -40
+                    viewStartService.isHidden = false
+                    self.btnChat.isHidden = true
+                    self.btnNavigation.isHidden = true
+                    btnEndService.isHidden = false
+                    btnStartService.isHidden = true
+                    lblWaitingTime.isHidden = true
+                    btnEndService.setTitle("Finish Service", for: .normal)
+                    self.viewNameBottomConstraint.constant = -50
+                    if WT != nil{
+                        WT.invalidate()
+                        WT = nil
+                    }
+                    
+                    UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut) {
+                        self.view.layoutSubviews()
+                        self.view.layoutIfNeeded()
+                    } completion: { b in
+                        
+                    }
+            }else{
                 isToDropOff = true
                 DispatchQueue.main.async { [self] in
                     setDestination(coordinates: CLLocationCoordinate2D.init(latitude: Double(self.booking!.drop_off_latitude!) ?? 0.0, longitude: Double(self.booking!.drop_off_longitude!) ?? 0.0))
@@ -826,6 +898,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
                     
                     
                 }
+            }
+                
+                
                 HIDE_CUSTOM_LOADER()
                 
             case Constants.RideDriverStatus.COMPLETED.rawValue:
@@ -850,6 +925,8 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             default:
                 print("")
             }
+        }else{
+            HIDE_CUSTOM_LOADER()
         }
        
     }

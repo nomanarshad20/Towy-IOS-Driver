@@ -18,7 +18,6 @@ struct Truck{
     var description:String?
     
     
-    
     init(id: Int? = nil, name: String? = nil, image: String? = nil,description:String? = nil) {
         self.id = id
         self.name = name

@@ -41,6 +41,7 @@ class AboutVehicleViewController: UIViewController {
     }
 
 
+    
     @IBAction func btnYesHave(_ sender:UIButton){
         btnNext.enable()
         yesHaveVehicle.backgroundColor = UIColor.black
@@ -62,7 +63,11 @@ class AboutVehicleViewController: UIViewController {
         lblNoTitle.textColor = UIColor.white
     }
     
-    
+    @IBAction func helpTapped(_ sender:UIButton){
+        let vc = storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     
 
 }

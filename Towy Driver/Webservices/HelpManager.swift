@@ -30,4 +30,23 @@ class HelpManager {
         }
  
     }
+    
+    
+    func getHelpWebContent(completionHandler:@escaping (_ result : [String:Any]?, _ message:String?)-> Void)
+    {
+        
+        let baseUrl = Constants.HTTP_CONNECTION_ROOT + Constants.GET_HELP_DATA_WEB
+        webServiceManager.manager.getData(url: baseUrl, param: nil, headers: UtilityManager.manager.getAuthHeader()) { (mainDict, err) in
+            HIDE_CUSTOM_LOADER()
+            if let data = mainDict?["data"].dictionaryObject
+            {
+                completionHandler(data,nil)
+
+            }else{
+                completionHandler(nil,err)
+            }
+        }
+ 
+    }
+    
 }

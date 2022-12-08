@@ -477,7 +477,9 @@ class UtilityManager: NSObject
         {
             UserDefaults.standard.set(vehicleTypeId, forKey: Constants.VEHICLE_NAME)
         }
-
+        if let services = userDict["services"] as? [[String:Any]]{
+            UserDefaults.standard.set(services, forKey: "services")
+        }
         
         if let userPhone = userDict["mobile_no"] as? String
         {
@@ -611,7 +613,6 @@ class UtilityManager: NSObject
     func saveUserType(type:Int){
          UserDefaults.standard.setValue(type, forKey: Constants.DRIVER_TYPE)
     }
-    
     func saveDualCatId(type:Int){
          UserDefaults.standard.setValue(type, forKey: Constants.DUAL_CAT_ID)
     }

@@ -44,8 +44,9 @@ class NewRideRequestViewController: UIViewController {
     @IBOutlet weak var lblDistancePickup: UILabel!
     @IBOutlet weak var lblUserRating: UIButton!
 
-    
-    
+    @IBOutlet weak var tblView:UITableView!
+    @IBOutlet weak var tblViewH:NSLayoutConstraint!
+
     
     var timer:Timer!
     var time:Double = 0.0001
@@ -56,8 +57,14 @@ class NewRideRequestViewController: UIViewController {
     var bookingInfo:NewRide!
     var screenW:Float = 0
     var ref:DatabaseReference!
+    var isService = false
     
     var totalTime = 10
+    
+    var socketEvent = "accept-reject-ride"
+    
+    var datasource :[Service] = []
+
     
     var locManager = CLLocationManager()
     lazy var currentLocation: CLLocation? = nil
@@ -69,6 +76,19 @@ class NewRideRequestViewController: UIViewController {
     var isConnectedToSocket = false
     let manager = SocketManager(socketURL: URL(string: Constants.SOCKET_ROOT)!, config: [.log(false), .compress])
 
+    
+    
+    var serviceIds : [Int] = []{
+        didSet{
+            if serviceIds.count > 0{
+//                btnContinue.isUserInteractionEnabled = true
+//                btnContinue.backgroundColor = .black
+            }else{
+//                btnContinue.isUserInteractionEnabled = false
+//                btnContinue.backgroundColor = .lightGray
+            }
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -91,6 +111,19 @@ class NewRideRequestViewController: UIViewController {
         viewRedTrailing.constant = self.view.frame.width
         viewRequestBottom.constant = -500
         radiusSlider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
+        if noti?.newRide?.services?.count ?? 0 > 0{
+            isService = true
+            tblView.register(UINib.init(nibName: "TruckTypeTableViewCell", bundle: .main), forCellReuseIdentifier: "TruckTypeTableViewCell")
+            if noti?.newRide?.services?.count ?? 0 <= 3{
+                tblViewH.constant = 200
+            }
+            tblView.delegate = self
+            tblView.dataSource = self
+            datasource = (noti?.newRide?.services!)!
+            socketEvent = "accept-reject-service-ride"
+        }
+        
+        
     }
     
     
@@ -125,7 +158,13 @@ class NewRideRequestViewController: UIViewController {
                 
                 if dataInfo["data"] as? [String:Any] != nil{
                     self.dismiss(animated: true) {
-                        NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
+                        if self.isService{
+                            NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.newRide)
+
+                        }else{
+                            NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
+
+                        }
 
                     }
                 }else{
@@ -240,10 +279,11 @@ class NewRideRequestViewController: UIViewController {
                 self.view.layoutSubviews()
                 self.view.layoutIfNeeded()
             } completion: { _ in
-//                Constants.IS_RIDE_POPUP_VISIBLE = false
                 self.stopTimer()
                 self.timeSlider = 0
                 self.viewRedTrailing.constant = self.view.frame.width
+                self.InformPassenger(actionStatus: 2)
+                self.isAccepted = false
                 NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: nil)
                 Constants.IS_RIDE_POPUP_VISIBLE = false
                 self.dismiss(animated: true)
@@ -298,7 +338,7 @@ class NewRideRequestViewController: UIViewController {
     @IBAction func rejectTapped(_ sender:UIButton){
         
         isAccepted = false
-        let params = ["user_id":UtilityManager.manager.getId(),"driver_action":0,"booking_id":noti?.booking?.id ?? ""] as [String : Any]
+        let params = ["user_id":UtilityManager.manager.getId(),"driver_action":0,"booking_id":noti?.booking?.id ?? self.noti?.newRide?.booking_id ?? ""] as [String : Any]
         self.setupNewRide(params: params)
 
         
@@ -343,8 +383,8 @@ class NewRideRequestViewController: UIViewController {
         
 //        ["temp_id":noti?.newRide?.temp_id ?? "","user_id":UtilityManager.manager.getId(),"driver_action":actionStatus,"pre_book":false]
         
-        if noti?.type == .some(.NEW_RIDE_REQUEST) {
-            params = ["user_id":UtilityManager.manager.getId(),"driver_action":actionStatus,"booking_id":noti?.booking?.id ?? ""] as [String : Any]
+        if noti?.type == .some(.NEW_RIDE_REQUEST) || noti?.type == .SERVICE_REQUEST{
+            params = ["user_id":UtilityManager.manager.getId(),"driver_action":actionStatus,"booking_id":noti?.booking?.id ??  noti?.newRide?.booking_id ?? ""] as [String : Any]
             setupNewRide(params: params)
         }else{
             params = ["user_id":UtilityManager.manager.getId(),"driver_action":actionStatus,"pre_book":true,"booking_id":noti?.newRide?.booking_id ?? ""] as [String : Any]
@@ -359,16 +399,16 @@ class NewRideRequestViewController: UIViewController {
         
         
         if !isAccepted{
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
 //                Constants.IS_RIDE_POPUP_VISIBLE = false
                 if self.isConnectedToSocket{
-                    self.socket?.emit("accept-reject-ride", params)
+                    self.socket?.emit(socketEvent, params)
                     self.dismiss(animated: true, completion: {
                         NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: params)
                     })
                 }else{
                     SocketIOManager.sharedInstance.establishConnection()
-                    self.socket?.emit("accept-reject-ride", params)
+                    self.socket?.emit(socketEvent, params)
                     self.dismiss(animated: true, completion: {
                         NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_CANCEL_BY_DRIVER.rawValue), object: params)
                     })
@@ -383,15 +423,15 @@ class NewRideRequestViewController: UIViewController {
 //                if err == nil && dict != nil{
                     let fcm = UtilityManager.manager.getFcmToken()
                     
-                    self.ref.child("\(self.noti?.booking?.id ?? 343445345)").child("fcm").child("fcm2").setValue(fcm) { [self] err, reffer in
+            self.ref.child("\(self.noti?.booking?.id ??  noti?.newRide?.booking_id ?? 13312313123)").child("fcm").child("fcm2").setValue(fcm) { [self] err, reffer in
                         
                         if socket?.status == .connected{
-                            socket?.emit("accept-reject-ride", params)
+                            socket?.emit(socketEvent, params)
                             
                         }else{
                             //                if socket?.status == .disconnected{
                             SocketIOManager.sharedInstance.establishConnection()
-                            socket?.emit("accept-reject-ride", params)
+                            socket?.emit(socketEvent, params)
                         }
                         
                     }
@@ -581,4 +621,91 @@ class CenteredThumbSlider : UISlider {
         origin.x += offsetForValue
         return CGRect(origin: origin, size: unadjustedThumbrect.size)
     }
+}
+
+
+
+
+extension NewRideRequestViewController:UITableViewDataSource,UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datasource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TruckTypeTableViewCell", for: indexPath) as! TruckTypeTableViewCell
+        let ds = datasource[indexPath.row]
+        cell.lblName.text = ds.name
+        cell.lblDescription.text = ds.name
+        if serviceIds.contains(datasource[indexPath.row].id!){
+            cell.backView.backgroundColor = .black
+            cell.lblName.textColor = .white
+            cell.lblDescription.textColor = .white
+        }else{
+            cell.backView.backgroundColor = .white
+            cell.lblName.textColor = .black
+            cell.lblDescription.textColor = .darkGray
+        }
+        cell.imgaeIcon.kf.setImage(with: URL.init(string: Constants.HTTP_CONNECTION_ROOT_ASSETS+(ds.image ?? "") ), placeholder: nil, options: nil, progressBlock: nil) { image, error, cacheType, imageURL in
+            if image != nil{
+                cell.imgaeIcon.image = image!
+            }else{
+                cell.imgaeIcon.image = UIImage.init(named: "Mask Group 110")
+                
+            }
+        }
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cel = cell as! TruckTypeTableViewCell
+        if serviceIds.contains(datasource[indexPath.row].id!){
+            cel.backView.backgroundColor = .black
+            cel.lblName.textColor = .white
+            cel.lblDescription.textColor = .white
+        }else{
+            cel.backView.backgroundColor = .white
+            cel.lblName.textColor = .black
+            cel.lblDescription.textColor = .darkGray
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        if serviceIds.contains(datasource[indexPath.row].id!){
+//            if let itemToRemoveIndex = serviceIds.firstIndex(of: datasource[indexPath.row].id!) {
+//                   serviceIds.remove(at: itemToRemoveIndex)
+//               }
+//        }else{
+//            self.serviceIds.append(datasource[indexPath.row].id ?? 0)
+//        }
+//
+//
+//
+//        tblView.reloadData()
+//
+//    }
+   
+    
+    
+    
+    func setServices(){
+        ServiceManager.manager.saveServices(serviceIds: self.serviceIds) { result, message in
+            if result ?? false{
+//                if self.isEdit{
+//                    NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.NEW_SERVICE_ADDED.rawValue), object: nil, userInfo: nil)
+//                    self.dismiss(animated: true)
+//                }else{
+//                    UtilityManager.manager.gotoVC(from: self, identifier: "SSNViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+//                }
+            }else{
+                UtilityManager.manager.showAlert(self, message: message ?? "error saving Services.", title: "Oops")
+            }
+        }
+    }
+    
 }

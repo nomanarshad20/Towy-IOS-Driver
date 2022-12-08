@@ -274,13 +274,13 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
                       "fcm_token":UtilityManager.manager.getFcmToken(),
                       "password":txtPassword.text!,
                       "login":user.mobile_no ?? user.email]
-//        ["user_type":"2",
-//                      "fcm_token":"jgdfjhsdhfjsgjfhsdf4b3bb 435","password":"123456789a",
-//                      "password_confirmation":"123456789a",
-//                      "city":"Lahore",
-//                      "first_name":"mnbfdsn",
-//                      "last_name":"sdfbskdjf",
-//                      "login":"034564645475985"]
+        //        ["user_type":"2",
+        //                      "fcm_token":"jgdfjhsdhfjsgjfhsdf4b3bb 435","password":"123456789a",
+        //                      "password_confirmation":"123456789a",
+        //                      "city":"Lahore",
+        //                      "first_name":"mnbfdsn",
+        //                      "last_name":"sdfbskdjf",
+        //                      "login":"034564645475985"]
         SHOW_CUSTOM_LOADER()
         LoginManager.manager.Login(param: params as [String : Any], completionHandler: { status, message in
             HIDE_CUSTOM_LOADER()
@@ -290,16 +290,13 @@ class PasswordViewController: UIViewController,UITextFieldDelegate {
                 }else{
                     
                     UtilityManager.manager.gotoVC(from: self, identifier: "SSNViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
-
-                    
                 }
-
             }else{
                 UtilityManager.manager.showAlert(self, message: message!, title: "Oops")
             }
         })
-            
-        }
+        
+    }
     
     
     

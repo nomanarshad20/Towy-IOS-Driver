@@ -58,6 +58,7 @@
 		5244A2BB288C6D2F003A0DE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5244A2BA288C6D2F003A0DE1 /* GoogleService-Info.plist */; };
 		5244A4D728755CBC00016BC7 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A4D628755CBC00016BC7 /* NameViewController.swift */; };
 		5244A4D9287563C900016BC7 /* ReferralCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244A4D8287563C900016BC7 /* ReferralCodeViewController.swift */; };
+		5252423329256FB7005F3E70 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252423229256FB7005F3E70 /* WebViewController.swift */; };
 		525361F128620E4C00DE2F4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F028620E4C00DE2F4E /* Constants.swift */; };
 		525361F328620E6100DE2F4E /* AllLoaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F228620E6100DE2F4E /* AllLoaders.swift */; };
 		525361F528620E6F00DE2F4E /* UtilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525361F428620E6E00DE2F4E /* UtilityManager.swift */; };
@@ -89,6 +90,10 @@
 		5266424B28607C6000167A6A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266424A28607C6000167A6A /* BaseViewController.swift */; };
 		526C72FF28BDFF370051EB93 /* RideCancelledByUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C72FD28BDFF370051EB93 /* RideCancelledByUserViewController.swift */; };
 		526C730028BDFF370051EB93 /* NewRideRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C72FE28BDFF370051EB93 /* NewRideRequestViewController.swift */; };
+		5273FAFE292BC9E500B2D457 /* ServicesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273FAFD292BC9E500B2D457 /* ServicesListViewController.swift */; };
+		527AFDEA29130E11005F2ACA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527AFDE929130E11005F2ACA /* Service.swift */; };
+		527AFDEC29131011005F2ACA /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527AFDEB29131011005F2ACA /* ServicesViewController.swift */; };
+		527AFDEE291310B2005F2ACA /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527AFDED291310B2005F2ACA /* ServiceManager.swift */; };
 		528305AA285F888400D854A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528305A9285F888400D854A7 /* AppDelegate.swift */; };
 		528305B1285F888400D854A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528305AF285F888400D854A7 /* Main.storyboard */; };
 		528305B3285F888500D854A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528305B2285F888500D854A7 /* Assets.xcassets */; };
@@ -133,6 +138,7 @@
 		52C76DC32880257400360706 /* InspectionCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C76DC22880257400360706 /* InspectionCenter.swift */; };
 		52C76DC6288026CE00360706 /* InspectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C76DC4288026CE00360706 /* InspectionTableViewCell.swift */; };
 		52C76DC7288026CE00360706 /* InspectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52C76DC5288026CE00360706 /* InspectionTableViewCell.xib */; };
+		52D38879291996AD00533274 /* Help1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D38878291996AD00533274 /* Help1ViewController.swift */; };
 		52D3A61528D5D05F001B7CEB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3A61428D5D05F001B7CEB /* SettingViewController.swift */; };
 		52D3A61728D65595001B7CEB /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3A61628D65595001B7CEB /* HelpViewController.swift */; };
 		52D3A61928D66632001B7CEB /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3A61828D66632001B7CEB /* MapsViewController.swift */; };
@@ -218,6 +224,7 @@
 		5244A2BA288C6D2F003A0DE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5244A4D628755CBC00016BC7 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		5244A4D8287563C900016BC7 /* ReferralCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCodeViewController.swift; sourceTree = "<group>"; };
+		5252423229256FB7005F3E70 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		525361F028620E4C00DE2F4E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		525361F228620E6100DE2F4E /* AllLoaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllLoaders.swift; sourceTree = "<group>"; };
 		525361F428620E6E00DE2F4E /* UtilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityManager.swift; sourceTree = "<group>"; };
@@ -249,6 +256,10 @@
 		5266424A28607C6000167A6A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		526C72FD28BDFF370051EB93 /* RideCancelledByUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideCancelledByUserViewController.swift; sourceTree = "<group>"; };
 		526C72FE28BDFF370051EB93 /* NewRideRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRideRequestViewController.swift; sourceTree = "<group>"; };
+		5273FAFD292BC9E500B2D457 /* ServicesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListViewController.swift; sourceTree = "<group>"; };
+		527AFDE929130E11005F2ACA /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		527AFDEB29131011005F2ACA /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		527AFDED291310B2005F2ACA /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		528305A6285F888400D854A7 /* Towy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Towy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528305A9285F888400D854A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		528305B0285F888400D854A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -298,6 +309,7 @@
 		52C76DC22880257400360706 /* InspectionCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionCenter.swift; sourceTree = "<group>"; };
 		52C76DC4288026CE00360706 /* InspectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTableViewCell.swift; sourceTree = "<group>"; };
 		52C76DC5288026CE00360706 /* InspectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InspectionTableViewCell.xib; sourceTree = "<group>"; };
+		52D38878291996AD00533274 /* Help1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help1ViewController.swift; sourceTree = "<group>"; };
 		52D3A61428D5D05F001B7CEB /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		52D3A61628D65595001B7CEB /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		52D3A61828D66632001B7CEB /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
@@ -381,6 +393,7 @@
 				5204791F2887E806006B6268 /* TransactionsManager.swift */,
 				5204790F2887E6DB006B6268 /* WebServiceManager.swift */,
 				520B2F0828910A9700361F86 /* TrucksManager.swift */,
+				527AFDED291310B2005F2ACA /* ServiceManager.swift */,
 			);
 			path = Webservices;
 			sourceTree = "<group>";
@@ -587,6 +600,8 @@
 				52A81EBF2878A63E000911EE /* SSNViewController.swift */,
 				52C76DC028801F5F00360706 /* InspectionCenterViewController.swift */,
 				528B9DA928C5D95B00E168DE /* PasswordResetViewController.swift */,
+				527AFDEB29131011005F2ACA /* ServicesViewController.swift */,
+				5252423229256FB7005F3E70 /* WebViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -598,6 +613,8 @@
 				52C5E7C128A0417500EFD6CF /* ChatViewController.swift */,
 				5239883528A81D2800CC1034 /* RateAndReviewViewController.swift */,
 				5211418028D2578400EC57BD /* PayableViewController.swift */,
+				52D38878291996AD00533274 /* Help1ViewController.swift */,
+				5273FAFD292BC9E500B2D457 /* ServicesListViewController.swift */,
 			);
 			path = Dashborad;
 			sourceTree = "<group>";
@@ -671,6 +688,7 @@
 				52B69CE7286A32B800BC2FA4 /* ServiceType.swift */,
 				52C76DC22880257400360706 /* InspectionCenter.swift */,
 				52EE2AB92893F21200D8C2FF /* Truck.swift */,
+				527AFDE929130E11005F2ACA /* Service.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -926,6 +944,7 @@
 				5204792C2887E807006B6268 /* OTPManager.swift in Sources */,
 				52664233286063DC00167A6A /* OtpViewController.swift in Sources */,
 				5204792B2887E807006B6268 /* HistoryManager.swift in Sources */,
+				52D38879291996AD00533274 /* Help1ViewController.swift in Sources */,
 				5244A4D728755CBC00016BC7 /* NameViewController.swift in Sources */,
 				520479502887E9FA006B6268 /* Trip.swift in Sources */,
 				520479572887E9FA006B6268 /* Transaction.swift in Sources */,
@@ -945,6 +964,7 @@
 				520479332887E807006B6268 /* PasswordManager.swift in Sources */,
 				525361F528620E6F00DE2F4E /* UtilityManager.swift in Sources */,
 				525CD96128A4622F004D4AA6 /* TransactionHistoryTableViewCell.swift in Sources */,
+				5252423329256FB7005F3E70 /* WebViewController.swift in Sources */,
 				5239883628A81D2800CC1034 /* RateAndReviewViewController.swift in Sources */,
 				5204792A2887E807006B6268 /* TokenManager.swift in Sources */,
 				520479382887E8D4006B6268 /* CustomNotification.swift in Sources */,
@@ -958,6 +978,7 @@
 				520479542887E9FA006B6268 /* Franchise.swift in Sources */,
 				5266422F286063B300167A6A /* WelcomeViewController.swift in Sources */,
 				528B9DB028C73AC500E168DE /* TextWithCheckboxTableViewCell.swift in Sources */,
+				527AFDEE291310B2005F2ACA /* ServiceManager.swift in Sources */,
 				5204794F2887E9FA006B6268 /* MenuModel.swift in Sources */,
 				5244A4D9287563C900016BC7 /* ReferralCodeViewController.swift in Sources */,
 				5266424328606FA200167A6A /* VehicleRegistrationBookViewController.swift in Sources */,
@@ -980,6 +1001,7 @@
 				520479582887E9FA006B6268 /* LocationModel.swift in Sources */,
 				52664231286063D300167A6A /* MobileNumberViewController.swift in Sources */,
 				525CD96628A463B7004D4AA6 /* RideHistoryTableViewCell.swift in Sources */,
+				5273FAFE292BC9E500B2D457 /* ServicesListViewController.swift in Sources */,
 				52C5E7CA28A043C400EFD6CF /* SenderTableViewCell.swift in Sources */,
 				5266423B2860649B00167A6A /* AllSetViewController.swift in Sources */,
 				520479342887E807006B6268 /* SignupManager.swift in Sources */,
@@ -987,6 +1009,7 @@
 				520479562887E9FA006B6268 /* ModelTemp.swift in Sources */,
 				5204794C2887E9FA006B6268 /* Precaution.swift in Sources */,
 				520B2F0928910A9700361F86 /* TrucksManager.swift in Sources */,
+				527AFDEC29131011005F2ACA /* ServicesViewController.swift in Sources */,
 				52BB9EAE28990ED8007ECAD4 /* DashBoardViewController.swift in Sources */,
 				5204794E2887E9FA006B6268 /* Vehicle.swift in Sources */,
 				5266424728606FF700167A6A /* SignInViewController.swift in Sources */,
@@ -1021,6 +1044,7 @@
 				5204792F2887E807006B6268 /* LeadgerManager.swift in Sources */,
 				52FDC7C92863A2950075952C /* DocumentAddViewController.swift in Sources */,
 				520479552887E9FA006B6268 /* PortalData.swift in Sources */,
+				527AFDEA29130E11005F2ACA /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1200,7 +1224,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Towy Driver/Towy Driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 4769DJ9MMA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Towy Driver/Info.plist";
@@ -1216,7 +1240,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1238,7 +1262,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Towy Driver/Towy Driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 4769DJ9MMA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Towy Driver/Info.plist";
@@ -1254,7 +1278,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

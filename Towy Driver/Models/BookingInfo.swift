@@ -71,6 +71,24 @@ class BookingInfo{
     var passenger_rating_from_driver : String?
     var passenger_comment_from_driver : String?
     var otp : String?
+    var services:[[String:Any]]?
+    
+    // foe services
+    
+//    var vehicle_amount:Int?
+//    var amount:Int?
+//    var pickup_longitude:String?
+//    var vehicle_type:String?
+//    var dropoff_latitude:String?
+//    var pickup_latitude:String?
+//    var dropoff_longitude:String?
+//    var booking_id:Int?
+//    var passenger_name : String?
+//    var status : Int?
+//    var services:[Service]?
+    
+    
+    
     
     
     init(){
@@ -134,9 +152,10 @@ class BookingInfo{
         self.passenger_rating_from_driver = nil
         self.passenger_comment_from_driver = nil
         self.otp = nil
+        self.services = nil
     }
     
-     init(id: Int, booking_unique_id: String, passenger_id: Int? = nil, franchise_id: Int? = nil, vehicle_type_id: Int? = nil, booking_type: String? = nil, pick_up_area: String? = nil, pick_up_latitude: String? = nil, pick_up_longitude: String? = nil, pick_up_date: String? = nil, pick_up_time: String? = nil, drop_off_area: String, drop_off_latitude: String? = nil, drop_off_longitude: String? = nil, total_distance: String? = nil, payment_type: String? = nil, estimated_fare: String? = nil, actual_fare: String? = nil, ride_status: Int? = nil, created_at: String, created_ago: String, booking_detail_id: Int? = nil, waiting_price_per_min: Int? = nil, vehicle_tax: Int? = nil, vehicle_per_km_rate: Int? = nil, vehicle_per_min_rate: Int? = nil, min_vehicle_fare: Int? = nil, passenger_first_name: String? = nil, passenger_last_name: String? = nil, driver_first_name: String? = nil, driver_last_name: String? = nil, driver_status: Int? = nil, driver_id: Int? = nil, peak_factor_rate: String? = nil, driver_waiting_time: String? = nil, ride_pick_up_time: String? = nil, ride_start_time: String? = nil, ride_end_time: String? = nil, total_minutes_to_reach_pick_up_point: String? = nil, total_ride_minutes: String? = nil, initial_distance_rate: String? = nil, initial_time_rate: String? = nil, total_calculated_distance: String? = nil, p2p_before_pick_up_distance: String? = nil, p2p_after_pick_up_distance: String? = nil, is_passenger_rating_given: String? = nil, is_driver_rating_given: Int? = nil, passenger_image: String? = nil, passenger_mobile_no: String? = nil, passenger_rating: String? = nil, driver_image: String? = nil, driver_mobile_no: String? = nil, driver_rating: String? = nil, vehicle_name: String? = nil, vehicle_registration_number: String? = nil, driver_rating_from_passenger: String? = nil, driver_comment_from_passenger: String? = nil, passenger_rating_from_driver: String? = nil, passenger_comment_from_driver: String? = nil, otp: String? = nil) {
+    init(id: Int, booking_unique_id: String, passenger_id: Int? = nil, franchise_id: Int? = nil, vehicle_type_id: Int? = nil, booking_type: String? = nil, pick_up_area: String? = nil, pick_up_latitude: String? = nil, pick_up_longitude: String? = nil, pick_up_date: String? = nil, pick_up_time: String? = nil, drop_off_area: String, drop_off_latitude: String? = nil, drop_off_longitude: String? = nil, total_distance: String? = nil, payment_type: String? = nil, estimated_fare: String? = nil, actual_fare: String? = nil, ride_status: Int? = nil, created_at: String, created_ago: String, booking_detail_id: Int? = nil, waiting_price_per_min: Int? = nil, vehicle_tax: Int? = nil, vehicle_per_km_rate: Int? = nil, vehicle_per_min_rate: Int? = nil, min_vehicle_fare: Int? = nil, passenger_first_name: String? = nil, passenger_last_name: String? = nil, driver_first_name: String? = nil, driver_last_name: String? = nil, driver_status: Int? = nil, driver_id: Int? = nil, peak_factor_rate: String? = nil, driver_waiting_time: String? = nil, ride_pick_up_time: String? = nil, ride_start_time: String? = nil, ride_end_time: String? = nil, total_minutes_to_reach_pick_up_point: String? = nil, total_ride_minutes: String? = nil, initial_distance_rate: String? = nil, initial_time_rate: String? = nil, total_calculated_distance: String? = nil, p2p_before_pick_up_distance: String? = nil, p2p_after_pick_up_distance: String? = nil, is_passenger_rating_given: String? = nil, is_driver_rating_given: Int? = nil, passenger_image: String? = nil, passenger_mobile_no: String? = nil, passenger_rating: String? = nil, driver_image: String? = nil, driver_mobile_no: String? = nil, driver_rating: String? = nil, vehicle_name: String? = nil, vehicle_registration_number: String? = nil, driver_rating_from_passenger: String? = nil, driver_comment_from_passenger: String? = nil, passenger_rating_from_driver: String? = nil, passenger_comment_from_driver: String? = nil, otp: String? = nil,services:[[String:Any]]? = nil) {
         self.id = id
         self.booking_unique_id = booking_unique_id
         self.passenger_id = passenger_id
@@ -197,6 +216,7 @@ class BookingInfo{
         self.passenger_rating_from_driver = passenger_rating_from_driver
         self.passenger_comment_from_driver = passenger_comment_from_driver
         self.otp = otp
+        self.services = services
     }
 
     
@@ -263,6 +283,7 @@ class BookingInfo{
         r.passenger_rating_from_driver = dict["passenger_rating_from_driver"] as? String ?? nil
         r.passenger_comment_from_driver = dict["passenger_comment_from_driver"] as? String ?? nil
         r.otp = dict["otp"] as? String ?? nil
+        r.services = dict["services"] as? [[String:Any]] ?? nil
         return r
     }
     
@@ -330,8 +351,22 @@ class BookingInfo{
         dict["passenger_rating_from_driver"] = r.passenger_rating_from_driver
         dict["passenger_comment_from_driver"] = r.passenger_comment_from_driver
         dict["otp"] =  r.otp
+        dict["services"] =  r.services
         return dict
     }
+    
+    func getBookingFromNewRide(r:NewRide)->BookingInfo{
+        let b = BookingInfo()
+        b.id = r.booking_id
+        b.pick_up_latitude = r.pickup_latitude
+        b.pick_up_longitude = r.pickup_longitude
+//        b.drop_off_latitude = r.dropoff_latitude
+//        b.drop_off_longitude = r.dropoff_longitude
+        b.driver_id = r.driver_id
+        b.services = Service().getServiceDict(services: r.services ?? [])
+        return b
+    }
+    
     
     
     }

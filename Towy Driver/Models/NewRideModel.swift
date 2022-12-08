@@ -47,7 +47,7 @@ class NewRide{
     var passenger_mobile_no : Int?
     var is_skip_dropoff : Int?
     var distance_radius : Int?
-    
+    var services:[Service]?
     
     
     
@@ -88,10 +88,11 @@ class NewRide{
         self.passenger_mobile_no = nil
         self.is_skip_dropoff = nil
         self.distance_radius = nil
+        self.services = nil
     }
     
     
-    init(vehicle_amount: Int? = nil, amount: Int? = nil, driver_id: Int? = nil, pickup_longitude: String? = nil, temp_id: Int? = nil, passenger_id: Int? = nil, vehicle_type: String? = nil, oyla_pay: String? = nil, dropoff_latitude: String? = nil, user_id: String? = nil, distance_kilomiters: Double? = nil, pickup_latitude: String? = nil, estimate_minutes: String? = nil, dropoff_longitude: String? = nil, booking_id: Int? = nil, driver_status: Int? = nil, ride_complete_time: Int? = nil, estimated_amount: Int? = nil, final_amount: Int? = nil, oyla_wallet_pay: Int? = nil, descriptions: String? = nil, booking_unique_id: String? = nil, booking_changes: Int? = nil, payment_type: String? = nil, pre_book: Bool? = nil, peak_factor_rate: String? = nil, passenger_name: String? = nil, passenger_ratings: Double? = nil, passenger_profile_pic: String? = nil, status: Int? = nil, passenger_mobile_no: Int? = nil,is_skip_dropoff : Int? = nil,distance_radius : Int? = nil) {
+    init(vehicle_amount: Int? = nil, amount: Int? = nil, driver_id: Int? = nil, pickup_longitude: String? = nil, temp_id: Int? = nil, passenger_id: Int? = nil, vehicle_type: String? = nil, oyla_pay: String? = nil, dropoff_latitude: String? = nil, user_id: String? = nil, distance_kilomiters: Double? = nil, pickup_latitude: String? = nil, estimate_minutes: String? = nil, dropoff_longitude: String? = nil, booking_id: Int? = nil, driver_status: Int? = nil, ride_complete_time: Int? = nil, estimated_amount: Int? = nil, final_amount: Int? = nil, oyla_wallet_pay: Int? = nil, descriptions: String? = nil, booking_unique_id: String? = nil, booking_changes: Int? = nil, payment_type: String? = nil, pre_book: Bool? = nil, peak_factor_rate: String? = nil, passenger_name: String? = nil, passenger_ratings: Double? = nil, passenger_profile_pic: String? = nil, status: Int? = nil, passenger_mobile_no: Int? = nil,is_skip_dropoff : Int? = nil,distance_radius : Int? = nil,services:[Service]? = nil) {
         self.vehicle_amount = vehicle_amount
         self.amount = amount
         self.driver_id = driver_id
@@ -125,6 +126,7 @@ class NewRide{
         self.passenger_mobile_no = passenger_mobile_no
         self.is_skip_dropoff = is_skip_dropoff
         self.distance_radius = distance_radius
+        self.services = services
     }
     
     
@@ -172,6 +174,7 @@ class NewRide{
         r.status = dict["status"] as? Int ?? nil
         r.is_skip_dropoff = dict["is_skip_dropoff"] as? Int ?? nil
         r.distance_radius = dict["distance_radius"] as? Int ?? nil
+        r.services = Service.getServiceArr(dict: dict["services"] as? [[String:Any]] ?? [])
         
         return r
     }
@@ -211,6 +214,7 @@ class NewRide{
         dict["passenger_mobile_no"] = r.passenger_mobile_no
         dict["is_skip_dropoff"] = r.is_skip_dropoff
         dict["distance_radius"] = r.distance_radius
+        dict["services"] = r.services
 
         
         return dict

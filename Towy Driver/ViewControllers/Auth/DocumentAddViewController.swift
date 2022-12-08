@@ -65,6 +65,13 @@ class DocumentAddViewController: UIViewController {
         
     }
     
+    @IBAction func helpTapped(_ sender:UIButton){
+        let vc = storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    
     func setupDate(){
         
         switch document{

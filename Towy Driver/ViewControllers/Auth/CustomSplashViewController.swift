@@ -93,6 +93,12 @@ class CustomSplashViewController: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             default:
+                
+//                UserDefaults.standard.set(status, forKey: Constants.REGISTRATION_STATUS)
+//                let story = UtilityManager.manager.getAuthStoryboard()
+//                let vc = story.instantiateViewController(withIdentifier: "AccountTypeViewController") as! AccountTypeViewController
+//                self.navigationController?.pushViewController(vc, animated: true)
+                
                 let story = UtilityManager.manager.getAuthStoryboard()
                 let vc = story.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
                 self.navigationController?.pushViewController(vc, animated: true)

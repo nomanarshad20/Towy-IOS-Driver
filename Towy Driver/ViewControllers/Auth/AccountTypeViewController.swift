@@ -40,13 +40,13 @@ class AccountTypeViewController: UIViewController {
         
         SignUpManager.manager.setUserType(type: isDriver) { [self] result, message in
             if result ?? false{
-                if isDriver == "4"{
+                if isDriver == "2"{
                     UtilityManager.manager.gotoVC(from: self, identifier: "TruckTypeViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
 
                 }else{
                     
                     //To left for Workshop
-                    UtilityManager.manager.gotoVC(from: self, identifier: "TruckTypeViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
+                    UtilityManager.manager.gotoVC(from: self, identifier: "ServicesViewController", storyBoard: UtilityManager.manager.getAuthStoryboard())
 
                 }
             }else{
@@ -65,7 +65,7 @@ class AccountTypeViewController: UIViewController {
 
 
     @IBAction func btnWorkshopTapped(_ sender:UIButton){
-        isDriver = "4"
+        isDriver = "3"
         btnNext.enable()
         viewWorkShop.layer.borderWidth = 2
         viewTowService.layer.borderWidth = 0
