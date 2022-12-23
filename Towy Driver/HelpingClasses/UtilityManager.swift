@@ -558,6 +558,11 @@ class UtilityManager: NSObject
     }
     
     
+    func getServices()->[[String:Any]]{
+        return UserDefaults.standard.array(forKey: "services") as? [[String:Any]] ?? []
+    }
+    
+    
     func playTune() {
        
         guard let path = Bundle.main.path(forResource: "tune1", ofType:"caf") else {

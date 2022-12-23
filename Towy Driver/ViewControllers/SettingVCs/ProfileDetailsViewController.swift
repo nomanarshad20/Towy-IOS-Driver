@@ -67,7 +67,9 @@ class ProfileDetailsViewController: UIViewController {
     }
     
     @IBAction func servicesTapped(_ sender:UIButton){
-        UtilityManager.manager.navigateToVc(from: self, identifier: "ServicesListViewController", storyBoard: UtilityManager.manager.getDashboardStoryboard())
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ServicesListViewController") as! ServicesListViewController
+        vc.isFromProfile = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

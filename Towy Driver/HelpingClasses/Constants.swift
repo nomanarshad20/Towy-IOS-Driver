@@ -112,7 +112,7 @@ open class Constants {
     // ------------------------------------------------------------------------------------
     
     
-    public static let P2P_TRACKING_SOCKET       = "point-to-point-tracking"
+    public static let P2P_TRACKING_SOCKET              = "point-to-point-tracking"
     public static let UPDATE_BOOKING_STATUS_SOCKET     = "driver-change-booking-driver-status"
     // -->when driver reach pickup
 

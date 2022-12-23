@@ -168,7 +168,7 @@ class NewRide{
         r.booking_changes = dict["booking_changes"] as? Int ?? nil
         r.pre_book =  dict["pre_book"] as? Bool ?? nil
         r.peak_factor_rate = dict["peak_factor_rate"] as? String ?? nil
-        r.passenger_name = dict["passenger_name"] as? String ?? nil
+        r.passenger_name = dict["passenger_name"] as? String ?? dict["passenger_first_name"] as? String
         r.passenger_ratings = dict["passenger_ratings"] as? Double ?? nil
         r.passenger_profile_pic = dict["passenger_profile_pic"] as? String ?? nil
         r.status = dict["status"] as? Int ?? nil

@@ -11,6 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Medium</string>
+        </array>
         <array key="Montserrat-Bold.otf">
             <string>Montserrat-Bold</string>
         </array>
@@ -258,7 +261,7 @@
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="20"/>
+                                                <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -648,11 +651,13 @@
                         <outlet property="btnChat" destination="Dj0-rW-cI9" id="jFo-MY-VOy"/>
                         <outlet property="btnEndService" destination="Kpu-9o-7EL" id="aXQ-Co-Om4"/>
                         <outlet property="btnNavigation" destination="f5P-l7-wpQ" id="zLr-kT-29C"/>
+                        <outlet property="btnPassengerRating" destination="dO2-K7-quG" id="lbn-05-Nio"/>
                         <outlet property="btnReachNearBy" destination="EL2-K2-bQj" id="s6T-Z5-Lpg"/>
                         <outlet property="btnServiceDetail" destination="gfU-Fn-H3c" id="jTY-HI-Lop"/>
                         <outlet property="btnStartService" destination="4a2-nv-62Q" id="gHz-Nx-5cz"/>
                         <outlet property="btnStatus" destination="9qZ-dV-F9i" id="9L3-u0-PhG"/>
                         <outlet property="lblCustomerName" destination="tQz-jw-zFE" id="WSg-iB-DZJ"/>
+                        <outlet property="lblPassengerName" destination="JHR-DC-mzF" id="QdM-jy-Fey"/>
                         <outlet property="lblWaitingTime" destination="gBL-BC-HwP" id="97B-wT-NBu"/>
                         <outlet property="mainMapView" destination="EMF-yw-hn9" id="0l5-7K-Tsq"/>
                         <outlet property="tblReasons" destination="0eM-Tl-aD7" id="SKH-Ps-hh4"/>
@@ -3289,7 +3294,7 @@
                                         <rect key="frame" x="0.0" y="64" width="414" height="788"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7O-O4-seo">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="588.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="583.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have finished Towing" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-K4-koJ">
                                                         <rect key="frame" x="20" y="133" width="374" height="21"/>
@@ -3392,7 +3397,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C2y-Xi-uDC" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                        <rect key="frame" x="20" y="392" width="374" height="39"/>
+                                                        <rect key="frame" x="20" y="392" width="374" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3406,13 +3411,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iwb-U7-RD6">
-                                                        <rect key="frame" x="20" y="431" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="426" width="374" height="21"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="18"/>
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9H8-p9-ZzE">
-                                                        <rect key="frame" x="20" y="513.5" width="374" height="45"/>
+                                                        <rect key="frame" x="20" y="508.5" width="374" height="45"/>
                                                         <color key="backgroundColor" name="ThemeBtnColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="khw-7z-Dpa"/>
@@ -3440,7 +3445,7 @@
                                                         </connections>
                                                     </button>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mws-x5-x7h">
-                                                        <rect key="frame" x="20" y="452" width="374" height="0.0"/>
+                                                        <rect key="frame" x="20" y="447" width="374" height="0.0"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ziu-l4-uwn" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
@@ -3502,13 +3507,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uED-na-Kxw">
-                                                        <rect key="frame" x="20" y="452" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="447" width="374" height="21"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="18"/>
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGo-MH-FoH">
-                                                        <rect key="frame" x="20" y="481" width="374" height="0.0"/>
+                                                        <rect key="frame" x="20" y="476" width="374" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
                                                         <color key="textColor" name="Gray97"/>
                                                         <nil key="highlightedColor"/>
@@ -5193,20 +5198,6 @@
             <point key="canvasLocation" x="-1136" y="812"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="C2y-Xi-uDC">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
-        </designable>
-        <designable name="J60-yw-cdD">
-            <size key="intrinsicContentSize" width="220" height="40"/>
-        </designable>
-        <designable name="RBc-67-JTk">
-            <size key="intrinsicContentSize" width="144" height="39.220703125"/>
-        </designable>
-        <designable name="Ziu-l4-uwn">
-            <size key="intrinsicContentSize" width="374" height="39.220703125"/>
-        </designable>
-    </designables>
     <resources>
         <image name="accept" width="44" height="44"/>
         <image name="account" width="25" height="25"/>

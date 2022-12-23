@@ -97,9 +97,9 @@ class NewRideRequestViewController: UIViewController {
         ref = Database.database().reference()
         
         
-        if bookingInfo != nil{
-            lblCustomerName.text = bookingInfo.passenger_name
-            lblUserRating.setTitle("\(bookingInfo.passenger_ratings ?? 0.0)", for: .normal)
+        if noti != nil{
+            lblCustomerName.text = noti!.newRide?.passenger_name
+            lblUserRating.setTitle("\(noti!.newRide?.passenger_ratings ?? 0.0)", for: .normal)
         }
         
         if socket?.status == .disconnected{
@@ -159,10 +159,10 @@ class NewRideRequestViewController: UIViewController {
                 if dataInfo["data"] as? [String:Any] != nil{
                     self.dismiss(animated: true) {
                         if self.isService{
-                            NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.newRide)
+                            NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_ACCEPTED.rawValue), object: self.noti?.newRide)
 
                         }else{
-                            NotificationCenter.default.post(name: NSNotification.Name("ride_Accepted"), object: self.noti?.booking)
+                            NotificationCenter.default.post(name: NSNotification.Name(Constants.NotificationObservers.RIDE_ACCEPTED.rawValue), object: self.noti?.booking)
 
                         }
 

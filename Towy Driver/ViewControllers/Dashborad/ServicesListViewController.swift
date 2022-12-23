@@ -17,7 +17,7 @@ class ServicesListViewController: UIViewController {
     
         var datasource :[Service] = []
         var isDetails = false
-        
+        var isFromProfile = false
         var serviceIds : [Int] = []{
             didSet{
                 if serviceIds.count > 0{
@@ -33,7 +33,9 @@ class ServicesListViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
 
-           
+            btnAdd.isHidden = true
+            
+            
 //            if isEdit{
 //                lblTitle.text = "Which services you want to add?"
 //            }else{
@@ -111,12 +113,13 @@ extension ServicesListViewController:UITableViewDataSource,UITableViewDelegate{
             cell.lblName.textColor = .black
             cell.lblDescription.textColor = .darkGray
         }
-        cell.imgaeIcon.kf.setImage(with: URL.init(string: Constants.HTTP_CONNECTION_ROOT_ASSETS+ds.image!), placeholder: nil, options: nil, progressBlock: nil) { image, error, cacheType, imageURL in
-            if image != nil{
-                cell.imgaeIcon.image = image!
-            }else{
-                cell.imgaeIcon.image = UIImage.init(named: "Mask Group 110")
-                
+        if let _ = ds.image{
+            cell.imgaeIcon.kf.setImage(with: URL.init(string: Constants.HTTP_CONNECTION_ROOT_ASSETS+ds.image!), placeholder: nil, options: nil, progressBlock: nil) { image, error, cacheType, imageURL in
+                if image != nil{
+                    cell.imgaeIcon.image = image!
+                }else{
+                    cell.imgaeIcon.image = UIImage.init(named: "Mask Group 110")
+                }
             }
         }
         return cell
@@ -141,6 +144,16 @@ extension ServicesListViewController:UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if isDetails{
+            return
+        }
+        
+        if isFromProfile{
+            btnAdd.setTitle("Update", for: .normal)
+            btnAdd.isHidden = false
+        }
+        
         
         if serviceIds.contains(datasource[indexPath.row].id!){
             if let itemToRemoveIndex = serviceIds.firstIndex(of: datasource[indexPath.row].id!) {

@@ -272,7 +272,7 @@ class BookingInfo{
         r.is_driver_rating_given = dict["is_driver_rating_given"] as? Int ?? nil
         r.passenger_image = dict["passenger_image"] as? String ?? nil
         r.passenger_mobile_no = dict["passenger_mobile_no"] as? String ?? nil
-        r.passenger_rating = dict["passenger_rating"] as? String ?? nil
+        r.passenger_rating = dict["passenger_rating"] as? String ?? "\(dict["passenger_rating"] as? Int ?? 0)"
         r.driver_image = dict["driver_image"] as? String ?? nil
         r.driver_mobile_no = dict["driver_mobile_no"] as? String ?? nil
         r.driver_rating = dict["driver_rating"] as? String ?? nil

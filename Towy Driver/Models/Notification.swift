@@ -75,10 +75,12 @@ class NotificationModel{
     
     class func getNotificationType(dict:[AnyHashable:Any])->NotificationModel?{
         let n = NotificationModel()
+        
         switch dict["notification_type"] as? String{
         case "11":
             let data = dict["data"] as? String ?? ""
             let str = self.convertStringToDictionary(text: data)
+            print(str as Any)
             n.booking = BookingInfo.getRideInfo(dict: str ?? [:])
             n.type = .NEW_RIDE_REQUEST
             return n
@@ -100,6 +102,7 @@ class NotificationModel{
         case "13":
             let data = dict["data"] as? String ?? ""
             let str = self.convertStringToDictionary(text: data)
+            print(str as Any)
             n.newRide = NewRide.getRideInfo(dict: str ?? [:])
             n.type = .SERVICE_REQUEST
             return n

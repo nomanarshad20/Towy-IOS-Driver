@@ -137,7 +137,7 @@ class ChatViewController: UIViewController {
         if txtMessage.text != ""{
             if booking?.id != nil{
 //                \(UtilityManager.manager.getId())
-                let paramas = ["booking_id":"\(booking!.id!)","receiver_id":"jsjhfkbsfhsbfshfb","sender_id":"12","message":txtMessage.text!,"messageTime":Date.init().timeIntervalSince1970,"type":"2"] as [String : Any]
+                let paramas = ["booking_id":"\(booking!.id!)","receiver_id":booking?.passenger_id ?? "","sender_id":UtilityManager.manager.getId(),"message":txtMessage.text!,"messageTime":Date.init().timeIntervalSince1970,"type":"2"] as [String : Any]
                 
                 ref.child("\(booking!.id!)").child("messages").childByAutoId().setValue(paramas) { err, refer in
                     if err == nil{

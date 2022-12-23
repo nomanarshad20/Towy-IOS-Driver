@@ -25,6 +25,7 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     @IBOutlet weak var viewTbl:UIView!
 
     @IBOutlet weak var btnServiceDetail:UIButton!
+    @IBOutlet weak var btnPassengerRating:UIButton!
     
     @IBOutlet weak var tblReasons:UITableView!
     @IBOutlet weak var btnChat:UIButton!
@@ -40,6 +41,8 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     @IBOutlet weak var btnReachNearBy:UIButton!
     @IBOutlet weak var btnStatus:UIButton!
     @IBOutlet weak var lblWaitingTime:UILabel!
+    @IBOutlet weak var lblPassengerName:UILabel!
+
     @IBOutlet weak var btnStartService:UIButton!
     @IBOutlet weak var btnNavigation:UIButton!
 
@@ -334,7 +337,6 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     }
     
     @objc func rideCancelByDriver(){
-
         
         DriverStatusManager.manager.UpdateStatus(status: 1) { [self] res, message in
             HIDE_CUSTOM_LOADER()
@@ -363,8 +365,10 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     }
     
     @objc func rideDataReceived(notify:Notification){
+        HIDE_CUSTOM_LOADER()
         if let info = notify.object as? BookingInfo{
             UserDefaults.standard.set(info.id, forKey: "booking_id")
+            self.btnServiceDetail.isHidden = true
             setupRide(info: info)
         }else{
             let info = notify.object as? NewRide
@@ -378,6 +382,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     func setupRide(info:BookingInfo){
         self.booking = info
+        lblPassengerName.text = booking?.passenger_first_name ?? "Towy User"
+        btnPassengerRating.setTitle( "   " + (booking?.passenger_rating ?? "0.0") + "   ", for: .normal)
+        HIDE_CUSTOM_LOADER()
         UtilityManager.manager.saveDriverStatus(status: 2)
         updateStatusUI()
         viewMeetAt.isHidden = false
@@ -401,7 +408,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             if err == nil{
                 if b != nil{
                     self.booking = b!
-                    if booking?.services == nil{
+                    lblPassengerName.text = booking?.passenger_first_name ?? "Towy User"
+                    btnPassengerRating.setTitle( "   " + (booking?.passenger_rating ?? "0.0") + "   ", for: .normal)
+                    if booking?.services != nil{
                         btnServiceDetail.isHidden = false
                         isService = true
                     }else{
@@ -793,10 +802,9 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
     
     
     func getRideStatus(){
-        SHOW_CUSTOM_LOADER()
         if booking != nil{
             UserDefaults.standard.set(booking!.id, forKey: "booking_id")
-            lblCustomerName.text = booking?.passenger_first_name ?? "Customer Name"
+            lblCustomerName.text = booking?.passenger_first_name ?? "Towy User"
             switch booking?.driver_status{
             case Constants.RideDriverStatus.ON_THE_WAY.rawValue:
                 //UISETP
@@ -984,8 +992,8 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             self.present(vc, animated: true, completion: nil)
         }else{
             
-            let b = UtilityManager.manager.getModelFromUserDefalts(key: Constants.CURRENT_RIDE)
-            if let booking_Id =  b?["id"] as? Double {
+//            let b = UtilityManager.manager.getModelFromUserDefalts(key: Constants.CURRENT_RIDE)
+            if let booking_Id =  self.booking?.id {
                 
                 
 //                let params = ["booking_id":"\(booking_Id)","driver_status":3,"ride_locations": [
@@ -1108,7 +1116,12 @@ class DashBoardViewController: UIViewController, MenuDelegate, GMSMapViewDelegat
             UtilityManager.manager.navigateToVc(from: self, identifier: "DriverPortalViewController", storyBoard: UtilityManager.manager.getMainStoryboard())
         case .LOGOUT :
             self.backView.isHidden = true
-            logoutUser()
+            if UtilityManager.manager.getDriverStatus() == 2{
+                UtilityManager.manager.showAlertView(title: Constants.APP_NAME, message: "You Can't logout while connected with customer.")
+            }else{
+                logoutUser()
+            }
+            
             
         default:
             print("")

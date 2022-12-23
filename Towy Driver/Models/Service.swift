@@ -41,8 +41,15 @@ class Service{
   
     class func getServiceArr(dict:[[String:Any]])->[Service]{
         var d = [Service]()
+        let savedServices = UtilityManager.manager.getServices() as? [[String:Any]] ?? []
+        var keysArr = [Int]()
+        for s in savedServices{
+            keysArr.append(s["service_id"] as! Int)
+        }
         for i in dict{
-            d.append(Service.init(dict: i))
+            let service = Service.init(dict: i)
+            if keysArr.contains(service.id!){
+                d.append(service)}
         }
         return d
     }
