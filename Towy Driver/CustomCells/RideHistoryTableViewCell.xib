@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Regular.otf">
+            <string>Montserrat-Regular</string>
+        </array>
+        <array key="Montserrat-SemiBold.otf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RideHistoryTableViewCell" rowHeight="115" id="KGk-i7-Jjw" customClass="RideHistoryTableViewCell" customModule="Towy_Driver" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="428" height="115"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="428" height="115"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tripHistory" translatesAutoresizingMaskIntoConstraints="NO" id="ZPS-uz-9EF">
+                        <rect key="frame" x="12" y="44" width="25" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="be4-2n-p9t"/>
+                            <constraint firstAttribute="height" constant="50" id="kI4-63-6cG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21-02-2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlp-rO-ZXJ">
+                        <rect key="frame" x="12" y="10" width="84" height="19"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBU-JX-tIv">
+                        <rect key="frame" x="384" y="10" width="36" height="19"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DHA -Phase 2 street no 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWp-Nw-ece">
+                        <rect key="frame" x="45" y="44" width="363" height="18"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Town Steeky heights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qq-TU-bNk">
+                        <rect key="frame" x="45" y="76" width="363" height="18"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="zWp-Nw-ece" secondAttribute="trailing" constant="20" id="Bdk-6s-16H"/>
+                    <constraint firstItem="ZPS-uz-9EF" firstAttribute="leading" secondItem="Zlp-rO-ZXJ" secondAttribute="leading" id="Bza-Fc-zoc"/>
+                    <constraint firstItem="zWp-Nw-ece" firstAttribute="leading" secondItem="ZPS-uz-9EF" secondAttribute="trailing" constant="8" id="FhF-Ve-eCq"/>
+                    <constraint firstItem="Zlp-rO-ZXJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SfP-6y-rfk"/>
+                    <constraint firstAttribute="trailing" secondItem="OBU-JX-tIv" secondAttribute="trailing" constant="8" id="Wc5-sN-HIA"/>
+                    <constraint firstItem="zWp-Nw-ece" firstAttribute="top" secondItem="ZPS-uz-9EF" secondAttribute="top" id="b4C-NC-Gbh"/>
+                    <constraint firstItem="OBU-JX-tIv" firstAttribute="centerY" secondItem="Zlp-rO-ZXJ" secondAttribute="centerY" id="bWl-7i-Y0L"/>
+                    <constraint firstItem="ZPS-uz-9EF" firstAttribute="top" secondItem="Zlp-rO-ZXJ" secondAttribute="bottom" constant="15" id="iM0-BG-DZl"/>
+                    <constraint firstItem="Zlp-rO-ZXJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="p5R-a0-2MQ"/>
+                    <constraint firstItem="1Qq-TU-bNk" firstAttribute="bottom" secondItem="ZPS-uz-9EF" secondAttribute="bottom" id="p6Q-Wp-TEy"/>
+                    <constraint firstAttribute="trailing" secondItem="1Qq-TU-bNk" secondAttribute="trailing" constant="20" id="pVz-Sf-10U"/>
+                    <constraint firstItem="1Qq-TU-bNk" firstAttribute="leading" secondItem="ZPS-uz-9EF" secondAttribute="trailing" constant="8" id="wzz-RM-cDo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblDate" destination="Zlp-rO-ZXJ" id="YhX-DH-ZLX"/>
+                <outlet property="lblDropoff" destination="1Qq-TU-bNk" id="eD5-NS-T7z"/>
+                <outlet property="lblPickup" destination="zWp-Nw-ece" id="Hdb-up-0E7"/>
+                <outlet property="lblPrice" destination="OBU-JX-tIv" id="uun-FA-EsM"/>
+            </connections>
+            <point key="canvasLocation" x="84.057971014492765" y="115.51339285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tripHistory" width="40" height="256"/>
+    </resources>
+</document>
